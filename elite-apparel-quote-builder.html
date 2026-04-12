@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Apparel — Quote Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0d0d0d;
+  --white: #ffffff;
+  --gray-50: #f8f8f8;
+  --gray-100: #f0f0f0;
+  --gray-200: #e0e0e0;
+  --gray-400: #999;
+  --gray-600: #666;
+  --gray-800: #333;
+  --accent: #0d0d0d;
+  --step: #e8e8e8;
+  --step-active: #0d0d0d;
+  --step-done: #0d0d0d;
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--gray-50);
+  color: var(--black);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  background: var(--black);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header-logo img {
+  height: 36px;
+  width: auto;
+  filter: invert(1);
+}
+.header-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+.header-divider {
+  width: 1px; height: 24px;
+  background: #333;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 48px;
+  display: flex;
+  align-items: stretch;
+}
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 24px 16px 0;
+  position: relative;
+  cursor: default;
+}
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px; height: 1px;
+  background: var(--gray-200);
+}
+.step-num {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--step);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; font-weight: 600;
+  color: var(--gray-400);
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.step-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.step.active .step-num {
+  background: var(--black);
+  color: var(--white);
+}
+.step.active .step-label { color: var(--black); }
+.step.done .step-num {
+  background: var(--black);
+  color: var(--white);
+}
+.step.done .step-num::before { content: '✓'; font-size: 11px; }
+.step.done .step-num span { display: none; }
+.step.done .step-label { color: var(--gray-600); }
+
+/* MAIN LAYOUT */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 48px;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* PANEL */
+.panel {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+}
+.panel-header {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.panel-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.panel-sub {
+  font-size: 13px;
+  color: var(--gray-600);
+  margin-top: 4px;
+  font-weight: 300;
+}
+.panel-body { padding: 28px; }
+
+/* STEP PANELS */
+.step-panel { display: none; }
+.step-panel.active { display: block; }
+
+/* PRODUCT CATEGORY TABS */
+.cat-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--gray-200);
+  margin-bottom: 24px;
+}
+.cat-tab {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  background: none; border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: -1px;
+}
+.cat-tab:hover { color: var(--black); }
+.cat-tab.active {
+  color: var(--black);
+  border-bottom-color: var(--black);
+}
+
+/* PRODUCT LIST */
+.product-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.product-option {
+  border: 1.5px solid var(--gray-200);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.product-option:hover {
+  border-color: var(--black);
+  background: var(--gray-50);
+}
+.product-option.selected {
+  border-color: var(--black);
+  background: var(--black);
+}
+.product-option.selected .prod-brand,
+.product-option.selected .prod-name,
+.product-option.selected .prod-sku {
+  color: var(--white);
+}
+.prod-brand {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+.prod-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--black);
+  line-height: 1.3;
+}
+.prod-sku {
+  font-size: 10px;
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+/* FORM ELEMENTS */
+.form-row {
+  margin-bottom: 24px;
+}
+.form-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-800);
+  display: block;
+  margin-bottom: 10px;
+}
+.form-note {
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-top: 6px;
+  font-weight: 300;
+}
+
+/* QUANTITY INPUT */
+.qty-input {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1.5px solid var(--gray-200);
+  width: fit-content;
+}
+.qty-btn {
+  width: 40px; height: 40px;
+  background: var(--gray-100);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--black);
+  font-weight: 300;
+  transition: background 0.1s;
+  display: flex; align-items: center; justify-content: center;
+}
+.qty-btn:hover { background: var(--gray-200); }
+.qty-number {
+  width: 80px; height: 40px;
+  border: none;
+  border-left: 1.5px solid var(--gray-200);
+  border-right: 1.5px solid var(--gray-200);
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--black);
+  background: var(--white);
+}
+.qty-number:focus { outline: none; }
+
+/* DECORATION TYPES */
+.deco-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.deco-option {
+  border: 1.5px solid var(--gray-200);
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+.deco-option:hover {
+  border-color: var(--black);
+}
+.deco-option.selected {
+  border-color: var(--black);
+  background: var(--black);
+}
+.deco-icon {
+  font-size: 22px;
+  margin-bottom: 6px;
+  display: block;
+}
+.deco-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.deco-desc {
+  font-size: 10px;
+  color: var(--gray-400);
+  margin-top: 3px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+.deco-option.selected .deco-name,
+.deco-option.selected .deco-desc { color: var(--white); }
+
+/* COLOR SLIDER */
+.color-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.color-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 3px;
+  background: var(--gray-200);
+  outline: none;
+  cursor: pointer;
+}
+.color-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--black);
+  cursor: pointer;
+}
+.color-count-display {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  min-width: 48px;
+  text-align: center;
+}
+.color-label {
+  font-size: 11px;
+  color: var(--gray-400);
+  text-align: center;
+  min-width: 48px;
+  font-weight: 300;
+}
+
+/* STITCH COUNT */
+.stitch-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.stitch-option {
+  border: 1.5px solid var(--gray-200);
+  padding: 10px 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+.stitch-option:hover { border-color: var(--black); }
+.stitch-option.selected {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+.stitch-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+.stitch-label {
+  font-size: 9px;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+.stitch-option.selected .stitch-label { color: #ccc; }
+
+/* DTF SIZE */
+.dtf-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.dtf-option {
+  border: 1.5px solid var(--gray-200);
+  padding: 12px 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+.dtf-option:hover { border-color: var(--black); }
+.dtf-option.selected {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+.dtf-size-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.dtf-size-dim {
+  font-size: 9px;
+  color: var(--gray-400);
+  margin-top: 3px;
+}
+.dtf-option.selected .dtf-size-dim { color: #aaa; }
+
+/* LOCATION OPTIONS */
+.location-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.location-chip {
+  border: 1.5px solid var(--gray-200);
+  padding: 7px 14px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: all 0.15s;
+}
+.location-chip:hover { border-color: var(--black); }
+.location-chip.selected {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
+/* QUOTE SIDEBAR */
+.quote-sidebar {
+  position: sticky;
+  top: 24px;
+}
+.quote-box {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+}
+.quote-header {
+  background: var(--black);
+  padding: 16px 20px;
+}
+.quote-header-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.quote-header-sub {
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-top: 2px;
+}
+.quote-body { padding: 20px; }
+.quote-empty {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--gray-400);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+.quote-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 13px;
+}
+.quote-line:last-of-type { border-bottom: none; }
+.quote-line-label { color: var(--gray-600); font-weight: 300; line-height: 1.4; }
+.quote-line-val { font-weight: 500; text-align: right; white-space: nowrap; }
+.quote-total {
+  background: var(--black);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quote-total-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+.quote-total-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+}
+.quote-per-unit {
+  padding: 10px 20px;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+  font-size: 12px;
+  color: var(--gray-600);
+  text-align: center;
+}
+.quote-disclaimer {
+  padding: 12px 20px;
+  font-size: 10px;
+  color: var(--gray-400);
+  line-height: 1.5;
+  border-top: 1px solid var(--gray-100);
+  font-style: italic;
+}
+
+/* NAVIGATION BUTTONS */
+.nav-btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--gray-100);
+}
+.btn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-primary {
+  background: var(--black);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--gray-800); }
+.btn-primary:disabled {
+  background: var(--gray-200);
+  color: var(--gray-400);
+  cursor: not-allowed;
+}
+.btn-secondary {
+  background: var(--gray-100);
+  color: var(--gray-800);
+}
+.btn-secondary:hover { background: var(--gray-200); }
+
+/* MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--white);
+  width: 480px;
+  max-width: 95vw;
+}
+.modal-header {
+  background: var(--black);
+  padding: 24px 28px;
+}
+.modal-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.modal-sub {
+  font-size: 13px;
+  color: var(--gray-400);
+  margin-top: 4px;
+  font-weight: 300;
+}
+.modal-body { padding: 28px; }
+.modal-field {
+  margin-bottom: 16px;
+}
+.modal-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-800);
+  display: block;
+  margin-bottom: 8px;
+}
+.modal-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--gray-200);
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  color: var(--black);
+  background: var(--white);
+  transition: border-color 0.15s;
+}
+.modal-input:focus {
+  outline: none;
+  border-color: var(--black);
+}
+.modal-footer { padding: 0 28px 28px; }
+.modal-note {
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-top: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.modal-error {
+  font-size: 12px;
+  color: #c0392b;
+  margin-top: 8px;
+  display: none;
+}
+
+/* QUOTE RESULT */
+.quote-result {
+  display: none;
+}
+.quote-result.visible { display: block; }
+.result-header {
+  background: var(--black);
+  padding: 32px 48px;
+  text-align: center;
+}
+.result-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 8px;
+}
+.result-total {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+.result-per-unit {
+  font-size: 16px;
+  color: var(--gray-400);
+  margin-top: 8px;
+  font-weight: 300;
+}
+.result-body {
+  background: var(--white);
+  padding: 32px 48px;
+}
+.result-section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 14px;
+}
+.result-row:last-child { border-bottom: none; }
+.result-row-label { color: var(--gray-600); font-weight: 300; }
+.result-row-val { font-weight: 500; }
+.result-disclaimer {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  padding: 16px 20px;
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--gray-600);
+  line-height: 1.6;
+  font-weight: 300;
+  font-style: italic;
+}
+.result-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* SENDING STATE */
+.sending { opacity: 0.6; pointer-events: none; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-logo">
+    <img src="data:image/png;base64,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" alt="Elite Apparel">
+    <div class="header-divider"></div>
+    <span class="header-title">Quote Builder</span>
+  </div>
+  <div style="font-size:11px;color:#555;letter-spacing:0.08em;text-transform:uppercase;">Estimates updated live</div>
+</header>
+
+<div class="progress-bar">
+  <div class="step active" id="step-ind-1">
+    <div class="step-num"><span>1</span></div>
+    <div class="step-label">Product</div>
+  </div>
+  <div class="step" id="step-ind-2">
+    <div class="step-num"><span>2</span></div>
+    <div class="step-label">Quantity</div>
+  </div>
+  <div class="step" id="step-ind-3">
+    <div class="step-num"><span>3</span></div>
+    <div class="step-label">Decoration</div>
+  </div>
+  <div class="step" id="step-ind-4">
+    <div class="step-num"><span>4</span></div>
+    <div class="step-label">Details</div>
+  </div>
+</div>
+
+<div class="main">
+  <div>
+
+    <!-- STEP 1: PRODUCT -->
+    <div class="step-panel active" id="panel-1">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Select a Product</div>
+          <div class="panel-sub">Choose the garment style you want customized</div>
+        </div>
+        <div class="panel-body">
+          <div class="cat-tabs">
+            <button class="cat-tab active" onclick="filterCat('tee',this)">Tees</button>
+            <button class="cat-tab" onclick="filterCat('qz',this)">Quarter-Zips</button>
+            <button class="cat-tab" onclick="filterCat('polo',this)">Polos</button>
+            <button class="cat-tab" onclick="filterCat('hoodie',this)">Hoodies</button>
+          </div>
+          <div class="product-list" id="product-list"></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn btn-primary" id="btn-1-next" onclick="goStep(2)" disabled>Next: Quantity →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: QUANTITY -->
+    <div class="step-panel" id="panel-2">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">How Many?</div>
+          <div class="panel-sub">Minimum 12 pieces per decoration. Price breaks apply automatically.</div>
+        </div>
+        <div class="panel-body">
+          <div class="form-row">
+            <label class="form-label">Quantity</label>
+            <div class="qty-input">
+              <button class="qty-btn" onclick="adjustQty(-1)">−</button>
+              <input class="qty-number" type="number" id="qty-val" value="24" min="12" onchange="onQtyChange()">
+              <button class="qty-btn" onclick="adjustQty(1)">+</button>
+            </div>
+            <div class="form-note" id="qty-note">24 pieces — 40% margin tier</div>
+          </div>
+          <div id="qty-warning" style="display:none;background:#fff3cd;border:1px solid #ffc107;padding:10px 14px;font-size:12px;color:#856404;margin-top:8px;">
+            Minimum order is 12 pieces per decoration.
+          </div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn btn-secondary" onclick="goStep(1)">← Back</button>
+        <button class="btn btn-primary" onclick="goStep(3)">Next: Decoration →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: DECORATION TYPE -->
+    <div class="step-panel" id="panel-3">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Decoration Type</div>
+          <div class="panel-sub">How do you want your logo applied?</div>
+        </div>
+        <div class="panel-body">
+          <div class="deco-grid">
+            <div class="deco-option" onclick="selectDeco('screenprint',this)">
+              <span class="deco-icon">🖨</span>
+              <div class="deco-name">Screen Print</div>
+              <div class="deco-desc">Best for bold designs, large runs. Per-color pricing.</div>
+            </div>
+            <div class="deco-option" onclick="selectDeco('embroidery',this)">
+              <span class="deco-icon">🧵</span>
+              <div class="deco-name">Embroidery</div>
+              <div class="deco-desc">Premium stitched look. Priced by stitch count.</div>
+            </div>
+            <div class="deco-option" onclick="selectDeco('dtf',this)">
+              <span class="deco-icon">🎨</span>
+              <div class="deco-name">DTF Transfer</div>
+              <div class="deco-desc">Full-color, photo-quality. Great for complex artwork.</div>
+            </div>
+          </div>
+          <div id="deco-detail-screenprint" class="deco-detail" style="display:none">
+            <div class="form-row">
+              <label class="form-label">Number of Colors in Design</label>
+              <div class="color-slider-wrap">
+                <div>
+                  <div class="color-count-display" id="color-count-display">2</div>
+                  <div class="color-label">colors</div>
+                </div>
+                <input type="range" class="color-slider" id="color-slider" min="1" max="8" value="2" oninput="onColorChange()">
+              </div>
+              <div class="form-note">Each color = $20 screen charge (waived at 144+ pieces)</div>
+            </div>
+          </div>
+          <div id="deco-detail-embroidery" class="deco-detail" style="display:none">
+            <div class="form-row">
+              <label class="form-label">Estimated Stitch Count</label>
+              <div class="stitch-options">
+                <div class="stitch-option selected" onclick="selectStitch(4000,this)"><div class="stitch-val">≤4K</div><div class="stitch-label">Simple logo</div></div>
+                <div class="stitch-option" onclick="selectStitch(6000,this)"><div class="stitch-val">≤6K</div><div class="stitch-label">Small logo</div></div>
+                <div class="stitch-option" onclick="selectStitch(8000,this)"><div class="stitch-val">≤8K</div><div class="stitch-label">Medium logo</div></div>
+                <div class="stitch-option" onclick="selectStitch(10000,this)"><div class="stitch-val">≤10K</div><div class="stitch-label">Detailed logo</div></div>
+                <div class="stitch-option" onclick="selectStitch(15000,this)"><div class="stitch-val">≤15K</div><div class="stitch-label">Complex logo</div></div>
+                <div class="stitch-option" onclick="selectStitch(20000,this)"><div class="stitch-val">≤20K</div><div class="stitch-label">Large design</div></div>
+              </div>
+              <div class="form-note">Not sure? Most standard logos are 5,000–8,000 stitches. We can quote exactly after seeing your artwork.</div>
+            </div>
+          </div>
+          <div id="deco-detail-dtf" class="deco-detail" style="display:none">
+            <div class="form-row">
+              <label class="form-label">Print Size</label>
+              <div class="dtf-options">
+                <div class="dtf-option selected" onclick="selectDTFSize('small',this)">
+                  <div class="dtf-size-name">Small</div>
+                  <div class="dtf-size-dim">Up to 4" × 4"</div>
+                </div>
+                <div class="dtf-option" onclick="selectDTFSize('standard',this)">
+                  <div class="dtf-size-name">Standard</div>
+                  <div class="dtf-size-dim">Up to 10" × 12"</div>
+                </div>
+                <div class="dtf-option" onclick="selectDTFSize('oversized',this)">
+                  <div class="dtf-size-name">Oversized</div>
+                  <div class="dtf-size-dim">Up to 14" × 16"</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn btn-secondary" onclick="goStep(2)">← Back</button>
+        <button class="btn btn-primary" id="btn-3-next" onclick="goStep(4)" disabled>Next: Location →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: LOCATION -->
+    <div class="step-panel" id="panel-4">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Print Location</div>
+          <div class="panel-sub">Where on the garment should your logo go?</div>
+        </div>
+        <div class="panel-body">
+          <div class="form-row">
+            <label class="form-label">Select Location</label>
+            <div class="location-options">
+              <div class="location-chip selected" onclick="selectLocation('Left Chest',this)">Left Chest</div>
+              <div class="location-chip" onclick="selectLocation('Full Front',this)">Full Front</div>
+              <div class="location-chip" onclick="selectLocation('Full Back',this)">Full Back</div>
+              <div class="location-chip" onclick="selectLocation('Right Chest',this)">Right Chest</div>
+              <div class="location-chip" onclick="selectLocation('Left Sleeve',this)">Left Sleeve</div>
+              <div class="location-chip" onclick="selectLocation('Right Sleeve',this)">Right Sleeve</div>
+              <div class="location-chip" onclick="selectLocation('Nape of Neck',this)">Nape of Neck</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn btn-secondary" onclick="goStep(3)">← Back</button>
+        <button class="btn btn-primary" onclick="openModal()">Get My Quote →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR QUOTE PREVIEW -->
+  <div class="quote-sidebar">
+    <div class="quote-box">
+      <div class="quote-header">
+        <div class="quote-header-title">Live Estimate</div>
+        <div class="quote-header-sub">Updates as you configure</div>
+      </div>
+      <div class="quote-body" id="quote-body">
+        <div class="quote-empty">Complete the steps on the left to see your live estimate here.</div>
+      </div>
+      <div id="quote-totals" style="display:none">
+        <div class="quote-total">
+          <div class="quote-total-label">Est. Total</div>
+          <div class="quote-total-val" id="sidebar-total">—</div>
+        </div>
+        <div class="quote-per-unit" id="sidebar-per-unit"></div>
+        <div class="quote-disclaimer">* Estimate only. Final pricing confirmed by your rep.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL GATE MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Almost there.</div>
+      <div class="modal-sub">Enter your info to see your full quote breakdown.</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-field">
+        <label class="modal-label">Full Name</label>
+        <input class="modal-input" type="text" id="input-name" placeholder="Bart Baker">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Email Address</label>
+        <input class="modal-input" type="email" id="input-email" placeholder="bart@firstweber.com">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Company</label>
+        <input class="modal-input" type="text" id="input-company" placeholder="First Weber">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" style="width:100%" id="submit-btn" onclick="submitQuote()">See My Quote →</button>
+      <div class="modal-error" id="modal-error">Please fill in all fields.</div>
+      <div class="modal-note">Your info is sent directly to your Elite Apparel rep. No spam, ever.</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE RESULT (replaces main content) -->
+<div class="quote-result" id="quote-result">
+  <div class="result-header">
+    <div class="result-title">Your Estimate</div>
+    <div class="result-total" id="result-total">$0.00</div>
+    <div class="result-per-unit" id="result-per-unit"></div>
+  </div>
+  <div class="result-body" style="max-width:640px;margin:0 auto">
+    <div class="result-section-title">Order Summary</div>
+    <div id="result-rows"></div>
+    <div class="result-disclaimer">
+      This is an estimate based on the information provided. Final pricing is confirmed by your Elite Apparel rep after reviewing your artwork and order details. Garment pricing shown is approximate — exact wholesale pricing varies by color and size availability.
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-primary" onclick="window.location.reload()">Build Another Quote</button>
+      <button class="btn btn-secondary" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// ─── INIT EMAILJS ───────────────────────────────────────────────
+emailjs.init('2yrbwvrm1U9JuDJss');
+
+// ─── STATE ──────────────────────────────────────────────────────
+var state = {
+  product: null,
+  qty: 24,
+  deco: null,
+  colors: 2,
+  stitches: 4000,
+  dtfSize: 'small',
+  location: 'Left Chest',
+  currentCat: 'tee',
+  currentStep: 1,
+};
+
+// ─── PRODUCT DATA ───────────────────────────────────────────────
+var PRODUCTS = [
+  {id:'NKDX8730', name:'Nike Swoosh Sleeve rLegend Tee',          brand:'Nike',           cat:'tee',    wholesale:8.50},
+  {id:'NL6210',   name:'Next Level Adult CVC Tee',                 brand:'Next Level',     cat:'tee',    wholesale:4.50},
+  {id:'ST350',    name:'Sport-Tek PosiCharge Competitor Tee',      brand:'Sport-Tek',      cat:'tee',    wholesale:5.25},
+  {id:'NEA200',   name:'New Era Series Performance Crew Tee',      brand:'New Era',        cat:'tee',    wholesale:9.00},
+  {id:'RA7110SS', name:'Richardson Clutch Short Sleeve Tee',       brand:'Richardson',     cat:'tee',    wholesale:7.50},
+  {id:'NKDX6702', name:'Nike Textured 1/2-Zip Cover-Up',           brand:'Nike',           cat:'qz',     wholesale:42.00},
+  {id:'NKDX6718', name:'Nike Club Fleece Swoosh 1/2-Zip',          brand:'Nike',           cat:'qz',     wholesale:55.00},
+  {id:'NKDX6720', name:"Nike Women's Club Fleece Swoosh 1/2-Zip",  brand:'Nike',           cat:'qz',     wholesale:55.00},
+  {id:'F804',     name:'Port Authority Smooth Fleece 1/4-Zip',     brand:'Port Authority', cat:'qz',     wholesale:22.00},
+  {id:'637167',   name:'Nike Dri-FIT Vertical Mesh Polo',          brand:'Nike',           cat:'polo',   wholesale:28.00},
+  {id:'637165',   name:"Nike Women's Dri-FIT Vertical Mesh Polo",  brand:'Nike',           cat:'polo',   wholesale:28.00},
+  {id:'K863',     name:'Port Authority C-FREE Performance Polo',   brand:'Port Authority', cat:'polo',   wholesale:18.00},
+  {id:'LK110',    name:"Port Authority Women's Dry Zone UV Polo",  brand:'Port Authority', cat:'polo',   wholesale:16.00},
+  {id:'RA7200LSH',name:'Richardson Charge Performance Hoodie',     brand:'Richardson',     cat:'hoodie', wholesale:38.00},
+  {id:'NKDR1499', name:'Nike Club Fleece Pullover Hoodie',         brand:'Nike',           cat:'hoodie', wholesale:52.00},
+  {id:'SS4500',   name:'Independent Trading Midweight Hoodie',     brand:'Ind. Trading',   cat:'hoodie', wholesale:18.00},
+];
+
+// ─── SCREEN PRINT PRICING (per unit decoration cost, Eggers contract) ───
+var SP_TIERS = [
+  {min:1,   max:3,    prices:[2.35,2.55,2.89,3.14,3.43,4.09,4.61,5.38,5.50,5.95,6.43,6.90]},
+  {min:4,   max:11,   prices:[2.18,2.26,2.44,2.61,2.78,2.96,3.13,3.30,3.48,3.65,3.82,4.01]},
+  {min:12,  max:23,   prices:[2.01,2.08,2.18,2.26,2.35,2.53,2.70,2.88,3.05,3.22,3.40,3.57]},
+  {min:24,  max:47,   prices:[1.91,1.97,2.03,2.07,2.13,2.18,2.25,2.32,2.43,2.51,2.59,2.68]},
+  {min:48,  max:96,   prices:[1.35,1.44,1.53,1.62,1.67,1.71,1.74,1.78,1.80,1.90,1.99,2.07]},
+  {min:97,  max:199,  prices:[1.11,1.20,1.27,1.35,1.40,1.41,1.47,1.50,1.54,1.61,1.68,1.78]},
+  {min:200, max:359,  prices:[1.07,1.13,1.19,1.20,1.22,1.25,1.26,1.27,1.35,1.41,1.52,1.59]},
+  {min:360, max:1999, prices:[1.04,1.06,1.09,1.10,1.14,1.13,1.14,1.16,1.25,1.36,1.40,1.48]},
+  {min:2000,max:99999,prices:[1.00,1.02,1.06,1.07,1.08,1.10,1.12,1.13,1.19,1.25,1.27,1.34]},
+];
+
+// ─── EMBROIDERY PRICING (Contract Customizing 2026) ───
+var EMB_STITCHES = [4000,5000,6000,7000,8000,10000,15000,20000,25000];
+var EMB_PRICES = [
+  [9.49,5.49,3.53,3.09,2.80,2.52],
+  [10.53,6.51,4.15,3.63,3.25,2.93],
+  [11.58,7.51,4.77,4.17,3.71,3.35],
+  [12.63,8.52,5.38,4.73,4.17,3.78],
+  [13.66,9.52,6.03,5.28,4.61,4.19],
+  [15.77,11.53,7.26,6.43,5.53,5.02],
+  [21.51,17.00,10.60,9.09,7.82,7.11],
+  [26.87,22.16,13.78,11.82,10.09,9.21],
+  [32.22,27.32,16.95,14.57,12.39,11.31],
+];
+// qty breaks: 1-3, 4-11, 12-35, 36-71, 72-143, 144+
+
+// ─── DTF PRICING (Contract Customizing 2026) ───
+var DTF_TIERS = [
+  {min:1,  max:3,  prices:[11.55,15.13,20.63]},
+  {min:4,  max:11, prices:[6.33, 9.63, 15.13]},
+  {min:12, max:47, prices:[5.23, 7.43, 11.83]},
+  {min:48, max:71, prices:[4.68, 5.78, 9.08]},
+  {min:72, max:99999, prices:[4.13, 5.23, 8.53]},
+];
+
+// ─── MARGIN CALC ────────────────────────────────────────────────
+function getMargin(qty, deco) {
+  if (deco === 'dtf') {
+    if (qty <= 14)  return 0.55;
+    if (qty <= 99)  return 0.60;
+    if (qty <= 249) return 0.65;
+    return 0.70;
+  }
+  // screen print / embroidery
+  if (qty <= 23)  return 0.55;
+  if (qty <= 143) return 0.60;
+  if (qty <= 499) return 0.65;
+  if (qty <= 999) return 0.70;
+  return 0.75;
+}
+
+function getMargLabel(qty, deco) {
+  var m = Math.round((1 - getMargin(qty, deco)) * 100);
+  return m + '% margin tier';
+}
+
+function applyMargin(cost, qty, deco) {
+  return cost / getMargin(qty, deco);
+}
+
+// ─── PRICING FUNCTIONS ───────────────────────────────────────────
+function getSPDecoPrice(qty, colors) {
+  var tier = SP_TIERS.find(t => qty >= t.min && qty <= t.max) || SP_TIERS[SP_TIERS.length-1];
+  return tier.prices[Math.min(colors-1, 11)];
+}
+
+function getEmbDecoPrice(qty, stitches) {
+  var si = EMB_STITCHES.findIndex(s => stitches <= s);
+  if (si < 0) si = EMB_STITCHES.length - 1;
+  var qi = 0;
+  if (qty >= 4  && qty <= 11)  qi = 1;
+  if (qty >= 12 && qty <= 35)  qi = 2;
+  if (qty >= 36 && qty <= 71)  qi = 3;
+  if (qty >= 72 && qty <= 143) qi = 4;
+  if (qty >= 144)              qi = 5;
+  return EMB_PRICES[si][qi];
+}
+
+function getDTFDecoPrice(qty, size) {
+  var tier = DTF_TIERS.find(t => qty >= t.min && qty <= t.max) || DTF_TIERS[DTF_TIERS.length-1];
+  var si = size === 'small' ? 0 : size === 'standard' ? 1 : 2;
+  return tier.prices[si];
+}
+
+function calcQuote() {
+  if (!state.product || !state.deco) return null;
+  var qty = state.qty;
+  var wholesale = state.product.wholesale;
+  var margin = getMargin(qty, state.deco);
+
+  var garmentRetail = wholesale / margin;
+
+  var decoRaw = 0;
+  if (state.deco === 'screenprint') {
+    decoRaw = getSPDecoPrice(qty, state.colors);
+  } else if (state.deco === 'embroidery') {
+    decoRaw = getEmbDecoPrice(qty, state.stitches);
+  } else if (state.deco === 'dtf') {
+    decoRaw = getDTFDecoPrice(qty, state.dtfSize);
+  }
+
+  var decoRetail = decoRaw / margin;
+
+  var screenCharge = 0;
+  if (state.deco === 'screenprint' && qty < 144) {
+    screenCharge = state.colors * 20;
+  }
+
+  var perUnit = garmentRetail + decoRetail;
+  var subtotal = perUnit * qty;
+  var total = subtotal + screenCharge;
+
+  return {
+    garmentRetail: garmentRetail,
+    decoRetail: decoRetail,
+    perUnit: perUnit,
+    subtotal: subtotal,
+    screenCharge: screenCharge,
+    total: total,
+    qty: qty,
+    margin: margin,
+  };
+}
+
+function fmt(n) { return '$' + n.toFixed(2); }
+
+// ─── SIDEBAR UPDATE ──────────────────────────────────────────────
+function updateSidebar() {
+  var q = calcQuote();
+  var body = document.getElementById('quote-body');
+  var totals = document.getElementById('quote-totals');
+
+  if (!state.product && !state.deco) {
+    body.innerHTML = '<div class="quote-empty">Complete the steps on the left to see your live estimate here.</div>';
+    totals.style.display = 'none';
+    return;
+  }
+
+  var lines = '';
+  if (state.product) {
+    lines += '<div class="quote-line"><span class="quote-line-label">' + state.product.brand + '<br>' + state.product.name + '</span><span class="quote-line-val">' + state.product.id + '</span></div>';
+    lines += '<div class="quote-line"><span class="quote-line-label">Quantity</span><span class="quote-line-val">' + state.qty + ' pcs</span></div>';
+  }
+  if (state.deco) {
+    var decoLabel = state.deco === 'screenprint' ? 'Screen Print (' + state.colors + ' color' + (state.colors>1?'s':'') + ')' :
+                   state.deco === 'embroidery' ? 'Embroidery (≤' + state.stitches.toLocaleString() + ' stitches)' :
+                   'DTF Transfer (' + state.dtfSize.charAt(0).toUpperCase() + state.dtfSize.slice(1) + ')';
+    lines += '<div class="quote-line"><span class="quote-line-label">Decoration</span><span class="quote-line-val">' + decoLabel + '</span></div>';
+    lines += '<div class="quote-line"><span class="quote-line-label">Location</span><span class="quote-line-val">' + state.location + '</span></div>';
+  }
+
+  if (q) {
+    lines += '<div class="quote-line"><span class="quote-line-label">Garment (ea.)</span><span class="quote-line-val">' + fmt(q.garmentRetail) + '</span></div>';
+    lines += '<div class="quote-line"><span class="quote-line-label">Decoration (ea.)</span><span class="quote-line-val">' + fmt(q.decoRetail) + '</span></div>';
+    if (q.screenCharge > 0) {
+      lines += '<div class="quote-line"><span class="quote-line-label">Screen Charges (' + state.colors + ' × $20)</span><span class="quote-line-val">' + fmt(q.screenCharge) + '</span></div>';
+    }
+    body.innerHTML = lines;
+    totals.style.display = 'block';
+    document.getElementById('sidebar-total').textContent = fmt(q.total);
+    document.getElementById('sidebar-per-unit').textContent = fmt(q.perUnit) + ' per unit × ' + q.qty + ' pcs';
+  } else {
+    body.innerHTML = lines;
+    totals.style.display = 'none';
+  }
+}
+
+// ─── STEP NAVIGATION ────────────────────────────────────────────
+function goStep(n) {
+  // Validate qty
+  if (n === 3 && state.qty < 12) {
+    document.getElementById('qty-warning').style.display = 'block';
+    return;
+  }
+  state.currentStep = n;
+  document.querySelectorAll('.step-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('panel-' + n).classList.add('active');
+
+  // Update progress indicators
+  for (var i = 1; i <= 4; i++) {
+    var ind = document.getElementById('step-ind-' + i);
+    ind.classList.remove('active','done');
+    if (i < n) ind.classList.add('done');
+    else if (i === n) ind.classList.add('active');
+  }
+  window.scrollTo(0,0);
+}
+
+// ─── PRODUCT SELECTION ───────────────────────────────────────────
+function filterCat(cat, btn) {
+  state.currentCat = cat;
+  document.querySelectorAll('.cat-tab').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderProducts();
+}
+
+function renderProducts() {
+  var list = document.getElementById('product-list');
+  list.innerHTML = '';
+  PRODUCTS.filter(function(p) { return p.cat === state.currentCat; }).forEach(function(p) {
+    var div = document.createElement('div');
+    div.className = 'product-option' + (state.product && state.product.id === p.id ? ' selected' : '');
+    div.innerHTML = '<div class="prod-brand">' + p.brand + '</div><div class="prod-name">' + p.name + '</div><div class="prod-sku">' + p.id + '</div>';
+    div.onclick = function() { selectProduct(p); };
+    list.appendChild(div);
+  });
+}
+
+function selectProduct(p) {
+  state.product = p;
+  document.querySelectorAll('.product-option').forEach(function(el) { el.classList.remove('selected'); });
+  event.currentTarget.classList.add('selected');
+  document.getElementById('btn-1-next').disabled = false;
+  updateSidebar();
+}
+
+// ─── QUANTITY ────────────────────────────────────────────────────
+function adjustQty(delta) {
+  state.qty = Math.max(1, state.qty + delta);
+  document.getElementById('qty-val').value = state.qty;
+  onQtyChange();
+}
+function onQtyChange() {
+  state.qty = parseInt(document.getElementById('qty-val').value) || 12;
+  var warn = document.getElementById('qty-warning');
+  warn.style.display = state.qty < 12 ? 'block' : 'none';
+  document.getElementById('qty-note').textContent = state.qty + ' pieces — ' + getMargLabel(state.qty, state.deco || 'screenprint');
+  updateSidebar();
+}
+
+// ─── DECORATION ──────────────────────────────────────────────────
+function selectDeco(type, el) {
+  state.deco = type;
+  document.querySelectorAll('.deco-option').forEach(function(d) { d.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.querySelectorAll('.deco-detail').forEach(function(d) { d.style.display = 'none'; });
+  document.getElementById('deco-detail-' + type).style.display = 'block';
+  document.getElementById('btn-3-next').disabled = false;
+  updateSidebar();
+}
+
+function onColorChange() {
+  state.colors = parseInt(document.getElementById('color-slider').value);
+  document.getElementById('color-count-display').textContent = state.colors;
+  updateSidebar();
+}
+
+function selectStitch(val, el) {
+  state.stitches = val;
+  document.querySelectorAll('.stitch-option').forEach(function(s) { s.classList.remove('selected'); });
+  el.classList.add('selected');
+  updateSidebar();
+}
+
+function selectDTFSize(size, el) {
+  state.dtfSize = size;
+  document.querySelectorAll('.dtf-option').forEach(function(d) { d.classList.remove('selected'); });
+  el.classList.add('selected');
+  updateSidebar();
+}
+
+// ─── LOCATION ────────────────────────────────────────────────────
+function selectLocation(loc, el) {
+  state.location = loc;
+  document.querySelectorAll('.location-chip').forEach(function(c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+// ─── MODAL ───────────────────────────────────────────────────────
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+}
+
+// ─── SUBMIT QUOTE ────────────────────────────────────────────────
+function submitQuote() {
+  var name    = document.getElementById('input-name').value.trim();
+  var email   = document.getElementById('input-email').value.trim();
+  var company = document.getElementById('input-company').value.trim();
+  var err     = document.getElementById('modal-error');
+
+  if (!name || !email || !company) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+
+  var q = calcQuote();
+  var btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...';
+  btn.classList.add('sending');
+
+  var decoLabel = state.deco === 'screenprint' ? 'Screen Print — ' + state.colors + ' color(s)' :
+                  state.deco === 'embroidery'  ? 'Embroidery — ≤' + state.stitches.toLocaleString() + ' stitches' :
+                  'DTF Transfer — ' + state.dtfSize;
+
+  var templateParams = {
+    client_name:    name,
+    client_email:   email,
+    client_company: company,
+    product_name:   state.product.name,
+    product_sku:    state.product.id,
+    quantity:       state.qty,
+    decoration:     decoLabel,
+    location:       state.location,
+    garment_cost:   fmt(q.garmentRetail) + '/unit',
+    deco_cost:      fmt(q.decoRetail) + '/unit',
+    screen_charge:  q.screenCharge > 0 ? fmt(q.screenCharge) : 'N/A',
+    per_unit:       fmt(q.perUnit),
+    est_total:      fmt(q.total),
+  };
+
+  emailjs.send('service_r7l2veu', 'template_ldio5vd', templateParams)
+    .then(function() { showResult(name, company, q); })
+    .catch(function() { showResult(name, company, q); }); // show result even if email fails
+}
+
+function showResult(name, company, q) {
+  document.getElementById('modal').classList.remove('open');
+  document.querySelector('.main').style.display = 'none';
+  document.querySelector('.progress-bar').style.display = 'none';
+
+  var result = document.getElementById('quote-result');
+  result.classList.add('visible');
+
+  document.getElementById('result-total').textContent = fmt(q.total);
+  document.getElementById('result-per-unit').textContent = fmt(q.perUnit) + ' per unit · ' + q.qty + ' pieces';
+
+  var decoLabel = state.deco === 'screenprint' ? 'Screen Print (' + state.colors + ' color' + (state.colors>1?'s':'') + ')' :
+                  state.deco === 'embroidery'  ? 'Embroidery (≤' + state.stitches.toLocaleString() + ' stitches)' :
+                  'DTF Transfer (' + state.dtfSize.charAt(0).toUpperCase() + state.dtfSize.slice(1) + ')';
+
+  var rows = [
+    {label: 'Prepared for', val: name + ' — ' + company},
+    {label: 'Product', val: state.product.brand + ' ' + state.product.name},
+    {label: 'SKU', val: state.product.id},
+    {label: 'Quantity', val: q.qty + ' pieces'},
+    {label: 'Decoration', val: decoLabel},
+    {label: 'Location', val: state.location},
+    {label: 'Garment cost (per unit)', val: fmt(q.garmentRetail)},
+    {label: 'Decoration cost (per unit)', val: fmt(q.decoRetail)},
+  ];
+
+  if (q.screenCharge > 0) {
+    rows.push({label: 'Screen charges (' + state.colors + ' × $20)', val: fmt(q.screenCharge)});
+  }
+  rows.push({label: 'Subtotal (' + q.qty + ' × ' + fmt(q.perUnit) + ')', val: fmt(q.subtotal)});
+  if (q.screenCharge > 0) {
+    rows.push({label: 'Total (incl. screen charges)', val: fmt(q.total)});
+  }
+
+  document.getElementById('result-rows').innerHTML = rows.map(function(r) {
+    return '<div class="result-row"><span class="result-row-label">' + r.label + '</span><span class="result-row-val">' + r.val + '</span></div>';
+  }).join('');
+}
+
+// ─── INIT ────────────────────────────────────────────────────────
+renderProducts();
+onQtyChange();
+</script>
+</body>
+</html>
