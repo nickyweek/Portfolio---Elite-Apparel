@@ -21,17 +21,19 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .header-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-400); }
 .header-right { font-size: 11px; color: #555; letter-spacing: 0.06em; text-transform: uppercase; }
 
-.progress-bar { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0 48px; display: flex; align-items: stretch; overflow-x: auto; }
+.progress-bar { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0 48px; display: flex; align-items: stretch; }
 .step { display: flex; align-items: center; gap: 10px; padding: 16px 24px 16px 0; position: relative; flex-shrink: 0; }
 .step:not(:last-child)::after { content: ''; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 6px; height: 1px; background: var(--gray-200); }
 .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--gray-200); display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600; color: var(--gray-400); flex-shrink: 0; transition: all 0.2s; }
 .step-label { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-400); transition: all 0.2s; white-space: nowrap; }
 .step.active .step-num { background: var(--black); color: var(--white); }
 .step.active .step-label { color: var(--black); }
-.step.done .step-num { background: var(--black); color: var(--white); font-size: 10px; }
+.step.done .step-num { background: var(--black); color: var(--white); }
 .step.done .step-label { color: var(--gray-600); }
 
-.main { max-width: 900px; margin: 0 auto; padding: 40px 48px; }
+.main { max-width: 1100px; margin: 0 auto; padding: 40px 48px; display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: start; }
+
+/* PANEL */
 .panel { background: var(--white); border: 1px solid var(--gray-200); }
 .panel-header { padding: 24px 28px 20px; border-bottom: 1px solid var(--gray-100); }
 .panel-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -40,12 +42,19 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .step-panel { display: none; }
 .step-panel.active { display: block; }
 
+/* SUMMARY BAR */
+.summary-bar { background: var(--black); padding: 12px 28px; display: flex; gap: 24px; flex-wrap: wrap; min-height: 0; }
+.summary-bar:empty { display: none; }
+.summary-item { display: flex; flex-direction: column; gap: 2px; }
+.summary-label { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #555; }
+.summary-val { font-size: 13px; font-weight: 500; color: var(--white); }
+
 /* PRODUCT */
 .cat-tabs { display: flex; border-bottom: 1px solid var(--gray-200); margin-bottom: 24px; }
 .cat-tab { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); background: none; border: none; border-bottom: 2px solid transparent; padding: 10px 16px; cursor: pointer; transition: all 0.15s; margin-bottom: -1px; }
 .cat-tab:hover { color: var(--black); }
 .cat-tab.active { color: var(--black); border-bottom-color: var(--black); }
-.product-list { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.product-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .product-option { border: 1.5px solid var(--gray-200); padding: 14px 16px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; gap: 3px; }
 .product-option:hover { border-color: var(--black); background: var(--gray-50); }
 .product-option.selected { border-color: var(--black); background: var(--black); }
@@ -67,43 +76,42 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .qty-number:focus { outline: none; }
 .warning-box { background: #fff3cd; border: 1px solid #ffc107; padding: 10px 14px; font-size: 12px; color: #856404; margin-top: 8px; display: none; }
 
-/* DECORATION COMPARISON */
-.deco-compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+/* DECO CARDS */
+.deco-compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
 .deco-card { border: 1.5px solid var(--gray-200); cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; }
 .deco-card:hover { border-color: var(--black); }
 .deco-card.selected { border-color: var(--black); }
-.deco-card-header { padding: 16px; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); text-align: center; }
+.deco-card-header { padding: 16px; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); text-align: center; transition: background 0.15s; }
 .deco-card.selected .deco-card-header { background: var(--black); border-bottom-color: #333; }
-.deco-icon { font-size: 28px; display: block; margin-bottom: 8px; }
-.deco-name { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
+.deco-icon { font-size: 26px; display: block; margin-bottom: 6px; }
+.deco-name { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
 .deco-card.selected .deco-name { color: var(--white); }
-.deco-card-body { padding: 14px 16px; flex-grow: 1; }
+.deco-card-body { padding: 12px 14px; flex-grow: 1; }
 .deco-feature { font-size: 11px; color: var(--gray-600); padding: 4px 0; border-bottom: 1px solid var(--gray-100); display: flex; align-items: flex-start; gap: 6px; line-height: 1.4; }
 .deco-feature:last-child { border-bottom: none; }
-.deco-feature-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray-400); flex-shrink: 0; margin-top: 5px; }
-.deco-card.selected .deco-feature-dot { background: var(--black); }
-.deco-card-footer { padding: 12px 16px; border-top: 1px solid var(--gray-200); background: var(--gray-50); }
-.deco-card.selected .deco-card-footer { background: #1a1a1a; border-top-color: #333; }
-.deco-best-for { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); }
-.deco-card.selected .deco-best-for { color: #888; }
-.deco-best-val { font-size: 12px; color: var(--gray-800); margin-top: 2px; font-weight: 500; }
-.deco-card.selected .deco-best-val { color: #ccc; }
+.deco-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray-300); flex-shrink: 0; margin-top: 5px; }
+.deco-card-footer { padding: 10px 14px; border-top: 1px solid var(--gray-200); background: var(--gray-50); transition: background 0.15s; }
+.deco-card.selected .deco-card-footer { background: #1a1a1a; border-top-color: #2a2a2a; }
+.deco-best-for { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
+.deco-card.selected .deco-best-for { color: #555; }
+.deco-best-val { font-size: 11px; color: var(--gray-800); margin-top: 2px; }
+.deco-card.selected .deco-best-val { color: #aaa; }
 
-/* DECO DETAILS */
-.deco-detail { display: none; background: var(--gray-50); border: 1px solid var(--gray-200); padding: 20px; margin-top: 16px; }
-.color-slider-wrap { display: flex; align-items: center; gap: 16px; }
+/* DECO DETAIL */
+.deco-detail { display: none; background: var(--gray-50); border: 1px solid var(--gray-200); padding: 20px; }
+.color-slider-wrap { display: flex; align-items: center; gap: 16px; margin-top: 12px; }
 .color-slider { flex: 1; -webkit-appearance: none; height: 3px; background: var(--gray-200); outline: none; cursor: pointer; }
 .color-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--black); cursor: pointer; }
 .color-count-display { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 700; min-width: 48px; text-align: center; }
-.color-label { font-size: 11px; color: var(--gray-400); text-align: center; min-width: 48px; font-weight: 300; }
-.stitch-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.color-label { font-size: 11px; color: var(--gray-400); text-align: center; min-width: 48px; }
+.stitch-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
 .stitch-option { border: 1.5px solid var(--gray-200); padding: 10px 8px; cursor: pointer; text-align: center; transition: all 0.15s; background: var(--white); }
 .stitch-option:hover { border-color: var(--black); }
 .stitch-option.selected { border-color: var(--black); background: var(--black); color: var(--white); }
 .stitch-val { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; }
 .stitch-label { font-size: 9px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
 .stitch-option.selected .stitch-label { color: #ccc; }
-.dtf-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.dtf-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
 .dtf-option { border: 1.5px solid var(--gray-200); padding: 12px 8px; cursor: pointer; text-align: center; transition: all 0.15s; background: var(--white); }
 .dtf-option:hover { border-color: var(--black); }
 .dtf-option.selected { border-color: var(--black); background: var(--black); color: var(--white); }
@@ -113,15 +121,32 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 
 /* LOCATION */
 .location-options { display: flex; flex-wrap: wrap; gap: 8px; }
-.location-chip { border: 1.5px solid var(--gray-200); padding: 7px 14px; cursor: pointer; font-size: 12px; font-weight: 500; letter-spacing: 0.04em; transition: all 0.15s; }
+.location-chip { border: 1.5px solid var(--gray-200); padding: 7px 14px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.15s; }
 .location-chip:hover { border-color: var(--black); }
 .location-chip.selected { border-color: var(--black); background: var(--black); color: var(--white); }
 
-/* SELECTED SUMMARY BAR */
-.summary-bar { background: var(--black); padding: 12px 28px; display: flex; gap: 24px; flex-wrap: wrap; }
-.summary-item { display: flex; flex-direction: column; gap: 2px; }
-.summary-label { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #666; }
-.summary-val { font-size: 13px; font-weight: 500; color: var(--white); }
+/* SIDEBAR */
+.quote-sidebar { position: sticky; top: 24px; }
+.quote-box { background: var(--white); border: 1px solid var(--gray-200); }
+.quote-box-header { background: var(--black); padding: 16px 20px; }
+.quote-box-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); }
+.quote-box-sub { font-size: 11px; color: #555; margin-top: 2px; }
+.quote-empty { padding: 32px 20px; text-align: center; font-size: 13px; color: var(--gray-400); font-weight: 300; line-height: 1.6; }
+
+/* LIVE QUOTE DISPLAY */
+.quote-live { padding: 20px; }
+.quote-config-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 12px; }
+.quote-config-item:last-of-type { border-bottom: none; }
+.quote-config-label { color: var(--gray-600); font-weight: 300; }
+.quote-config-val { font-weight: 500; color: var(--black); text-align: right; }
+.quote-total-block { background: var(--black); padding: 20px; margin-top: 0; }
+.quote-total-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #555; margin-bottom: 4px; }
+.quote-total-number { font-family: 'Barlow Condensed', sans-serif; font-size: 42px; font-weight: 700; color: var(--white); line-height: 1; }
+.quote-per-unit { font-size: 12px; color: #666; margin-top: 4px; }
+.quote-disclaimer { padding: 12px 20px; font-size: 10px; color: var(--gray-400); line-height: 1.5; font-style: italic; border-top: 1px solid var(--gray-100); }
+
+/* SCREEN CHARGE NOTE */
+.screen-charge-note { background: var(--gray-50); border-left: 3px solid var(--black); padding: 10px 14px; margin: 12px 20px 0; font-size: 11px; color: var(--gray-600); line-height: 1.5; }
 
 /* BUTTONS */
 .nav-btns { display: flex; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--gray-100); }
@@ -155,6 +180,8 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .confirm-check { font-size: 48px; margin-bottom: 16px; }
 .confirm-title { font-family: 'Barlow Condensed', sans-serif; font-size: 42px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); line-height: 1; }
 .confirm-sub { font-size: 16px; color: var(--gray-400); margin-top: 12px; font-weight: 300; }
+.confirm-est { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 700; color: var(--white); margin-top: 20px; line-height: 1; }
+.confirm-est-label { font-size: 12px; color: #555; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
 .confirm-body { max-width: 580px; margin: 0 auto; padding: 48px; }
 .confirm-summary { background: var(--white); border: 1px solid var(--gray-200); }
 .confirm-summary-header { background: var(--gray-50); padding: 14px 20px; border-bottom: 1px solid var(--gray-200); font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); }
@@ -162,7 +189,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .confirm-row:last-child { border-bottom: none; }
 .confirm-row-label { color: var(--gray-600); font-weight: 300; }
 .confirm-row-val { font-weight: 500; }
-.confirm-next { margin-top: 32px; background: var(--gray-50); border: 1px solid var(--gray-200); padding: 24px; }
+.confirm-next { margin-top: 24px; background: var(--gray-50); border: 1px solid var(--gray-200); padding: 24px; }
 .confirm-next-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); margin-bottom: 12px; }
 .confirm-next-step { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 13px; color: var(--gray-600); font-weight: 300; line-height: 1.5; }
 .confirm-next-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--black); flex-shrink: 0; width: 20px; }
@@ -188,203 +215,214 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 </div>
 
 <div class="main" id="main-content">
+  <div>
 
-  <!-- STEP 1: PRODUCT -->
-  <div class="step-panel active" id="panel-1">
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title">Select a Product</div>
-        <div class="panel-sub">Browse our catalog and pick the garment style you want decorated</div>
-      </div>
-      <div class="panel-body">
-        <div class="cat-tabs">
-          <button class="cat-tab active" onclick="filterCat('tee',this)">Tees</button>
-          <button class="cat-tab" onclick="filterCat('qz',this)">Quarter-Zips</button>
-          <button class="cat-tab" onclick="filterCat('polo',this)">Polos</button>
-          <button class="cat-tab" onclick="filterCat('hoodie',this)">Hoodies</button>
+    <!-- STEP 1 -->
+    <div class="step-panel active" id="panel-1">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Select a Product</div>
+          <div class="panel-sub">Choose the garment style you want decorated</div>
         </div>
-        <div class="product-list" id="product-list"></div>
-      </div>
-    </div>
-    <div class="nav-btns">
-      <button class="btn btn-primary" id="btn-1-next" onclick="goStep(2)" disabled>Next: Quantity →</button>
-    </div>
-  </div>
-
-  <!-- STEP 2: QUANTITY -->
-  <div class="step-panel" id="panel-2">
-    <div class="panel">
-      <div class="summary-bar" id="summary-2"></div>
-      <div class="panel-header">
-        <div class="panel-title">How Many?</div>
-        <div class="panel-sub">Minimum 12 pieces per decoration. More pieces = lower per-unit cost.</div>
-      </div>
-      <div class="panel-body">
-        <div class="form-row">
-          <label class="form-label">Quantity</label>
-          <div class="qty-input">
-            <button class="qty-btn" onclick="adjustQty(-1)">−</button>
-            <input class="qty-number" type="number" id="qty-val" value="24" min="1" onchange="onQtyChange()">
-            <button class="qty-btn" onclick="adjustQty(1)">+</button>
+        <div class="panel-body">
+          <div class="cat-tabs">
+            <button class="cat-tab active" onclick="filterCat('tee',this)">Tees</button>
+            <button class="cat-tab" onclick="filterCat('qz',this)">Quarter-Zips</button>
+            <button class="cat-tab" onclick="filterCat('polo',this)">Polos</button>
+            <button class="cat-tab" onclick="filterCat('hoodie',this)">Hoodies</button>
           </div>
-          <div class="form-note" id="qty-tier-note">24 pieces</div>
+          <div class="product-list" id="product-list"></div>
         </div>
-        <div class="warning-box" id="qty-warning">Minimum order is 12 pieces per decoration.</div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn btn-primary" id="btn-1-next" onclick="goStep(2)" disabled>Next: Quantity →</button>
       </div>
     </div>
-    <div class="nav-btns">
-      <button class="btn btn-secondary" onclick="goStep(1)">← Back</button>
-      <button class="btn btn-primary" onclick="goStep(3)">Next: Decoration →</button>
-    </div>
-  </div>
 
-  <!-- STEP 3: DECORATION -->
-  <div class="step-panel" id="panel-3">
-    <div class="panel">
-      <div class="summary-bar" id="summary-3"></div>
-      <div class="panel-header">
-        <div class="panel-title">Decoration Type</div>
-        <div class="panel-sub">Compare your options and choose how you want your logo applied</div>
-      </div>
-      <div class="panel-body">
-        <div class="deco-compare">
-
-          <div class="deco-card" id="deco-card-screenprint" onclick="selectDeco('screenprint',this)">
-            <div class="deco-card-header">
-              <span class="deco-icon">🖨</span>
-              <div class="deco-name">Screen Print</div>
-            </div>
-            <div class="deco-card-body">
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Bold, vibrant colors with a flat finish</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Best for simple to medium complexity logos</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Most cost-effective for larger runs</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Price per color — fewer colors = lower cost</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Screen charge waived at 144+ pieces</div>
-            </div>
-            <div class="deco-card-footer">
-              <div class="deco-best-for">Best for</div>
-              <div class="deco-best-val">Team uniforms, event shirts, large orders</div>
-            </div>
-          </div>
-
-          <div class="deco-card" id="deco-card-embroidery" onclick="selectDeco('embroidery',this)">
-            <div class="deco-card-header">
-              <span class="deco-icon">🧵</span>
-              <div class="deco-name">Embroidery</div>
-            </div>
-            <div class="deco-card-body">
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Premium stitched look and feel</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Durable — won't crack, peel, or fade</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Priced by stitch count, not color count</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Best for left chest logos and hats</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Digitizing included at no charge</div>
-            </div>
-            <div class="deco-card-footer">
-              <div class="deco-best-for">Best for</div>
-              <div class="deco-best-val">Polos, quarter-zips, professional wear</div>
-            </div>
-          </div>
-
-          <div class="deco-card" id="deco-card-dtf" onclick="selectDeco('dtf',this)">
-            <div class="deco-card-header">
-              <span class="deco-icon">🎨</span>
-              <div class="deco-name">DTF Transfer</div>
-            </div>
-            <div class="deco-card-body">
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Full-color, photo-quality prints</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>No color count limits — unlimited colors</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Great for complex or gradient artwork</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Priced by print size, not color count</div>
-              <div class="deco-feature"><div class="deco-feature-dot"></div>Soft hand feel on finished product</div>
-            </div>
-            <div class="deco-card-footer">
-              <div class="deco-best-for">Best for</div>
-              <div class="deco-best-val">Complex logos, photography, small runs</div>
-            </div>
-          </div>
-
+    <!-- STEP 2 -->
+    <div class="step-panel" id="panel-2">
+      <div class="panel">
+        <div class="summary-bar" id="summary-2"></div>
+        <div class="panel-header">
+          <div class="panel-title">How Many?</div>
+          <div class="panel-sub">Minimum 12 pieces per decoration. More pieces = lower per-unit cost.</div>
         </div>
+        <div class="panel-body">
+          <div class="form-row">
+            <label class="form-label">Quantity</label>
+            <div class="qty-input">
+              <button class="qty-btn" onclick="adjustQty(-1)">−</button>
+              <input class="qty-number" type="number" id="qty-val" value="24" min="1" onchange="onQtyChange()">
+              <button class="qty-btn" onclick="adjustQty(1)">+</button>
+            </div>
+            <div class="form-note" id="qty-tier-note">24 pieces</div>
+          </div>
+          <div class="warning-box" id="qty-warning">Minimum order is 12 pieces per decoration.</div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn btn-secondary" onclick="goStep(1)">← Back</button>
+        <button class="btn btn-primary" onclick="goStep(3)">Next: Decoration →</button>
+      </div>
+    </div>
 
-        <!-- SCREEN PRINT DETAIL -->
-        <div id="deco-detail-screenprint" class="deco-detail">
-          <div class="form-row" style="margin-bottom:0">
+    <!-- STEP 3 -->
+    <div class="step-panel" id="panel-3">
+      <div class="panel">
+        <div class="summary-bar" id="summary-3"></div>
+        <div class="panel-header">
+          <div class="panel-title">Decoration Type</div>
+          <div class="panel-sub">Compare options — the estimate updates live as you choose</div>
+        </div>
+        <div class="panel-body">
+          <div class="deco-compare">
+
+            <div class="deco-card" id="deco-card-screenprint" onclick="selectDeco('screenprint',this)">
+              <div class="deco-card-header">
+                <span class="deco-icon">🖨</span>
+                <div class="deco-name">Screen Print</div>
+              </div>
+              <div class="deco-card-body">
+                <div class="deco-feature"><div class="deco-dot"></div>Bold, vibrant flat finish</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Priced per color in design</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Most cost-effective for large runs</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Screen charge waived at 144+</div>
+              </div>
+              <div class="deco-card-footer">
+                <div class="deco-best-for">Best for</div>
+                <div class="deco-best-val">Uniforms, events, large orders</div>
+              </div>
+            </div>
+
+            <div class="deco-card" id="deco-card-embroidery" onclick="selectDeco('embroidery',this)">
+              <div class="deco-card-header">
+                <span class="deco-icon">🧵</span>
+                <div class="deco-name">Embroidery</div>
+              </div>
+              <div class="deco-card-body">
+                <div class="deco-feature"><div class="deco-dot"></div>Premium stitched look and feel</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Won't crack, peel, or fade</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Priced by stitch count</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Digitizing included free</div>
+              </div>
+              <div class="deco-card-footer">
+                <div class="deco-best-for">Best for</div>
+                <div class="deco-best-val">Polos, quarter-zips, pro wear</div>
+              </div>
+            </div>
+
+            <div class="deco-card" id="deco-card-dtf" onclick="selectDeco('dtf',this)">
+              <div class="deco-card-header">
+                <span class="deco-icon">🎨</span>
+                <div class="deco-name">DTF Transfer</div>
+              </div>
+              <div class="deco-card-body">
+                <div class="deco-feature"><div class="deco-dot"></div>Full-color, photo-quality prints</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Unlimited colors, no extra cost</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Great for complex artwork</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Priced by print size</div>
+              </div>
+              <div class="deco-card-footer">
+                <div class="deco-best-for">Best for</div>
+                <div class="deco-best-val">Complex logos, small runs</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div id="deco-detail-screenprint" class="deco-detail">
             <label class="form-label">Number of Colors in Design</label>
-            <div class="color-slider-wrap" style="margin-top:12px">
+            <div class="color-slider-wrap">
               <div>
                 <div class="color-count-display" id="color-count-display">2</div>
                 <div class="color-label">colors</div>
               </div>
               <input type="range" class="color-slider" id="color-slider" min="1" max="8" value="2" step="1" oninput="onColorChange()">
             </div>
-            <div class="form-note" style="margin-top:12px">Each color requires its own screen. $20 per screen charge — waived at 144+ pieces.</div>
+            <div class="form-note" style="margin-top:12px">$20 per screen charge added to total — waived at 144+ pieces.</div>
           </div>
-        </div>
 
-        <!-- EMBROIDERY DETAIL -->
-        <div id="deco-detail-embroidery" class="deco-detail">
-          <div class="form-row" style="margin-bottom:0">
+          <div id="deco-detail-embroidery" class="deco-detail">
             <label class="form-label">Estimated Stitch Count</label>
-            <div class="stitch-options" style="margin-top:12px">
-              <div class="stitch-option selected" onclick="selectStitch(4000,this)"><div class="stitch-val">≤4K</div><div class="stitch-label">Simple logo</div></div>
-              <div class="stitch-option" onclick="selectStitch(6000,this)"><div class="stitch-val">≤6K</div><div class="stitch-label">Small logo</div></div>
-              <div class="stitch-option" onclick="selectStitch(8000,this)"><div class="stitch-val">≤8K</div><div class="stitch-label">Medium logo</div></div>
-              <div class="stitch-option" onclick="selectStitch(10000,this)"><div class="stitch-val">≤10K</div><div class="stitch-label">Detailed logo</div></div>
-              <div class="stitch-option" onclick="selectStitch(15000,this)"><div class="stitch-val">≤15K</div><div class="stitch-label">Complex logo</div></div>
-              <div class="stitch-option" onclick="selectStitch(20000,this)"><div class="stitch-val">≤20K</div><div class="stitch-label">Large design</div></div>
+            <div class="stitch-options">
+              <div class="stitch-option selected" onclick="selectStitch(4000,this)"><div class="stitch-val">≤4K</div><div class="stitch-label">Simple</div></div>
+              <div class="stitch-option" onclick="selectStitch(6000,this)"><div class="stitch-val">≤6K</div><div class="stitch-label">Small</div></div>
+              <div class="stitch-option" onclick="selectStitch(8000,this)"><div class="stitch-val">≤8K</div><div class="stitch-label">Medium</div></div>
+              <div class="stitch-option" onclick="selectStitch(10000,this)"><div class="stitch-val">≤10K</div><div class="stitch-label">Detailed</div></div>
+              <div class="stitch-option" onclick="selectStitch(15000,this)"><div class="stitch-val">≤15K</div><div class="stitch-label">Complex</div></div>
+              <div class="stitch-option" onclick="selectStitch(20000,this)"><div class="stitch-val">≤20K</div><div class="stitch-label">Large</div></div>
             </div>
-            <div class="form-note" style="margin-top:12px">Most standard logos are 5,000–8,000 stitches. Not sure? We'll confirm after seeing your artwork.</div>
+            <div class="form-note" style="margin-top:12px">Most standard logos are 5,000–8,000 stitches. We confirm after seeing your artwork.</div>
           </div>
-        </div>
 
-        <!-- DTF DETAIL -->
-        <div id="deco-detail-dtf" class="deco-detail">
-          <div class="form-row" style="margin-bottom:0">
+          <div id="deco-detail-dtf" class="deco-detail">
             <label class="form-label">Print Size</label>
-            <div class="dtf-options" style="margin-top:12px">
+            <div class="dtf-options">
               <div class="dtf-option selected" onclick="selectDTFSize('small',this)"><div class="dtf-size-name">Small</div><div class="dtf-size-dim">Up to 4" × 4"</div></div>
               <div class="dtf-option" onclick="selectDTFSize('standard',this)"><div class="dtf-size-name">Standard</div><div class="dtf-size-dim">Up to 10" × 12"</div></div>
               <div class="dtf-option" onclick="selectDTFSize('oversized',this)"><div class="dtf-size-name">Oversized</div><div class="dtf-size-dim">Up to 14" × 16"</div></div>
             </div>
           </div>
+
         </div>
-
+      </div>
+      <div class="nav-btns">
+        <button class="btn btn-secondary" onclick="goStep(2)">← Back</button>
+        <button class="btn btn-primary" id="btn-3-next" onclick="goStep(4)" disabled>Next: Location →</button>
       </div>
     </div>
-    <div class="nav-btns">
-      <button class="btn btn-secondary" onclick="goStep(2)">← Back</button>
-      <button class="btn btn-primary" id="btn-3-next" onclick="goStep(4)" disabled>Next: Location →</button>
-    </div>
-  </div>
 
-  <!-- STEP 4: LOCATION -->
-  <div class="step-panel" id="panel-4">
-    <div class="panel">
-      <div class="summary-bar" id="summary-4"></div>
-      <div class="panel-header">
-        <div class="panel-title">Print Location</div>
-        <div class="panel-sub">Where on the garment should your logo be placed?</div>
-      </div>
-      <div class="panel-body">
-        <div class="form-row">
-          <label class="form-label">Select Location</label>
-          <div class="location-options">
-            <div class="location-chip selected" onclick="selectLocation('Left Chest',this)">Left Chest</div>
-            <div class="location-chip" onclick="selectLocation('Full Front',this)">Full Front</div>
-            <div class="location-chip" onclick="selectLocation('Full Back',this)">Full Back</div>
-            <div class="location-chip" onclick="selectLocation('Right Chest',this)">Right Chest</div>
-            <div class="location-chip" onclick="selectLocation('Left Sleeve',this)">Left Sleeve</div>
-            <div class="location-chip" onclick="selectLocation('Right Sleeve',this)">Right Sleeve</div>
-            <div class="location-chip" onclick="selectLocation('Nape of Neck',this)">Nape of Neck</div>
+    <!-- STEP 4 -->
+    <div class="step-panel" id="panel-4">
+      <div class="panel">
+        <div class="summary-bar" id="summary-4"></div>
+        <div class="panel-header">
+          <div class="panel-title">Print Location</div>
+          <div class="panel-sub">Where on the garment should your logo be placed?</div>
+        </div>
+        <div class="panel-body">
+          <div class="form-row">
+            <label class="form-label">Select Location</label>
+            <div class="location-options">
+              <div class="location-chip selected" onclick="selectLocation('Left Chest',this)">Left Chest</div>
+              <div class="location-chip" onclick="selectLocation('Full Front',this)">Full Front</div>
+              <div class="location-chip" onclick="selectLocation('Full Back',this)">Full Back</div>
+              <div class="location-chip" onclick="selectLocation('Right Chest',this)">Right Chest</div>
+              <div class="location-chip" onclick="selectLocation('Left Sleeve',this)">Left Sleeve</div>
+              <div class="location-chip" onclick="selectLocation('Right Sleeve',this)">Right Sleeve</div>
+              <div class="location-chip" onclick="selectLocation('Nape of Neck',this)">Nape of Neck</div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="nav-btns">
+        <button class="btn btn-secondary" onclick="goStep(3)">← Back</button>
+        <button class="btn btn-primary" onclick="openModal()">Get My Quote →</button>
+      </div>
     </div>
-    <div class="nav-btns">
-      <button class="btn btn-secondary" onclick="goStep(3)">← Back</button>
-      <button class="btn btn-primary" onclick="openModal()">Request My Quote →</button>
-    </div>
+
   </div>
 
+  <!-- SIDEBAR -->
+  <div class="quote-sidebar">
+    <div class="quote-box">
+      <div class="quote-box-header">
+        <div class="quote-box-title">Your Estimate</div>
+        <div class="quote-box-sub">Updates as you configure</div>
+      </div>
+      <div id="sidebar-empty" class="quote-empty">Select a product and quantity to see your live estimate.</div>
+      <div id="sidebar-live" style="display:none">
+        <div class="quote-live" id="sidebar-config"></div>
+        <div class="quote-total-block">
+          <div class="quote-total-label">Estimated Total</div>
+          <div class="quote-total-number" id="sidebar-total">—</div>
+          <div class="quote-per-unit" id="sidebar-per-unit"></div>
+        </div>
+        <div id="sidebar-screen-note" style="display:none" class="screen-charge-note"></div>
+        <div class="quote-disclaimer">Estimate only. Final pricing confirmed by your rep.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- MODAL -->
@@ -392,7 +430,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
   <div class="modal">
     <div class="modal-header">
       <div class="modal-title">Almost there.</div>
-      <div class="modal-sub">We'll send a custom quote to your inbox within one business day.</div>
+      <div class="modal-sub">Enter your info and we'll send a confirmed quote within one business day.</div>
     </div>
     <div class="modal-body">
       <div class="modal-field">
@@ -411,7 +449,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
     <div class="modal-footer">
       <button class="btn btn-primary" style="width:100%" id="submit-btn" onclick="submitQuote()">Submit Quote Request →</button>
       <div class="modal-error" id="modal-error">Please fill in all fields.</div>
-      <div class="modal-note">Your information is sent directly to your Elite Apparel rep. No spam, ever.</div>
+      <div class="modal-note">Sent directly to your Elite Apparel rep. No spam, ever.</div>
     </div>
   </div>
 </div>
@@ -422,15 +460,17 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
     <div class="confirm-check">✓</div>
     <div class="confirm-title">Quote Request Sent</div>
     <div class="confirm-sub">Your Elite Apparel rep will follow up within one business day.</div>
+    <div class="confirm-est" id="confirm-est-total"></div>
+    <div class="confirm-est-label" id="confirm-est-label"></div>
   </div>
   <div class="confirm-body">
     <div class="confirm-summary">
-      <div class="confirm-summary-header">Your Order Details</div>
+      <div class="confirm-summary-header">Order Details</div>
       <div id="confirm-rows"></div>
     </div>
     <div class="confirm-next">
       <div class="confirm-next-title">What happens next</div>
-      <div class="confirm-next-step"><div class="confirm-next-num">1</div>Your rep reviews your request and pulls exact pricing from our vendors.</div>
+      <div class="confirm-next-step"><div class="confirm-next-num">1</div>Your rep reviews the request and pulls exact pricing from our vendors.</div>
       <div class="confirm-next-step"><div class="confirm-next-num">2</div>You'll receive a formal quote with final per-unit and total pricing.</div>
       <div class="confirm-next-step"><div class="confirm-next-num">3</div>Once approved, we handle decoration and fulfillment end to end.</div>
     </div>
@@ -451,191 +491,318 @@ var state = {
 };
 
 var PRODUCTS = [
-  {id:'NKDX8730', name:'Nike Swoosh Sleeve rLegend Tee',          brand:'Nike',           cat:'tee'},
-  {id:'NL6210',   name:'Next Level Adult CVC Tee',                 brand:'Next Level',     cat:'tee'},
-  {id:'ST350',    name:'Sport-Tek PosiCharge Competitor Tee',      brand:'Sport-Tek',      cat:'tee'},
-  {id:'NEA200',   name:'New Era Series Performance Crew Tee',      brand:'New Era',        cat:'tee'},
-  {id:'RA7110SS', name:'Richardson Clutch Short Sleeve Tee',       brand:'Richardson',     cat:'tee'},
-  {id:'NKDX6702', name:'Nike Textured 1/2-Zip Cover-Up',           brand:'Nike',           cat:'qz'},
-  {id:'NKDX6718', name:'Nike Club Fleece Swoosh 1/2-Zip',          brand:'Nike',           cat:'qz'},
-  {id:'NKDX6720', name:"Nike Women's Club Fleece Swoosh 1/2-Zip",  brand:'Nike',           cat:'qz'},
-  {id:'F804',     name:'Port Authority Smooth Fleece 1/4-Zip',     brand:'Port Authority', cat:'qz'},
-  {id:'637167',   name:'Nike Dri-FIT Vertical Mesh Polo',          brand:'Nike',           cat:'polo'},
-  {id:'637165',   name:"Nike Women's Dri-FIT Vertical Mesh Polo",  brand:'Nike',           cat:'polo'},
-  {id:'K863',     name:'Port Authority C-FREE Performance Polo',   brand:'Port Authority', cat:'polo'},
-  {id:'LK110',    name:"Port Authority Women's Dry Zone UV Polo",  brand:'Port Authority', cat:'polo'},
-  {id:'RA7200LSH',name:'Richardson Charge Performance Hoodie',     brand:'Richardson',     cat:'hoodie'},
-  {id:'NKDR1499', name:'Nike Club Fleece Pullover Hoodie',         brand:'Nike',           cat:'hoodie'},
-  {id:'SS4500',   name:'Independent Trading Midweight Hoodie',     brand:'Ind. Trading',   cat:'hoodie'},
+  {id:'NKDX8730', name:'Nike Swoosh Sleeve rLegend Tee',          brand:'Nike',           cat:'tee',    wholesale:8.50},
+  {id:'NL6210',   name:'Next Level Adult CVC Tee',                 brand:'Next Level',     cat:'tee',    wholesale:4.50},
+  {id:'ST350',    name:'Sport-Tek PosiCharge Competitor Tee',      brand:'Sport-Tek',      cat:'tee',    wholesale:5.25},
+  {id:'NEA200',   name:'New Era Series Performance Crew Tee',      brand:'New Era',        cat:'tee',    wholesale:9.00},
+  {id:'RA7110SS', name:'Richardson Clutch Short Sleeve Tee',       brand:'Richardson',     cat:'tee',    wholesale:7.50},
+  {id:'NKDX6702', name:'Nike Textured 1/2-Zip Cover-Up',           brand:'Nike',           cat:'qz',     wholesale:42.00},
+  {id:'NKDX6718', name:'Nike Club Fleece Swoosh 1/2-Zip',          brand:'Nike',           cat:'qz',     wholesale:55.00},
+  {id:'NKDX6720', name:"Nike Women's Club Fleece Swoosh 1/2-Zip",  brand:'Nike',           cat:'qz',     wholesale:55.00},
+  {id:'F804',     name:'Port Authority Smooth Fleece 1/4-Zip',     brand:'Port Authority', cat:'qz',     wholesale:22.00},
+  {id:'637167',   name:'Nike Dri-FIT Vertical Mesh Polo',          brand:'Nike',           cat:'polo',   wholesale:28.00},
+  {id:'637165',   name:"Nike Women's Dri-FIT Vertical Mesh Polo",  brand:'Nike',           cat:'polo',   wholesale:28.00},
+  {id:'K863',     name:'Port Authority C-FREE Performance Polo',   brand:'Port Authority', cat:'polo',   wholesale:18.00},
+  {id:'LK110',    name:"Port Authority Women's Dry Zone UV Polo",  brand:'Port Authority', cat:'polo',   wholesale:16.00},
+  {id:'RA7200LSH',name:'Richardson Charge Performance Hoodie',     brand:'Richardson',     cat:'hoodie', wholesale:38.00},
+  {id:'NKDR1499', name:'Nike Club Fleece Pullover Hoodie',         brand:'Nike',           cat:'hoodie', wholesale:52.00},
+  {id:'SS4500',   name:'Independent Trading Midweight Hoodie',     brand:'Ind. Trading',   cat:'hoodie', wholesale:18.00},
 ];
+
+// ── PRICING ──────────────────────────────────────────────────────
+var SP_TIERS = [
+  {min:1,   max:3,    p:[2.35,2.55,2.89,3.14,3.43,4.09,4.61,5.38]},
+  {min:4,   max:11,   p:[2.18,2.26,2.44,2.61,2.78,2.96,3.13,3.30]},
+  {min:12,  max:23,   p:[2.01,2.08,2.18,2.26,2.35,2.53,2.70,2.88]},
+  {min:24,  max:47,   p:[1.91,1.97,2.03,2.07,2.13,2.18,2.25,2.32]},
+  {min:48,  max:96,   p:[1.35,1.44,1.53,1.62,1.67,1.71,1.74,1.78]},
+  {min:97,  max:199,  p:[1.11,1.20,1.27,1.35,1.40,1.41,1.47,1.50]},
+  {min:200, max:359,  p:[1.07,1.13,1.19,1.20,1.22,1.25,1.26,1.27]},
+  {min:360, max:1999, p:[1.04,1.06,1.09,1.10,1.14,1.13,1.14,1.16]},
+  {min:2000,max:99999,p:[1.00,1.02,1.06,1.07,1.08,1.10,1.12,1.13]},
+];
+var EMB_STITCHES = [4000,5000,6000,7000,8000,10000,15000,20000,25000];
+var EMB_PRICES = [
+  [9.49,5.49,3.53,3.09,2.80,2.52],
+  [10.53,6.51,4.15,3.63,3.25,2.93],
+  [11.58,7.51,4.77,4.17,3.71,3.35],
+  [12.63,8.52,5.38,4.73,4.17,3.78],
+  [13.66,9.52,6.03,5.28,4.61,4.19],
+  [15.77,11.53,7.26,6.43,5.53,5.02],
+  [21.51,17.00,10.60,9.09,7.82,7.11],
+  [26.87,22.16,13.78,11.82,10.09,9.21],
+  [32.22,27.32,16.95,14.57,12.39,11.31],
+];
+var DTF_TIERS = [
+  {min:1,  max:3,  p:[11.55,15.13,20.63]},
+  {min:4,  max:11, p:[6.33, 9.63, 15.13]},
+  {min:12, max:47, p:[5.23, 7.43, 11.83]},
+  {min:48, max:71, p:[4.68, 5.78, 9.08]},
+  {min:72, max:99999, p:[4.13, 5.23, 8.53]},
+];
+
+function getMarginDiv(qty, deco) {
+  if (deco === 'dtf') {
+    if (qty <= 14) return 0.55; if (qty <= 99) return 0.60;
+    if (qty <= 249) return 0.65; return 0.70;
+  }
+  if (qty <= 23) return 0.55; if (qty <= 143) return 0.60;
+  if (qty <= 499) return 0.65; if (qty <= 999) return 0.70;
+  return 0.75;
+}
+function getSPDeco(qty, colors) {
+  var t = SP_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||SP_TIERS[SP_TIERS.length-1];
+  return t.p[Math.min(colors-1,7)];
+}
+function getEmbDeco(qty, stitches) {
+  var si = EMB_STITCHES.findIndex(function(s){return stitches<=s;});
+  if(si<0)si=EMB_STITCHES.length-1;
+  var qi=0;
+  if(qty>=4&&qty<=11)qi=1; if(qty>=12&&qty<=35)qi=2;
+  if(qty>=36&&qty<=71)qi=3; if(qty>=72&&qty<=143)qi=4; if(qty>=144)qi=5;
+  return EMB_PRICES[si][qi];
+}
+function getDTFDeco(qty,size) {
+  var t=DTF_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||DTF_TIERS[DTF_TIERS.length-1];
+  return t.p[size==='small'?0:size==='standard'?1:2];
+}
+
+function calcQuote() {
+  if (!state.product || !state.deco) return null;
+  var qty = state.qty;
+  var md = getMarginDiv(qty, state.deco);
+  var garmentRetail = state.product.wholesale / md;
+  var decoRaw = state.deco==='screenprint' ? getSPDeco(qty,state.colors) :
+                state.deco==='embroidery'  ? getEmbDeco(qty,state.stitches) :
+                getDTFDeco(qty,state.dtfSize);
+  var decoRetail = decoRaw / md;
+  var screenCharge = (state.deco==='screenprint'&&qty<144) ? state.colors*20 : 0;
+  var perUnit = garmentRetail + decoRetail;
+  var total = (perUnit * qty) + screenCharge;
+  return { perUnit: perUnit, total: total, screenCharge: screenCharge, qty: qty };
+}
+
+function fmt(n) { return '$' + n.toFixed(2); }
+function fmtTotal(n) {
+  return '$' + Math.round(n).toLocaleString();
+}
+
+// ── SIDEBAR UPDATE ───────────────────────────────────────────────
+function updateSidebar() {
+  var q = calcQuote();
+  var empty = document.getElementById('sidebar-empty');
+  var live = document.getElementById('sidebar-live');
+
+  if (!state.product || !state.deco) {
+    // Show partial config if product selected
+    if (state.product) {
+      empty.innerHTML = '<div style="padding:20px;font-size:13px;color:var(--gray-600);font-weight:300;line-height:1.6"><strong style="font-weight:500;color:var(--black)">' + state.product.brand + ' ' + state.product.name + '</strong><br><br>Select a decoration type on step 3 to see your estimate.</div>';
+    } else {
+      empty.innerHTML = '<div class="quote-empty">Select a product and quantity to see your live estimate.</div>';
+    }
+    empty.style.display = 'block';
+    live.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  live.style.display = 'block';
+
+  // Config items (no pricing details)
+  var decoLabel = state.deco==='screenprint' ? 'Screen Print (' + state.colors + ' color' + (state.colors>1?'s':'') + ')' :
+                  state.deco==='embroidery'  ? 'Embroidery (≤' + state.stitches.toLocaleString() + ' stitches)' :
+                  'DTF (' + state.dtfSize.charAt(0).toUpperCase() + state.dtfSize.slice(1) + ')';
+
+  var config = [
+    {l:'Product', v: state.product.brand + ' ' + state.product.name},
+    {l:'Quantity', v: state.qty + ' pieces'},
+    {l:'Decoration', v: decoLabel},
+    {l:'Location', v: state.location},
+  ];
+
+  document.getElementById('sidebar-config').innerHTML = config.map(function(c) {
+    return '<div class="quote-config-item"><span class="quote-config-label">' + c.l + '</span><span class="quote-config-val">' + c.v + '</span></div>';
+  }).join('');
+
+  if (q) {
+    document.getElementById('sidebar-total').textContent = fmtTotal(q.total);
+    document.getElementById('sidebar-per-unit').textContent = fmt(q.perUnit) + ' per unit';
+
+    var screenNote = document.getElementById('sidebar-screen-note');
+    if (q.screenCharge > 0) {
+      screenNote.style.display = 'block';
+      screenNote.textContent = 'Includes $' + q.screenCharge + ' screen charge (' + state.colors + ' color' + (state.colors>1?'s':'') + ' × $20). Waived at 144+ pieces.';
+    } else {
+      screenNote.style.display = 'none';
+    }
+  }
+}
 
 // ── SUMMARY BAR ──────────────────────────────────────────────────
 function buildSummary(step) {
   var items = [];
   if (state.product) items.push({l:'Product', v: state.product.brand + ' ' + state.product.id});
-  if (step >= 2) items.push({l:'Quantity', v: state.qty + ' pieces'});
+  if (step >= 2) items.push({l:'Qty', v: state.qty + ' pcs'});
   if (state.deco && step >= 3) {
-    var dl = state.deco === 'screenprint' ? 'Screen Print (' + state.colors + ' color' + (state.colors>1?'s':'') + ')' :
-             state.deco === 'embroidery'  ? 'Embroidery (≤' + state.stitches.toLocaleString() + ' stitches)' :
-             'DTF (' + state.dtfSize.charAt(0).toUpperCase() + state.dtfSize.slice(1) + ')';
+    var dl = state.deco==='screenprint' ? 'Screen Print' : state.deco==='embroidery' ? 'Embroidery' : 'DTF Transfer';
     items.push({l:'Decoration', v: dl});
   }
-  if (step >= 4) items.push({l:'Location', v: state.location});
   var el = document.getElementById('summary-' + step);
   if (!el) return;
   el.innerHTML = items.map(function(i) {
-    return '<div class="summary-item"><div class="summary-label">' + i.l + '</div><div class="summary-val">' + i.v + '</div></div>';
+    return '<div class="summary-item"><div class="summary-label">'+i.l+'</div><div class="summary-val">'+i.v+'</div></div>';
   }).join('');
 }
 
 // ── NAVIGATION ───────────────────────────────────────────────────
 function goStep(n) {
-  if (n === 3 && state.qty < 12) { document.getElementById('qty-warning').style.display = 'block'; return; }
-  document.querySelectorAll('.step-panel').forEach(function(p) { p.classList.remove('active'); });
-  document.getElementById('panel-' + n).classList.add('active');
-  for (var i = 1; i <= 4; i++) {
-    var ind = document.getElementById('si' + i);
+  if (n===3 && state.qty<12) { document.getElementById('qty-warning').style.display='block'; return; }
+  document.querySelectorAll('.step-panel').forEach(function(p){p.classList.remove('active');});
+  document.getElementById('panel-'+n).classList.add('active');
+  for (var i=1;i<=4;i++) {
+    var ind=document.getElementById('si'+i);
     ind.classList.remove('active','done');
-    if (i < n) { ind.classList.add('done'); ind.querySelector('.step-num').textContent = '✓'; }
-    else if (i === n) ind.classList.add('active');
-    else ind.querySelector('.step-num').innerHTML = '<span>' + i + '</span>';
+    if(i<n){ind.classList.add('done');ind.querySelector('.step-num').textContent='✓';}
+    else if(i===n)ind.classList.add('active');
+    else ind.querySelector('.step-num').innerHTML='<span>'+i+'</span>';
   }
   buildSummary(n);
+  updateSidebar();
   window.scrollTo(0,0);
 }
 
 // ── PRODUCTS ─────────────────────────────────────────────────────
-function filterCat(cat, btn) {
-  state.currentCat = cat;
-  document.querySelectorAll('.cat-tab').forEach(function(b) { b.classList.remove('active'); });
+function filterCat(cat,btn) {
+  state.currentCat=cat;
+  document.querySelectorAll('.cat-tab').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   renderProducts();
 }
-
 function renderProducts() {
-  var list = document.getElementById('product-list');
-  list.innerHTML = '';
-  PRODUCTS.filter(function(p) { return p.cat === state.currentCat; }).forEach(function(p) {
-    var isSelected = state.product && state.product.id === p.id;
-    var div = document.createElement('div');
-    div.className = 'product-option' + (isSelected ? ' selected' : '');
-    div.innerHTML = '<div class="prod-brand">' + p.brand + '</div><div class="prod-name">' + p.name + '</div><div class="prod-sku">' + p.id + '</div>';
-    div.onclick = function() { selectProduct(p, div); };
+  var list=document.getElementById('product-list');
+  list.innerHTML='';
+  PRODUCTS.filter(function(p){return p.cat===state.currentCat;}).forEach(function(p) {
+    var sel=state.product&&state.product.id===p.id;
+    var div=document.createElement('div');
+    div.className='product-option'+(sel?' selected':'');
+    div.innerHTML='<div class="prod-brand">'+p.brand+'</div><div class="prod-name">'+p.name+'</div><div class="prod-sku">'+p.id+'</div>';
+    div.onclick=function(){selectProduct(p,div);};
     list.appendChild(div);
   });
 }
-
-function selectProduct(p, el) {
-  state.product = p;
-  document.querySelectorAll('.product-option').forEach(function(e) { e.classList.remove('selected'); });
+function selectProduct(p,el) {
+  state.product=p;
+  document.querySelectorAll('.product-option').forEach(function(e){e.classList.remove('selected');});
   el.classList.add('selected');
-  document.getElementById('btn-1-next').disabled = false;
+  document.getElementById('btn-1-next').disabled=false;
+  updateSidebar();
 }
 
 // ── QUANTITY ─────────────────────────────────────────────────────
 function adjustQty(d) {
-  state.qty = Math.max(1, state.qty + d);
-  document.getElementById('qty-val').value = state.qty;
+  state.qty=Math.max(1,state.qty+d);
+  document.getElementById('qty-val').value=state.qty;
   onQtyChange();
 }
 function onQtyChange() {
-  state.qty = parseInt(document.getElementById('qty-val').value) || 12;
-  document.getElementById('qty-warning').style.display = state.qty < 12 ? 'block' : 'none';
-  var tiers = [{max:23,l:'Small run (1–23 pieces)'},{max:143,l:'Standard run (24–143 pieces)'},{max:499,l:'Mid run (144–499 pieces)'},{max:999,l:'Large run (500–999 pieces)'}];
-  var tier = tiers.find(function(t) { return state.qty <= t.max; }) || {l:'Volume run (1000+ pieces)'};
-  document.getElementById('qty-tier-note').textContent = state.qty + ' pieces — ' + tier.l;
+  state.qty=parseInt(document.getElementById('qty-val').value)||12;
+  document.getElementById('qty-warning').style.display=state.qty<12?'block':'none';
+  var tiers=[{max:23,l:'Small run'},{max:143,l:'Standard run'},{max:499,l:'Mid run'},{max:999,l:'Large run'}];
+  var tier=tiers.find(function(t){return state.qty<=t.max;})||{l:'Volume run'};
+  document.getElementById('qty-tier-note').textContent=state.qty+' pieces — '+tier.l;
+  updateSidebar();
 }
 
 // ── DECORATION ───────────────────────────────────────────────────
-function selectDeco(type, el) {
-  state.deco = type;
-  document.querySelectorAll('.deco-card').forEach(function(d) { d.classList.remove('selected'); });
+function selectDeco(type,el) {
+  state.deco=type;
+  document.querySelectorAll('.deco-card').forEach(function(d){d.classList.remove('selected');});
   el.classList.add('selected');
-  document.querySelectorAll('.deco-detail').forEach(function(d) { d.style.display = 'none'; });
-  document.getElementById('deco-detail-' + type).style.display = 'block';
-  document.getElementById('btn-3-next').disabled = false;
+  document.querySelectorAll('.deco-detail').forEach(function(d){d.style.display='none';});
+  document.getElementById('deco-detail-'+type).style.display='block';
+  document.getElementById('btn-3-next').disabled=false;
+  updateSidebar();
 }
 function onColorChange() {
-  state.colors = parseInt(document.getElementById('color-slider').value);
-  document.getElementById('color-count-display').textContent = state.colors;
+  state.colors=parseInt(document.getElementById('color-slider').value);
+  document.getElementById('color-count-display').textContent=state.colors;
+  updateSidebar();
 }
-function selectStitch(val, el) {
-  state.stitches = val;
-  document.querySelectorAll('.stitch-option').forEach(function(s) { s.classList.remove('selected'); });
+function selectStitch(val,el) {
+  state.stitches=val;
+  document.querySelectorAll('.stitch-option').forEach(function(s){s.classList.remove('selected');});
   el.classList.add('selected');
+  updateSidebar();
 }
-function selectDTFSize(size, el) {
-  state.dtfSize = size;
-  document.querySelectorAll('.dtf-option').forEach(function(d) { d.classList.remove('selected'); });
+function selectDTFSize(size,el) {
+  state.dtfSize=size;
+  document.querySelectorAll('.dtf-option').forEach(function(d){d.classList.remove('selected');});
   el.classList.add('selected');
+  updateSidebar();
 }
-function selectLocation(loc, el) {
-  state.location = loc;
-  document.querySelectorAll('.location-chip').forEach(function(c) { c.classList.remove('selected'); });
+function selectLocation(loc,el) {
+  state.location=loc;
+  document.querySelectorAll('.location-chip').forEach(function(c){c.classList.remove('selected');});
   el.classList.add('selected');
+  updateSidebar();
 }
 
 // ── MODAL ────────────────────────────────────────────────────────
-function openModal() { document.getElementById('modal').classList.add('open'); }
+function openModal(){document.getElementById('modal').classList.add('open');}
 
 // ── SUBMIT ───────────────────────────────────────────────────────
 function submitQuote() {
-  var name    = document.getElementById('input-name').value.trim();
-  var email   = document.getElementById('input-email').value.trim();
-  var company = document.getElementById('input-company').value.trim();
-  if (!name || !email || !company) { document.getElementById('modal-error').style.display = 'block'; return; }
-  document.getElementById('modal-error').style.display = 'none';
+  var name=document.getElementById('input-name').value.trim();
+  var email=document.getElementById('input-email').value.trim();
+  var company=document.getElementById('input-company').value.trim();
+  if(!name||!email||!company){document.getElementById('modal-error').style.display='block';return;}
+  document.getElementById('modal-error').style.display='none';
+  var btn=document.getElementById('submit-btn');
+  btn.textContent='Sending...'; btn.style.opacity='0.6'; btn.style.pointerEvents='none';
 
-  var btn = document.getElementById('submit-btn');
-  btn.textContent = 'Sending...';
-  btn.style.opacity = '0.6';
-  btn.style.pointerEvents = 'none';
+  var q=calcQuote();
+  var decoLabel = state.deco==='screenprint' ? 'Screen Print — '+state.colors+' color(s)' :
+                  state.deco==='embroidery'  ? 'Embroidery — ≤'+state.stitches.toLocaleString()+' stitches' :
+                  'DTF Transfer — '+state.dtfSize+' size';
 
-  var decoLabel = state.deco === 'screenprint' ? 'Screen Print — ' + state.colors + ' color(s)' :
-                  state.deco === 'embroidery'  ? 'Embroidery — ≤' + state.stitches.toLocaleString() + ' stitches' :
-                  'DTF Transfer — ' + state.dtfSize + ' size';
-
-  emailjs.send('service_r7l2veu', 'template_ldio5vd', {
-    client_name:    name,
-    client_email:   email,
-    client_company: company,
-    product_name:   state.product.name,
-    product_sku:    state.product.id,
-    quantity:       state.qty,
-    decoration:     decoLabel,
-    location:       state.location,
-    garment_cost:   'TBD — pending vendor pricing',
-    deco_cost:      'TBD — pending vendor pricing',
-    screen_charge:  state.deco === 'screenprint' && state.qty < 144 ? (state.colors * 20) + ' (' + state.colors + ' screens × $20)' : 'N/A',
-    per_unit:       'TBD',
-    est_total:      'TBD — rep will follow up',
-  }).finally(function() { showConfirmation(name, company); });
+  emailjs.send('service_r7l2veu','template_ldio5vd',{
+    client_name: name, client_email: email, client_company: company,
+    product_name: state.product.name, product_sku: state.product.id,
+    quantity: state.qty, decoration: decoLabel, location: state.location,
+    garment_cost: fmt(state.product.wholesale/getMarginDiv(state.qty,state.deco))+'/unit (est.)',
+    deco_cost: 'see decoration type',
+    screen_charge: q&&q.screenCharge>0 ? '$'+q.screenCharge+' ('+state.colors+' × $20)' : 'N/A',
+    per_unit: q ? fmt(q.perUnit) : 'TBD',
+    est_total: q ? fmtTotal(q.total) : 'TBD',
+  }).finally(function(){showConfirmation(name,company,q);});
 }
 
-function showConfirmation(name, company) {
+function showConfirmation(name,company,q) {
   document.getElementById('modal').classList.remove('open');
-  document.getElementById('main-content').style.display = 'none';
-  document.getElementById('progress-bar').style.display = 'none';
+  document.getElementById('main-content').style.display='none';
+  document.getElementById('progress-bar').style.display='none';
 
-  var decoLabel = state.deco === 'screenprint' ? 'Screen Print (' + state.colors + ' color' + (state.colors>1?'s':'') + ')' :
-                  state.deco === 'embroidery'  ? 'Embroidery (≤' + state.stitches.toLocaleString() + ' stitches)' :
-                  'DTF Transfer (' + state.dtfSize.charAt(0).toUpperCase() + state.dtfSize.slice(1) + ')';
+  var decoLabel = state.deco==='screenprint' ? 'Screen Print ('+state.colors+' color'+(state.colors>1?'s':'')+')' :
+                  state.deco==='embroidery'  ? 'Embroidery (≤'+state.stitches.toLocaleString()+' stitches)' :
+                  'DTF Transfer ('+state.dtfSize.charAt(0).toUpperCase()+state.dtfSize.slice(1)+')';
 
-  var rows = [
-    {l:'Name',       v: name},
-    {l:'Company',    v: company},
-    {l:'Product',    v: state.product.brand + ' ' + state.product.name},
-    {l:'Style #',    v: state.product.id},
-    {l:'Quantity',   v: state.qty + ' pieces'},
-    {l:'Decoration', v: decoLabel},
-    {l:'Location',   v: state.location},
-  ];
-  if (state.deco === 'screenprint' && state.qty < 144) {
-    rows.push({l:'Screen charges', v: state.colors + ' colors × $20 = $' + (state.colors * 20)});
+  if (q) {
+    document.getElementById('confirm-est-total').textContent=fmtTotal(q.total);
+    document.getElementById('confirm-est-label').textContent=fmt(q.perUnit)+' per unit · estimate only';
   }
 
-  document.getElementById('confirm-rows').innerHTML = rows.map(function(r) {
-    return '<div class="confirm-row"><span class="confirm-row-label">' + r.l + '</span><span class="confirm-row-val">' + r.v + '</span></div>';
+  var rows=[
+    {l:'Name',v:name},{l:'Company',v:company},
+    {l:'Product',v:state.product.brand+' '+state.product.name},
+    {l:'Style #',v:state.product.id},
+    {l:'Quantity',v:state.qty+' pieces'},
+    {l:'Decoration',v:decoLabel},
+    {l:'Location',v:state.location},
+  ];
+  if(q&&q.screenCharge>0) rows.push({l:'Screen charges',v:state.colors+' × $20 = $'+q.screenCharge});
+
+  document.getElementById('confirm-rows').innerHTML=rows.map(function(r){
+    return '<div class="confirm-row"><span class="confirm-row-label">'+r.l+'</span><span class="confirm-row-val">'+r.v+'</span></div>';
   }).join('');
 
   document.getElementById('confirmation').classList.add('visible');
