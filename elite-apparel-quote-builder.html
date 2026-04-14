@@ -25,13 +25,13 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .step { display: flex; align-items: center; gap: 10px; padding: 16px 24px 16px 0; position: relative; flex-shrink: 0; }
 .step:not(:last-child)::after { content: ''; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 6px; height: 1px; background: var(--gray-200); }
 .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--gray-200); display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600; color: var(--gray-400); flex-shrink: 0; transition: all 0.2s; }
-.step-label { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-400); transition: all 0.2s; white-space: nowrap; }
+.step-label { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-400); white-space: nowrap; }
 .step.active .step-num { background: var(--black); color: var(--white); }
 .step.active .step-label { color: var(--black); }
 .step.done .step-num { background: var(--black); color: var(--white); }
 .step.done .step-label { color: var(--gray-600); }
 
-.main { max-width: 1100px; margin: 0 auto; padding: 40px 48px; display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: start; }
+.main { max-width: 1200px; margin: 0 auto; padding: 40px 48px; display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
 
 .panel { background: var(--white); border: 1px solid var(--gray-200); }
 .panel-header { padding: 24px 28px 20px; border-bottom: 1px solid var(--gray-100); }
@@ -41,20 +41,14 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .step-panel { display: none; }
 .step-panel.active { display: block; }
 
-.summary-bar { background: var(--black); padding: 12px 28px; display: flex; gap: 24px; flex-wrap: wrap; }
-.summary-bar:empty { display: none; }
-.summary-item { display: flex; flex-direction: column; gap: 2px; }
-.summary-label { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #555; }
-.summary-val { font-size: 13px; font-weight: 500; color: var(--white); }
-
-/* PRODUCT */
-.cat-tabs { display: flex; border-bottom: 1px solid var(--gray-200); margin-bottom: 24px; }
+/* PRODUCT STEP */
+.cat-tabs { display: flex; border-bottom: 1px solid var(--gray-200); margin-bottom: 20px; }
 .cat-tab { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); background: none; border: none; border-bottom: 2px solid transparent; padding: 10px 16px; cursor: pointer; transition: all 0.15s; margin-bottom: -1px; }
 .cat-tab:hover { color: var(--black); }
 .cat-tab.active { color: var(--black); border-bottom-color: var(--black); }
 .product-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.product-option { border: 1.5px solid var(--gray-200); padding: 14px 16px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; gap: 3px; }
-.product-option:hover { border-color: var(--black); background: var(--gray-50); }
+.product-option { border: 1.5px solid var(--gray-200); padding: 12px 14px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; gap: 3px; position: relative; }
+.product-option:hover { border-color: var(--gray-400); background: var(--gray-50); }
 .product-option.selected { border-color: var(--black); background: var(--black); }
 .product-option.selected .prod-brand,
 .product-option.selected .prod-name,
@@ -62,72 +56,73 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .prod-brand { font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-400); }
 .prod-name { font-size: 13px; font-weight: 500; color: var(--black); line-height: 1.3; }
 .prod-sku { font-size: 10px; color: var(--gray-400); }
+.prod-check { position: absolute; top: 8px; right: 10px; font-size: 12px; opacity: 0; color: var(--white); }
+.product-option.selected .prod-check { opacity: 1; }
+.selected-count { font-size: 12px; color: var(--gray-600); margin-top: 16px; padding: 10px 14px; background: var(--gray-50); border: 1px solid var(--gray-200); font-weight: 300; }
+.selected-count strong { color: var(--black); font-weight: 600; }
 
-/* QUANTITY */
-.form-row { margin-bottom: 24px; }
-.form-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-800); display: block; margin-bottom: 10px; }
-.form-note { font-size: 11px; color: var(--gray-400); margin-top: 6px; font-weight: 300; }
-.qty-input { display: flex; align-items: center; border: 1.5px solid var(--gray-200); width: fit-content; }
-.qty-btn { width: 40px; height: 40px; background: var(--gray-100); border: none; font-size: 18px; cursor: pointer; color: var(--black); transition: background 0.1s; display: flex; align-items: center; justify-content: center; }
-.qty-btn:hover { background: var(--gray-200); }
-.qty-number { width: 80px; height: 40px; border: none; border-left: 1.5px solid var(--gray-200); border-right: 1.5px solid var(--gray-200); text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 600; color: var(--black); background: var(--white); }
-.qty-number:focus { outline: none; }
-.warning-box { background: #fff3cd; border: 1px solid #ffc107; padding: 10px 14px; font-size: 12px; color: #856404; margin-top: 8px; display: none; }
+/* CONFIGURE STEP — per product cards */
+.config-card { border: 1px solid var(--gray-200); margin-bottom: 16px; }
+.config-card-header { padding: 14px 20px; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.config-card-product { display: flex; flex-direction: column; gap: 2px; }
+.config-card-brand { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-400); }
+.config-card-name { font-size: 14px; font-weight: 600; color: var(--black); }
+.config-card-body { padding: 20px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+.qty-mini { display: flex; align-items: center; border: 1.5px solid var(--gray-200); }
+.qty-mini-btn { width: 32px; height: 32px; background: var(--gray-100); border: none; font-size: 16px; cursor: pointer; color: var(--black); display: flex; align-items: center; justify-content: center; transition: background 0.1s; }
+.qty-mini-btn:hover { background: var(--gray-200); }
+.qty-mini-input { width: 52px; height: 32px; border: none; border-left: 1.5px solid var(--gray-200); border-right: 1.5px solid var(--gray-200); text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 600; color: var(--black); background: var(--white); }
+.qty-mini-input:focus { outline: none; }
+.qty-mini-label { font-size: 10px; color: var(--gray-400); margin-top: 5px; text-align: center; }
+.deco-pill-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.deco-pill { border: 1.5px solid var(--gray-200); padding: 8px 14px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; }
+.deco-pill:hover { border-color: var(--black); }
+.deco-pill.selected { border-color: var(--black); background: var(--black); color: var(--white); }
+.deco-pill-icon { font-size: 14px; }
+.pool-note { font-size: 11px; color: var(--gray-600); margin-top: 8px; font-weight: 300; line-height: 1.5; }
+.pool-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; margin-right: 4px; }
+.pool-tag.sp { background: #e8f4e8; color: #2d6a2d; }
+.pool-tag.emb { background: #e8e8f4; color: #2d2d6a; }
+.pool-tag.dtf { background: #f4e8e8; color: #6a2d2d; }
 
-/* DECO CARDS */
-.deco-compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-.deco-card { border: 1.5px solid var(--gray-200); cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; }
-.deco-card:hover { border-color: var(--black); }
-.deco-card.selected { border-color: var(--black); }
-.deco-card-header { padding: 16px; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); text-align: center; transition: background 0.15s; }
-.deco-card.selected .deco-card-header { background: var(--black); border-bottom-color: #333; }
-.deco-icon { font-size: 26px; display: block; margin-bottom: 6px; }
-.deco-name { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
-.deco-card.selected .deco-name { color: var(--white); }
-.deco-card-body { padding: 12px 14px; flex-grow: 1; }
-.deco-feature { font-size: 11px; color: var(--gray-600); padding: 4px 0; border-bottom: 1px solid var(--gray-100); display: flex; align-items: flex-start; gap: 6px; line-height: 1.4; }
-.deco-feature:last-child { border-bottom: none; }
-.deco-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray-300); flex-shrink: 0; margin-top: 5px; }
-.deco-card-footer { padding: 10px 14px; border-top: 1px solid var(--gray-200); background: var(--gray-50); transition: background 0.15s; }
-.deco-card.selected .deco-card-footer { background: #1a1a1a; border-top-color: #2a2a2a; }
-.deco-best-for { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
-.deco-card.selected .deco-best-for { color: #555; }
-.deco-best-val { font-size: 11px; color: var(--gray-800); margin-top: 2px; }
-.deco-card.selected .deco-best-val { color: #aaa; }
-
-.deco-detail { display: none; background: var(--gray-50); border: 1px solid var(--gray-200); padding: 20px; }
-.color-slider-wrap { display: flex; align-items: center; gap: 16px; margin-top: 12px; }
-.color-slider { flex: 1; -webkit-appearance: none; height: 3px; background: var(--gray-200); outline: none; cursor: pointer; }
-.color-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--black); cursor: pointer; }
-.color-count-display { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 700; min-width: 48px; text-align: center; }
-.color-label { font-size: 11px; color: var(--gray-400); text-align: center; min-width: 48px; }
-.stitch-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
-.stitch-option { border: 1.5px solid var(--gray-200); padding: 10px 8px; cursor: pointer; text-align: center; transition: all 0.15s; background: var(--white); }
-.stitch-option:hover { border-color: var(--black); }
-.stitch-option.selected { border-color: var(--black); background: var(--black); color: var(--white); }
-.stitch-val { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; }
-.stitch-label { font-size: 9px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
-.stitch-option.selected .stitch-label { color: #ccc; }
-.dtf-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
-.dtf-option { border: 1.5px solid var(--gray-200); padding: 12px 8px; cursor: pointer; text-align: center; transition: all 0.15s; background: var(--white); }
-.dtf-option:hover { border-color: var(--black); }
-.dtf-option.selected { border-color: var(--black); background: var(--black); color: var(--white); }
-.dtf-size-name { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; }
-.dtf-size-dim { font-size: 9px; color: var(--gray-400); margin-top: 3px; }
-.dtf-option.selected .dtf-size-dim { color: #aaa; }
-
-/* LOCATION — MULTI SELECT */
-.location-section { margin-bottom: 20px; }
-.location-section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 10px; }
-.location-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.location-chip { border: 1.5px solid var(--gray-200); padding: 12px 10px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.15s; text-align: center; position: relative; user-select: none; }
+/* LOCATION STEP */
+.location-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+.location-chip { border: 1.5px solid var(--gray-200); padding: 12px 10px; cursor: pointer; transition: all 0.15s; text-align: center; position: relative; user-select: none; }
 .location-chip:hover { border-color: var(--gray-400); background: var(--gray-50); }
 .location-chip.selected { border-color: var(--black); background: var(--black); color: var(--white); }
 .location-chip-name { font-size: 12px; font-weight: 500; line-height: 1.3; }
-.location-chip-check { position: absolute; top: 6px; right: 8px; font-size: 10px; opacity: 0; transition: opacity 0.15s; }
+.location-chip-check { position: absolute; top: 6px; right: 8px; font-size: 10px; opacity: 0; }
 .location-chip.selected .location-chip-check { opacity: 1; }
-.location-count-note { font-size: 11px; color: var(--gray-600); margin-top: 12px; padding: 10px 14px; background: var(--gray-50); border: 1px solid var(--gray-200); line-height: 1.5; }
-.location-count-note strong { color: var(--black); font-weight: 600; }
+.location-section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); margin: 16px 0 8px; }
+.location-section-title:first-child { margin-top: 0; }
+
+/* LOCATION CONFIG — per location per deco type */
+.loc-config-block { border: 1px solid var(--gray-200); margin-top: 20px; }
+.loc-config-header { background: var(--black); padding: 12px 20px; display: flex; align-items: center; gap: 10px; }
+.loc-config-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); }
+.loc-config-body { padding: 20px; }
+.loc-deco-section { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--gray-100); }
+.loc-deco-section:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.loc-deco-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.color-slider-wrap { display: flex; align-items: center; gap: 16px; }
+.color-slider { flex: 1; -webkit-appearance: none; height: 3px; background: var(--gray-200); outline: none; cursor: pointer; }
+.color-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--black); cursor: pointer; }
+.color-count-display { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 700; min-width: 40px; text-align: center; }
+.color-label { font-size: 10px; color: var(--gray-400); text-align: center; min-width: 40px; }
+.mini-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.mini-option { border: 1.5px solid var(--gray-200); padding: 8px 6px; cursor: pointer; text-align: center; transition: all 0.15s; background: var(--white); }
+.mini-option:hover { border-color: var(--black); }
+.mini-option.selected { border-color: var(--black); background: var(--black); color: var(--white); }
+.mini-option-val { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; }
+.mini-option-label { font-size: 9px; color: var(--gray-400); margin-top: 1px; }
+.mini-option.selected .mini-option-label { color: #aaa; }
+.dtf-mini-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.dtf-mini { border: 1.5px solid var(--gray-200); padding: 8px 6px; cursor: pointer; text-align: center; transition: all 0.15s; background: var(--white); }
+.dtf-mini:hover { border-color: var(--black); }
+.dtf-mini.selected { border-color: var(--black); background: var(--black); color: var(--white); }
+.dtf-mini-name { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; }
+.dtf-mini-dim { font-size: 9px; color: var(--gray-400); margin-top: 1px; }
+.dtf-mini.selected .dtf-mini-dim { color: #aaa; }
 
 /* SIDEBAR */
 .quote-sidebar { position: sticky; top: 24px; }
@@ -135,23 +130,28 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .quote-box-header { background: var(--black); padding: 16px 20px; }
 .quote-box-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); }
 .quote-box-sub { font-size: 11px; color: #555; margin-top: 2px; }
-.quote-empty { padding: 32px 20px; text-align: center; font-size: 13px; color: var(--gray-400); font-weight: 300; line-height: 1.6; }
+.quote-empty { padding: 28px 20px; text-align: center; font-size: 13px; color: var(--gray-400); font-weight: 300; line-height: 1.6; }
 .quote-live { padding: 16px 20px; }
-.quote-config-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--gray-100); font-size: 12px; gap: 8px; }
-.quote-config-item:last-of-type { border-bottom: none; }
-.quote-config-label { color: var(--gray-600); font-weight: 300; flex-shrink: 0; }
-.quote-config-val { font-weight: 500; color: var(--black); text-align: right; }
-.quote-locations-list { font-size: 11px; color: var(--gray-600); margin-top: 3px; font-weight: 300; text-align: right; }
-
+.quote-pool { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-100); }
+.quote-pool:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.quote-pool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.quote-pool-name { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
+.quote-pool-subtotal { font-size: 13px; font-weight: 600; color: var(--black); }
+.quote-pool-detail { font-size: 11px; color: var(--gray-600); font-weight: 300; line-height: 1.5; }
 .quote-total-block { background: var(--black); padding: 20px; }
 .quote-total-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #555; margin-bottom: 4px; }
 .quote-total-number { font-family: 'Barlow Condensed', sans-serif; font-size: 42px; font-weight: 700; color: var(--white); line-height: 1; }
-.quote-per-unit { font-size: 12px; color: #666; margin-top: 4px; }
-
-.quote-breakdown { padding: 12px 20px; border-top: 1px solid var(--gray-100); }
-.quote-breakdown-row { display: flex; justify-content: space-between; font-size: 11px; padding: 3px 0; color: var(--gray-600); }
-.quote-breakdown-row span:last-child { font-weight: 500; color: var(--gray-800); }
+.quote-per-note { font-size: 11px; color: #555; margin-top: 6px; line-height: 1.5; }
 .quote-disclaimer { padding: 10px 20px 14px; font-size: 10px; color: var(--gray-400); line-height: 1.5; font-style: italic; }
+.quote-items-list { padding: 0 20px 12px; }
+.quote-item-row { display: flex; justify-content: space-between; font-size: 11px; padding: 4px 0; color: var(--gray-600); border-bottom: 1px solid var(--gray-100); }
+.quote-item-row:last-child { border-bottom: none; }
+
+/* FORM / WARNING */
+.form-note { font-size: 11px; color: var(--gray-400); margin-top: 6px; font-weight: 300; }
+.warning-box { background: #fff3cd; border: 1px solid #ffc107; padding: 10px 14px; font-size: 12px; color: #856404; margin-top: 8px; display: none; }
+.info-box { background: var(--gray-50); border: 1px solid var(--gray-200); padding: 12px 16px; font-size: 12px; color: var(--gray-600); margin-top: 12px; line-height: 1.5; }
+.info-box strong { color: var(--black); font-weight: 600; }
 
 /* BUTTONS */
 .nav-btns { display: flex; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--gray-100); }
@@ -183,20 +183,20 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .confirmation.visible { display: block; }
 .confirm-header { background: var(--black); padding: 64px 48px; text-align: center; }
 .confirm-check { font-size: 48px; margin-bottom: 16px; }
-.confirm-title { font-family: 'Barlow Condensed', sans-serif; font-size: 42px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); line-height: 1; }
+.confirm-title { font-family: 'Barlow Condensed', sans-serif; font-size: 42px; font-weight: 700; color: var(--white); line-height: 1; }
 .confirm-sub { font-size: 16px; color: var(--gray-400); margin-top: 12px; font-weight: 300; }
 .confirm-est { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 700; color: var(--white); margin-top: 20px; line-height: 1; }
 .confirm-est-label { font-size: 12px; color: #555; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
-.confirm-body { max-width: 580px; margin: 0 auto; padding: 48px; }
-.confirm-summary { background: var(--white); border: 1px solid var(--gray-200); }
-.confirm-summary-header { background: var(--gray-50); padding: 14px 20px; border-bottom: 1px solid var(--gray-200); font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); }
-.confirm-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 20px; border-bottom: 1px solid var(--gray-100); font-size: 13px; gap: 16px; }
+.confirm-body { max-width: 640px; margin: 0 auto; padding: 48px; }
+.confirm-section { background: var(--white); border: 1px solid var(--gray-200); margin-bottom: 16px; }
+.confirm-section-header { background: var(--gray-50); padding: 12px 20px; border-bottom: 1px solid var(--gray-200); font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); }
+.confirm-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 10px 20px; border-bottom: 1px solid var(--gray-100); font-size: 13px; gap: 16px; }
 .confirm-row:last-child { border-bottom: none; }
 .confirm-row-label { color: var(--gray-600); font-weight: 300; flex-shrink: 0; }
 .confirm-row-val { font-weight: 500; text-align: right; }
-.confirm-next { margin-top: 24px; background: var(--gray-50); border: 1px solid var(--gray-200); padding: 24px; }
+.confirm-next { margin-top: 8px; background: var(--gray-50); border: 1px solid var(--gray-200); padding: 24px; }
 .confirm-next-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); margin-bottom: 12px; }
-.confirm-next-step { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 13px; color: var(--gray-600); font-weight: 300; line-height: 1.5; }
+.confirm-next-step { display: flex; gap: 12px; padding: 8px 0; font-size: 13px; color: var(--gray-600); font-weight: 300; line-height: 1.5; }
 .confirm-next-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--black); flex-shrink: 0; width: 20px; }
 .confirm-actions { display: flex; gap: 12px; margin-top: 24px; }
 </style>
@@ -213,21 +213,20 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 </header>
 
 <div class="progress-bar" id="progress-bar">
-  <div class="step active" id="si1"><div class="step-num"><span>1</span></div><div class="step-label">Product</div></div>
-  <div class="step" id="si2"><div class="step-num"><span>2</span></div><div class="step-label">Quantity</div></div>
-  <div class="step" id="si3"><div class="step-num"><span>3</span></div><div class="step-label">Decoration</div></div>
-  <div class="step" id="si4"><div class="step-num"><span>4</span></div><div class="step-label">Locations</div></div>
+  <div class="step active" id="si1"><div class="step-num"><span>1</span></div><div class="step-label">Products</div></div>
+  <div class="step" id="si2"><div class="step-num"><span>2</span></div><div class="step-label">Configure</div></div>
+  <div class="step" id="si3"><div class="step-num"><span>3</span></div><div class="step-label">Locations</div></div>
 </div>
 
 <div class="main" id="main-content">
   <div>
 
-    <!-- STEP 1: PRODUCT -->
+    <!-- STEP 1: MULTI-SELECT PRODUCTS -->
     <div class="step-panel active" id="panel-1">
       <div class="panel">
         <div class="panel-header">
-          <div class="panel-title">Select a Product</div>
-          <div class="panel-sub">Choose the garment style you want decorated</div>
+          <div class="panel-title">Select Products</div>
+          <div class="panel-sub">Pick one or more garments — you'll configure each one separately on the next step</div>
         </div>
         <div class="panel-body">
           <div class="cat-tabs">
@@ -237,189 +236,61 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
             <button class="cat-tab" onclick="filterCat('hoodie',this)">Hoodies</button>
           </div>
           <div class="product-list" id="product-list"></div>
+          <div class="selected-count" id="selected-count" style="display:none"></div>
         </div>
       </div>
       <div class="nav-btns">
-        <button class="btn btn-primary" id="btn-1-next" onclick="goStep(2)" disabled>Next: Quantity →</button>
+        <button class="btn btn-primary" id="btn-1-next" onclick="goStep(2)" disabled>Next: Configure →</button>
       </div>
     </div>
 
-    <!-- STEP 2: QUANTITY -->
+    <!-- STEP 2: CONFIGURE EACH PRODUCT (qty + deco type) -->
     <div class="step-panel" id="panel-2">
       <div class="panel">
-        <div class="summary-bar" id="summary-2"></div>
         <div class="panel-header">
-          <div class="panel-title">How Many?</div>
-          <div class="panel-sub">Minimum 12 pieces per decoration. More pieces = lower per-unit cost.</div>
+          <div class="panel-title">Configure Each Product</div>
+          <div class="panel-sub">Set quantity and decoration type for each garment — quantities pool by decoration type</div>
         </div>
-        <div class="panel-body">
-          <div class="form-row">
-            <label class="form-label">Quantity</label>
-            <div class="qty-input">
-              <button class="qty-btn" onclick="adjustQty(-1)">−</button>
-              <input class="qty-number" type="number" id="qty-val" value="24" min="1" onchange="onQtyChange()">
-              <button class="qty-btn" onclick="adjustQty(1)">+</button>
-            </div>
-            <div class="form-note" id="qty-tier-note">24 pieces</div>
-          </div>
-          <div class="warning-box" id="qty-warning">Minimum order is 12 pieces per decoration.</div>
-        </div>
+        <div class="panel-body" id="config-cards"></div>
       </div>
+      <div class="warning-box" id="config-warning" style="margin:0 0 0 0">Please set a decoration type for every product.</div>
       <div class="nav-btns">
         <button class="btn btn-secondary" onclick="goStep(1)">← Back</button>
-        <button class="btn btn-primary" onclick="goStep(3)">Next: Decoration →</button>
+        <button class="btn btn-primary" id="btn-2-next" onclick="tryGoStep3()">Next: Locations →</button>
       </div>
     </div>
 
-    <!-- STEP 3: DECORATION -->
+    <!-- STEP 3: LOCATIONS + PER-LOCATION CONFIG -->
     <div class="step-panel" id="panel-3">
       <div class="panel">
-        <div class="summary-bar" id="summary-3"></div>
         <div class="panel-header">
-          <div class="panel-title">Decoration Type</div>
-          <div class="panel-sub">Compare options — the estimate updates live as you choose</div>
+          <div class="panel-title">Locations</div>
+          <div class="panel-sub">Select where you want decoration — then configure each location for your decoration type(s)</div>
         </div>
         <div class="panel-body">
-          <div class="deco-compare">
-            <div class="deco-card" id="deco-card-screenprint" onclick="selectDeco('screenprint',this)">
-              <div class="deco-card-header"><span class="deco-icon">🖨</span><div class="deco-name">Screen Print</div></div>
-              <div class="deco-card-body">
-                <div class="deco-feature"><div class="deco-dot"></div>Bold, vibrant flat finish</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Priced per color in design</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Most cost-effective for large runs</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Screen charge per location × color</div>
-              </div>
-              <div class="deco-card-footer"><div class="deco-best-for">Best for</div><div class="deco-best-val">Uniforms, events, large orders</div></div>
-            </div>
-            <div class="deco-card" id="deco-card-embroidery" onclick="selectDeco('embroidery',this)">
-              <div class="deco-card-header"><span class="deco-icon">🧵</span><div class="deco-name">Embroidery</div></div>
-              <div class="deco-card-body">
-                <div class="deco-feature"><div class="deco-dot"></div>Premium stitched look and feel</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Won't crack, peel, or fade</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Priced by stitch count</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Digitizing included free</div>
-              </div>
-              <div class="deco-card-footer"><div class="deco-best-for">Best for</div><div class="deco-best-val">Polos, quarter-zips, pro wear</div></div>
-            </div>
-            <div class="deco-card" id="deco-card-dtf" onclick="selectDeco('dtf',this)">
-              <div class="deco-card-header"><span class="deco-icon">🎨</span><div class="deco-name">DTF Transfer</div></div>
-              <div class="deco-card-body">
-                <div class="deco-feature"><div class="deco-dot"></div>Full-color, photo-quality prints</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Unlimited colors, no extra cost</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Great for complex artwork</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Priced by print size</div>
-              </div>
-              <div class="deco-card-footer"><div class="deco-best-for">Best for</div><div class="deco-best-val">Complex logos, small runs</div></div>
-            </div>
+          <div class="location-section-title">Front</div>
+          <div class="location-grid">
+            <div class="location-chip" onclick="toggleLocation('Left Chest',this)"><div class="location-chip-check">✓</div><div class="location-chip-name">Left Chest</div></div>
+            <div class="location-chip" onclick="toggleLocation('Right Chest',this)"><div class="location-chip-check">✓</div><div class="location-chip-name">Right Chest</div></div>
+            <div class="location-chip" onclick="toggleLocation('Full Front',this)"><div class="location-chip-check">✓</div><div class="location-chip-name">Full Front</div></div>
           </div>
-
-          <div id="deco-detail-screenprint" class="deco-detail">
-            <label class="form-label">Number of Colors in Design</label>
-            <div class="color-slider-wrap">
-              <div><div class="color-count-display" id="color-count-display">2</div><div class="color-label">colors</div></div>
-              <input type="range" class="color-slider" id="color-slider" min="1" max="8" value="2" step="1" oninput="onColorChange()">
-            </div>
-            <div class="form-note" style="margin-top:12px">Screen charge = colors × locations × $20 (waived per location at 144+ pieces).</div>
+          <div class="location-section-title">Back</div>
+          <div class="location-grid">
+            <div class="location-chip" onclick="toggleLocation('Full Back',this)"><div class="location-chip-check">✓</div><div class="location-chip-name">Full Back</div></div>
+            <div class="location-chip" onclick="toggleLocation('Upper Back',this)"><div class="location-chip-check">✓</div><div class="location-chip-name">Upper Back</div></div>
+            <div class="location-chip" onclick="toggleLocation('Nape of Neck',this)"><div class="location-chip-check">✓</div><div class="location-chip-name">Nape of Neck</div></div>
           </div>
-
-          <div id="deco-detail-embroidery" class="deco-detail">
-            <label class="form-label">Estimated Stitch Count</label>
-            <div class="stitch-options">
-              <div class="stitch-option selected" onclick="selectStitch(4000,this)"><div class="stitch-val">≤4K</div><div class="stitch-label">Simple</div></div>
-              <div class="stitch-option" onclick="selectStitch(6000,this)"><div class="stitch-val">≤6K</div><div class="stitch-label">Small</div></div>
-              <div class="stitch-option" onclick="selectStitch(8000,this)"><div class="stitch-val">≤8K</div><div class="stitch-label">Medium</div></div>
-              <div class="stitch-option" onclick="selectStitch(10000,this)"><div class="stitch-val">≤10K</div><div class="stitch-label">Detailed</div></div>
-              <div class="stitch-option" onclick="selectStitch(15000,this)"><div class="stitch-val">≤15K</div><div class="stitch-label">Complex</div></div>
-              <div class="stitch-option" onclick="selectStitch(20000,this)"><div class="stitch-val">≤20K</div><div class="stitch-label">Large</div></div>
-            </div>
-            <div class="form-note" style="margin-top:12px">Most standard logos are 5,000–8,000 stitches. We confirm after seeing your artwork.</div>
+          <div class="location-section-title">Sleeves</div>
+          <div class="location-grid">
+            <div class="location-chip" onclick="toggleLocation('Left Sleeve',this)"><div class="location-chip-check">✓</div><div class="location-chip-name">Left Sleeve</div></div>
+            <div class="location-chip" onclick="toggleLocation('Right Sleeve',this)"><div class="location-chip-check">✓</div><div class="location-chip-name">Right Sleeve</div></div>
           </div>
-
-          <div id="deco-detail-dtf" class="deco-detail">
-            <label class="form-label">Print Size</label>
-            <div class="dtf-options">
-              <div class="dtf-option selected" onclick="selectDTFSize('small',this)"><div class="dtf-size-name">Small</div><div class="dtf-size-dim">Up to 4" × 4"</div></div>
-              <div class="dtf-option" onclick="selectDTFSize('standard',this)"><div class="dtf-size-name">Standard</div><div class="dtf-size-dim">Up to 10" × 12"</div></div>
-              <div class="dtf-option" onclick="selectDTFSize('oversized',this)"><div class="dtf-size-name">Oversized</div><div class="dtf-size-dim">Up to 14" × 16"</div></div>
-            </div>
-          </div>
+          <div id="loc-config-container"></div>
         </div>
       </div>
       <div class="nav-btns">
         <button class="btn btn-secondary" onclick="goStep(2)">← Back</button>
-        <button class="btn btn-primary" id="btn-3-next" onclick="goStep(4)" disabled>Next: Locations →</button>
-      </div>
-    </div>
-
-    <!-- STEP 4: LOCATIONS (MULTI-SELECT) -->
-    <div class="step-panel" id="panel-4">
-      <div class="panel">
-        <div class="summary-bar" id="summary-4"></div>
-        <div class="panel-header">
-          <div class="panel-title">Print Locations</div>
-          <div class="panel-sub">Select one or more locations — each adds a decoration charge to the total</div>
-        </div>
-        <div class="panel-body">
-
-          <div class="location-section">
-            <div class="location-section-title">Front</div>
-            <div class="location-grid">
-              <div class="location-chip" onclick="toggleLocation('Left Chest',this)">
-                <div class="location-chip-check">✓</div>
-                <div class="location-chip-name">Left Chest</div>
-              </div>
-              <div class="location-chip" onclick="toggleLocation('Right Chest',this)">
-                <div class="location-chip-check">✓</div>
-                <div class="location-chip-name">Right Chest</div>
-              </div>
-              <div class="location-chip" onclick="toggleLocation('Full Front',this)">
-                <div class="location-chip-check">✓</div>
-                <div class="location-chip-name">Full Front</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="location-section">
-            <div class="location-section-title">Back</div>
-            <div class="location-grid">
-              <div class="location-chip" onclick="toggleLocation('Full Back',this)">
-                <div class="location-chip-check">✓</div>
-                <div class="location-chip-name">Full Back</div>
-              </div>
-              <div class="location-chip" onclick="toggleLocation('Upper Back',this)">
-                <div class="location-chip-check">✓</div>
-                <div class="location-chip-name">Upper Back</div>
-              </div>
-              <div class="location-chip" onclick="toggleLocation('Nape of Neck',this)">
-                <div class="location-chip-check">✓</div>
-                <div class="location-chip-name">Nape of Neck</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="location-section">
-            <div class="location-section-title">Sleeves</div>
-            <div class="location-grid">
-              <div class="location-chip" onclick="toggleLocation('Left Sleeve',this)">
-                <div class="location-chip-check">✓</div>
-                <div class="location-chip-name">Left Sleeve</div>
-              </div>
-              <div class="location-chip" onclick="toggleLocation('Right Sleeve',this)">
-                <div class="location-chip-check">✓</div>
-                <div class="location-chip-name">Right Sleeve</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="location-count-note" id="location-note">
-            Select at least one location to continue.
-          </div>
-
-        </div>
-      </div>
-      <div class="nav-btns">
-        <button class="btn btn-secondary" onclick="goStep(3)">← Back</button>
-        <button class="btn btn-primary" id="btn-4-next" onclick="openModal()" disabled>Get My Quote →</button>
+        <button class="btn btn-primary" id="btn-3-next" onclick="openModal()" disabled>Get My Quote →</button>
       </div>
     </div>
 
@@ -432,19 +303,12 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
         <div class="quote-box-title">Your Estimate</div>
         <div class="quote-box-sub">Updates as you configure</div>
       </div>
-      <div id="sidebar-empty" class="quote-empty">Select a product and quantity to see your live estimate.</div>
-      <div id="sidebar-live" style="display:none">
-        <div class="quote-live" id="sidebar-config"></div>
-        <div class="quote-total-block">
-          <div class="quote-total-label">Estimated Total</div>
-          <div class="quote-total-number" id="sidebar-total">—</div>
-          <div class="quote-per-unit" id="sidebar-per-unit"></div>
-        </div>
-        <div class="quote-breakdown" id="sidebar-breakdown"></div>
-        <div class="quote-disclaimer">Estimate only. Final pricing confirmed by your rep.</div>
+      <div id="sidebar-content">
+        <div class="quote-empty">Select products to get started.</div>
       </div>
     </div>
   </div>
+
 </div>
 
 <!-- MODAL -->
@@ -452,21 +316,12 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
   <div class="modal">
     <div class="modal-header">
       <div class="modal-title">Almost there.</div>
-      <div class="modal-sub">Enter your info and we'll send a confirmed quote within one business day.</div>
+      <div class="modal-sub">We'll send a confirmed quote within one business day.</div>
     </div>
     <div class="modal-body">
-      <div class="modal-field">
-        <label class="modal-label">Full Name</label>
-        <input class="modal-input" type="text" id="input-name" placeholder="Bart Baker">
-      </div>
-      <div class="modal-field">
-        <label class="modal-label">Email Address</label>
-        <input class="modal-input" type="email" id="input-email" placeholder="bart@firstweber.com">
-      </div>
-      <div class="modal-field">
-        <label class="modal-label">Company</label>
-        <input class="modal-input" type="text" id="input-company" placeholder="First Weber">
-      </div>
+      <div class="modal-field"><label class="modal-label">Full Name</label><input class="modal-input" type="text" id="input-name" placeholder="Bart Baker"></div>
+      <div class="modal-field"><label class="modal-label">Email Address</label><input class="modal-input" type="email" id="input-email" placeholder="bart@firstweber.com"></div>
+      <div class="modal-field"><label class="modal-label">Company</label><input class="modal-input" type="text" id="input-company" placeholder="First Weber"></div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-primary" style="width:100%" id="submit-btn" onclick="submitQuote()">Submit Quote Request →</button>
@@ -482,36 +337,17 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
     <div class="confirm-check">✓</div>
     <div class="confirm-title">Quote Request Sent</div>
     <div class="confirm-sub">Your Elite Apparel rep will follow up within one business day.</div>
-    <div class="confirm-est" id="confirm-est-total"></div>
+    <div class="confirm-est" id="confirm-est"></div>
     <div class="confirm-est-label" id="confirm-est-label"></div>
   </div>
-  <div class="confirm-body">
-    <div class="confirm-summary">
-      <div class="confirm-summary-header">Order Details</div>
-      <div id="confirm-rows"></div>
-    </div>
-    <div class="confirm-next">
-      <div class="confirm-next-title">What happens next</div>
-      <div class="confirm-next-step"><div class="confirm-next-num">1</div>Your rep reviews the request and pulls exact pricing from our vendors.</div>
-      <div class="confirm-next-step"><div class="confirm-next-num">2</div>You'll receive a formal quote with final per-unit and total pricing.</div>
-      <div class="confirm-next-step"><div class="confirm-next-num">3</div>Once approved, we handle decoration and fulfillment end to end.</div>
-    </div>
-    <div class="confirm-actions">
-      <button class="btn btn-primary" onclick="window.location.reload()">Build Another Quote</button>
-    </div>
-  </div>
+  <div class="confirm-body" id="confirm-body"></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 emailjs.init('2yrbwvrm1U9JuDJss');
 
-var state = {
-  product: null, qty: 24, deco: null,
-  colors: 2, stitches: 4000, dtfSize: 'small',
-  locations: [], currentCat: 'tee',
-};
-
+// ── PRODUCTS ─────────────────────────────────────────────────────
 var PRODUCTS = [
   {id:'NKDX8730', name:'Nike Swoosh Sleeve rLegend Tee',          brand:'Nike',           cat:'tee',    wholesale:8.50},
   {id:'NL6210',   name:'Next Level Adult CVC Tee',                 brand:'Next Level',     cat:'tee',    wholesale:4.50},
@@ -531,7 +367,17 @@ var PRODUCTS = [
   {id:'SS4500',   name:'Independent Trading Midweight Hoodie',     brand:'Ind. Trading',   cat:'hoodie', wholesale:18.00},
 ];
 
-// ── PRICING TABLES ───────────────────────────────────────────────
+// ── STATE ─────────────────────────────────────────────────────────
+// items: [{product, qty, deco}]
+// locations: [{name, spColors, embStitches, dtfSize}]
+var state = {
+  selectedProducts: [],  // product ids selected in step 1
+  items: [],             // [{product, qty, deco}]
+  currentCat: 'tee',
+  locations: [],         // [{name, spColors, embStitches, dtfSize}]
+};
+
+// ── PRICING TABLES ────────────────────────────────────────────────
 var SP_TIERS = [
   {min:1,   max:3,    p:[2.35,2.55,2.89,3.14,3.43,4.09,4.61,5.38]},
   {min:4,   max:11,   p:[2.18,2.26,2.44,2.61,2.78,2.96,3.13,3.30]},
@@ -552,328 +398,496 @@ var EMB_PRICES = [
   [32.22,27.32,16.95,14.57,12.39,11.31],
 ];
 var DTF_TIERS = [
-  {min:1,  max:3,      p:[11.55,15.13,20.63]},
-  {min:4,  max:11,     p:[6.33, 9.63, 15.13]},
-  {min:12, max:47,     p:[5.23, 7.43, 11.83]},
-  {min:48, max:71,     p:[4.68, 5.78, 9.08]},
-  {min:72, max:99999,  p:[4.13, 5.23, 8.53]},
+  {min:1,  max:3,     p:[11.55,15.13,20.63]},
+  {min:4,  max:11,    p:[6.33, 9.63, 15.13]},
+  {min:12, max:47,    p:[5.23, 7.43, 11.83]},
+  {min:48, max:71,    p:[4.68, 5.78, 9.08]},
+  {min:72, max:99999, p:[4.13, 5.23, 8.53]},
 ];
 
 function getMarginDiv(qty, deco) {
-  if (deco==='dtf') {
-    if(qty<=14)return 0.55; if(qty<=99)return 0.60; if(qty<=249)return 0.65; return 0.70;
-  }
-  if(qty<=23)return 0.55; if(qty<=143)return 0.60; if(qty<=499)return 0.65; if(qty<=999)return 0.70; return 0.75;
+  if(deco==='dtf'){if(qty<=14)return 0.55;if(qty<=99)return 0.60;if(qty<=249)return 0.65;return 0.70;}
+  if(qty<=23)return 0.55;if(qty<=143)return 0.60;if(qty<=499)return 0.65;if(qty<=999)return 0.70;return 0.75;
 }
-function getSPDeco(qty,colors) {
-  var t=SP_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||SP_TIERS[SP_TIERS.length-1];
-  return t.p[Math.min(colors-1,7)];
-}
-function getEmbDeco(qty,stitches) {
-  var si=EMB_STITCHES.findIndex(function(s){return stitches<=s;}); if(si<0)si=EMB_STITCHES.length-1;
-  var qi=0; if(qty>=4&&qty<=11)qi=1; if(qty>=12&&qty<=35)qi=2; if(qty>=36&&qty<=71)qi=3; if(qty>=72&&qty<=143)qi=4; if(qty>=144)qi=5;
-  return EMB_PRICES[si][qi];
-}
-function getDTFDeco(qty,size) {
-  var t=DTF_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||DTF_TIERS[DTF_TIERS.length-1];
-  return t.p[size==='small'?0:size==='standard'?1:2];
-}
+function getSPDeco(qty,colors){var t=SP_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||SP_TIERS[SP_TIERS.length-1];return t.p[Math.min(colors-1,7)];}
+function getEmbDeco(qty,stitches){var si=EMB_STITCHES.findIndex(function(s){return stitches<=s;});if(si<0)si=EMB_STITCHES.length-1;var qi=0;if(qty>=4&&qty<=11)qi=1;if(qty>=12&&qty<=35)qi=2;if(qty>=36&&qty<=71)qi=3;if(qty>=72&&qty<=143)qi=4;if(qty>=144)qi=5;return EMB_PRICES[si][qi];}
+function getDTFDeco(qty,size){var t=DTF_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||DTF_TIERS[DTF_TIERS.length-1];return t.p[size==='small'?0:size==='standard'?1:2];}
 
-function calcQuote() {
-  if (!state.product || !state.deco) return null;
-  var qty = state.qty;
+// ── POOL CALCULATION ──────────────────────────────────────────────
+function calcPools() {
+  // Group items by deco type, sum qty
+  var pools = {};
+  state.items.forEach(function(item) {
+    if (!item.deco) return;
+    if (!pools[item.deco]) pools[item.deco] = { items: [], totalQty: 0 };
+    pools[item.deco].items.push(item);
+    pools[item.deco].totalQty += item.qty;
+  });
+
+  var results = {};
   var numLoc = Math.max(state.locations.length, 1);
-  var md = getMarginDiv(qty, state.deco);
 
-  var garmentRetail = state.product.wholesale / md;
+  Object.keys(pools).forEach(function(deco) {
+    var pool = pools[deco];
+    var qty = pool.totalQty;
+    var md = getMarginDiv(qty, deco);
+    var poolTotal = 0;
+    var screenCharges = 0;
 
-  var decoRawPerLoc = state.deco==='screenprint' ? getSPDeco(qty, state.colors) :
-                      state.deco==='embroidery'   ? getEmbDeco(qty, state.stitches) :
-                      getDTFDeco(qty, state.dtfSize);
+    // Per-item garment cost
+    var garmentTotal = pool.items.reduce(function(sum, item) {
+      return sum + (item.product.wholesale / md) * item.qty;
+    }, 0);
 
-  var decoRetailPerLoc = decoRawPerLoc / md;
-  var totalDecoRetail = decoRetailPerLoc * numLoc;
+    // Decoration cost — per location
+    var decoTotal = 0;
+    state.locations.forEach(function(loc) {
+      var decoRaw = 0;
+      if (deco === 'screenprint') decoRaw = getSPDeco(qty, loc.spColors || 1);
+      else if (deco === 'embroidery') decoRaw = getEmbDeco(qty, loc.embStitches || 4000);
+      else if (deco === 'dtf') decoRaw = getDTFDeco(qty, loc.dtfSize || 'small');
+      var decoRetail = decoRaw / md;
+      decoTotal += decoRetail * qty;
 
-  // Screen charge: colors × locations × $20, waived at 144+ per location
-  var screenCharge = 0;
-  if (state.deco === 'screenprint' && qty < 144) {
-    screenCharge = state.colors * numLoc * 20;
-  }
+      // Screen charge: colors × $20 per location (waived at 144+)
+      if (deco === 'screenprint' && qty < 144) {
+        screenCharges += (loc.spColors || 1) * 20;
+      }
+    });
 
-  var perUnit = garmentRetail + totalDecoRetail;
-  var subtotal = perUnit * qty;
-  var total = subtotal + screenCharge;
+    poolTotal = garmentTotal + decoTotal + screenCharges;
+    results[deco] = {
+      qty: qty,
+      items: pool.items,
+      garmentTotal: garmentTotal,
+      decoTotal: decoTotal,
+      screenCharges: screenCharges,
+      poolTotal: poolTotal,
+      md: md,
+    };
+  });
 
-  return {
-    garmentRetail, decoRetailPerLoc, totalDecoRetail,
-    perUnit, subtotal, screenCharge, total, qty, numLoc, md
-  };
+  return results;
 }
 
-function fmt(n) { return '$' + n.toFixed(2); }
-function fmtBig(n) { return '$' + Math.round(n).toLocaleString(); }
+function fmt(n){return '$'+n.toFixed(2);}
+function fmtBig(n){return '$'+Math.round(n).toLocaleString();}
 
-// ── SIDEBAR ──────────────────────────────────────────────────────
+// ── SIDEBAR ───────────────────────────────────────────────────────
 function updateSidebar() {
-  var q = calcQuote();
-  var empty = document.getElementById('sidebar-empty');
-  var live = document.getElementById('sidebar-live');
+  var content = document.getElementById('sidebar-content');
+  var hasItems = state.items.some(function(i){return i.deco;});
 
-  if (!state.product || !state.deco) {
-    if (state.product) {
-      empty.innerHTML = '<div style="padding:20px;font-size:13px;color:var(--gray-600);font-weight:300;line-height:1.6"><strong style="font-weight:500;color:var(--black)">' + state.product.brand + ' ' + state.product.name + '</strong><br><br>Choose a decoration type to see your estimate.</div>';
-    } else {
-      empty.innerHTML = '<div class="quote-empty">Select a product and quantity to see your live estimate.</div>';
-    }
-    empty.style.display = 'block';
-    live.style.display = 'none';
+  if (!hasItems) {
+    content.innerHTML = '<div class="quote-empty">Configure your products to see a live estimate.</div>';
     return;
   }
 
-  empty.style.display = 'none';
-  live.style.display = 'block';
+  var pools = calcPools();
+  var grandTotal = Object.values(pools).reduce(function(s,p){return s+p.poolTotal;},0);
+  var decoNames = {screenprint:'Screen Print', embroidery:'Embroidery', dtf:'DTF Transfer'};
+  var poolColors = {screenprint:'sp', embroidery:'emb', dtf:'dtf'};
 
-  var decoLabel = state.deco==='screenprint' ? 'Screen Print ('+state.colors+' color'+(state.colors>1?'s':'')+')' :
-                  state.deco==='embroidery'  ? 'Embroidery (≤'+state.stitches.toLocaleString()+' stitches)' :
-                  'DTF ('+state.dtfSize.charAt(0).toUpperCase()+state.dtfSize.slice(1)+')';
+  var html = '<div class="quote-items-list">';
+  state.items.forEach(function(item) {
+    if (!item.deco) return;
+    html += '<div class="quote-item-row"><span>'+item.product.brand+' '+item.product.id+'</span><span>'+item.qty+' pcs</span></div>';
+  });
+  html += '</div>';
 
-  var locDisplay = state.locations.length > 0
-    ? state.locations.length + ' location' + (state.locations.length>1?'s':'')
-    : 'None selected';
+  html += '<div class="quote-live">';
+  Object.keys(pools).forEach(function(deco) {
+    var p = pools[deco];
+    html += '<div class="quote-pool">';
+    html += '<div class="quote-pool-header"><span class="quote-pool-name"><span class="pool-tag '+poolColors[deco]+'">'+decoNames[deco]+'</span>'+p.qty+' pcs</span><span class="quote-pool-subtotal">'+fmtBig(p.poolTotal)+'</span></div>';
+    var detail = '';
+    if (state.locations.length > 0) detail += state.locations.length + ' location'+(state.locations.length>1?'s':'')+' · ';
+    if (deco==='screenprint'&&p.screenCharges>0) detail += '$'+p.screenCharges+' screen charges';
+    if (detail) html += '<div class="quote-pool-detail">'+detail+'</div>';
+    html += '</div>';
+  });
+  html += '</div>';
 
-  var config = [
-    {l:'Product', v: state.product.brand + ' ' + state.product.name},
-    {l:'Quantity', v: state.qty + ' pieces'},
-    {l:'Decoration', v: decoLabel},
-    {l:'Locations', v: locDisplay, sub: state.locations.join(', ')},
-  ];
+  html += '<div class="quote-total-block"><div class="quote-total-label">Estimated Total</div><div class="quote-total-number">'+fmtBig(grandTotal)+'</div>';
+  if (state.locations.length > 0) html += '<div class="quote-per-note">'+state.locations.length+' location'+(state.locations.length>1?'s':'')+' · '+state.items.length+' product'+(state.items.length>1?'s':'')+'</div>';
+  html += '</div>';
+  html += '<div class="quote-disclaimer">Estimate only. Final pricing confirmed by your rep.</div>';
 
-  document.getElementById('sidebar-config').innerHTML = config.map(function(c) {
-    return '<div class="quote-config-item"><span class="quote-config-label">'+c.l+'</span><div style="text-align:right"><span class="quote-config-val">'+c.v+'</span>'+(c.sub?'<div class="quote-locations-list">'+c.sub+'</div>':'')+'</div></div>';
-  }).join('');
-
-  if (q) {
-    document.getElementById('sidebar-total').textContent = fmtBig(q.total);
-    document.getElementById('sidebar-per-unit').textContent = fmt(q.perUnit) + ' per unit';
-
-    // Breakdown — visible but clean, no wholesale/margin exposed
-    var breakdown = '';
-    if (q.numLoc > 1) {
-      breakdown += '<div class="quote-breakdown-row"><span>Decoration ('+q.numLoc+' locations)</span><span>'+fmt(q.totalDecoRetail)+'/unit</span></div>';
-    }
-    if (q.screenCharge > 0) {
-      breakdown += '<div class="quote-breakdown-row"><span>Screen charges ('+state.colors+' colors × '+q.numLoc+' loc × $20)</span><span>'+fmt(q.screenCharge)+'</span></div>';
-    }
-    document.getElementById('sidebar-breakdown').innerHTML = breakdown;
-    document.getElementById('sidebar-breakdown').style.display = breakdown ? 'block' : 'none';
-  }
+  content.innerHTML = html;
 }
 
-// ── SUMMARY BAR ──────────────────────────────────────────────────
-function buildSummary(step) {
-  var items = [];
-  if (state.product) items.push({l:'Product', v: state.product.brand+' '+state.product.id});
-  if (step>=2) items.push({l:'Qty', v: state.qty+' pcs'});
-  if (state.deco&&step>=3) {
-    var dl=state.deco==='screenprint'?'Screen Print':state.deco==='embroidery'?'Embroidery':'DTF Transfer';
-    items.push({l:'Decoration', v: dl});
-  }
-  if (state.locations.length&&step>=4) items.push({l:'Locations', v: state.locations.length+' selected'});
-  var el=document.getElementById('summary-'+step);
-  if(!el)return;
-  el.innerHTML=items.map(function(i){return '<div class="summary-item"><div class="summary-label">'+i.l+'</div><div class="summary-val">'+i.v+'</div></div>';}).join('');
-}
-
-// ── NAVIGATION ───────────────────────────────────────────────────
+// ── STEP NAV ──────────────────────────────────────────────────────
 function goStep(n) {
-  if(n===3&&state.qty<12){document.getElementById('qty-warning').style.display='block';return;}
   document.querySelectorAll('.step-panel').forEach(function(p){p.classList.remove('active');});
   document.getElementById('panel-'+n).classList.add('active');
-  for(var i=1;i<=4;i++){
+  for(var i=1;i<=3;i++){
     var ind=document.getElementById('si'+i);
     ind.classList.remove('active','done');
     if(i<n){ind.classList.add('done');ind.querySelector('.step-num').textContent='✓';}
     else if(i===n)ind.classList.add('active');
     else ind.querySelector('.step-num').innerHTML='<span>'+i+'</span>';
   }
-  buildSummary(n);
+  if(n===2) renderConfigCards();
+  if(n===3) renderLocConfigs();
   updateSidebar();
   window.scrollTo(0,0);
 }
 
-// ── PRODUCTS ─────────────────────────────────────────────────────
+// ── STEP 1: PRODUCT SELECTION ─────────────────────────────────────
 function filterCat(cat,btn) {
   state.currentCat=cat;
   document.querySelectorAll('.cat-tab').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   renderProducts();
 }
+
 function renderProducts() {
   var list=document.getElementById('product-list');
   list.innerHTML='';
   PRODUCTS.filter(function(p){return p.cat===state.currentCat;}).forEach(function(p){
-    var sel=state.product&&state.product.id===p.id;
+    var sel=state.selectedProducts.indexOf(p.id)>-1;
     var div=document.createElement('div');
     div.className='product-option'+(sel?' selected':'');
-    div.innerHTML='<div class="prod-brand">'+p.brand+'</div><div class="prod-name">'+p.name+'</div><div class="prod-sku">'+p.id+'</div>';
-    div.onclick=function(){selectProduct(p,div);};
+    div.innerHTML='<div class="prod-check">✓</div><div class="prod-brand">'+p.brand+'</div><div class="prod-name">'+p.name+'</div><div class="prod-sku">'+p.id+'</div>';
+    div.onclick=function(){toggleProduct(p,div);};
     list.appendChild(div);
   });
 }
-function selectProduct(p,el) {
-  state.product=p;
-  document.querySelectorAll('.product-option').forEach(function(e){e.classList.remove('selected');});
-  el.classList.add('selected');
-  document.getElementById('btn-1-next').disabled=false;
+
+function toggleProduct(p, el) {
+  var idx = state.selectedProducts.indexOf(p.id);
+  if (idx > -1) {
+    state.selectedProducts.splice(idx, 1);
+    el.classList.remove('selected');
+    // remove from items
+    state.items = state.items.filter(function(i){return i.product.id!==p.id;});
+  } else {
+    state.selectedProducts.push(p.id);
+    el.classList.add('selected');
+    // add to items with defaults
+    state.items.push({product:p, qty:24, deco:null});
+  }
+  updateSelectedCount();
   updateSidebar();
 }
 
-// ── QUANTITY ─────────────────────────────────────────────────────
-function adjustQty(d) {
-  state.qty=Math.max(1,state.qty+d);
-  document.getElementById('qty-val').value=state.qty;
-  onQtyChange();
+function updateSelectedCount() {
+  var count = state.selectedProducts.length;
+  var el = document.getElementById('selected-count');
+  var btn = document.getElementById('btn-1-next');
+  if (count === 0) {
+    el.style.display = 'none';
+    btn.disabled = true;
+  } else {
+    el.style.display = 'block';
+    el.innerHTML = '<strong>'+count+' product'+(count>1?'s':'')+' selected</strong> — click Next to set quantity and decoration type for each.';
+    btn.disabled = false;
+  }
 }
-function onQtyChange() {
-  state.qty=parseInt(document.getElementById('qty-val').value)||12;
-  document.getElementById('qty-warning').style.display=state.qty<12?'block':'none';
-  var tiers=[{max:23,l:'Small run'},{max:143,l:'Standard run'},{max:499,l:'Mid run'},{max:999,l:'Large run'}];
-  var tier=tiers.find(function(t){return state.qty<=t.max;})||{l:'Volume run'};
-  document.getElementById('qty-tier-note').textContent=state.qty+' pieces — '+tier.l;
+
+// ── STEP 2: CONFIG CARDS ──────────────────────────────────────────
+function renderConfigCards() {
+  var container = document.getElementById('config-cards');
+  container.innerHTML = '';
+
+  state.items.forEach(function(item, idx) {
+    var card = document.createElement('div');
+    card.className = 'config-card';
+    card.innerHTML =
+      '<div class="config-card-header">'+
+        '<div class="config-card-product">'+
+          '<div class="config-card-brand">'+item.product.brand+'</div>'+
+          '<div class="config-card-name">'+item.product.name+' <span style="color:var(--gray-400);font-weight:400;font-size:12px">'+item.product.id+'</span></div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="config-card-body">'+
+        '<div>'+
+          '<div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-600);margin-bottom:8px">Quantity</div>'+
+          '<div class="qty-mini" id="qty-wrap-'+idx+'">'+
+            '<button class="qty-mini-btn" onclick="adjustItemQty('+idx+',-1)">−</button>'+
+            '<input class="qty-mini-input" type="number" value="'+item.qty+'" min="1" id="qty-'+idx+'" onchange="setItemQty('+idx+',this.value)">'+
+            '<button class="qty-mini-btn" onclick="adjustItemQty('+idx+',1)">+</button>'+
+          '</div>'+
+          '<div class="qty-mini-label">pieces</div>'+
+        '</div>'+
+        '<div>'+
+          '<div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-600);margin-bottom:8px">Decoration Type</div>'+
+          '<div class="deco-pill-group">'+
+            '<div class="deco-pill'+(item.deco==='screenprint'?' selected':'')+'" onclick="setItemDeco('+idx+','screenprint',this)"><span class="deco-pill-icon">🖨</span>Screen Print</div>'+
+            '<div class="deco-pill'+(item.deco==='embroidery'?' selected':'')+'" onclick="setItemDeco('+idx+','embroidery',this)"><span class="deco-pill-icon">🧵</span>Embroidery</div>'+
+            '<div class="deco-pill'+(item.deco==='dtf'?' selected':'')+'" onclick="setItemDeco('+idx+','dtf',this)"><span class="deco-pill-icon">🎨</span>DTF</div>'+
+          '</div>'+
+          '<div class="pool-note" id="pool-note-'+idx+'">'+getPoolNote(idx)+'</div>'+
+        '</div>'+
+      '</div>';
+    container.appendChild(card);
+  });
+}
+
+function getPoolNote(idx) {
+  var item = state.items[idx];
+  if (!item.deco) return 'Select a decoration type.';
+  var decoNames = {screenprint:'Screen Print', embroidery:'Embroidery', dtf:'DTF Transfer'};
+  var poolClass = {screenprint:'sp', embroidery:'emb', dtf:'dtf'};
+  var poolItems = state.items.filter(function(i){return i.deco===item.deco;});
+  var poolQty = poolItems.reduce(function(s,i){return s+i.qty;},0);
+  var note = '<span class="pool-tag '+poolClass[item.deco]+'">'+decoNames[item.deco]+' Pool</span>';
+  note += poolQty + ' total pieces';
+  if (poolQty < 12) note += ' — <strong style="color:#c0392b">need '+  (12-poolQty)+' more to meet minimum</strong>';
+  return note;
+}
+
+function refreshPoolNotes() {
+  state.items.forEach(function(item, idx) {
+    var el = document.getElementById('pool-note-'+idx);
+    if (el) el.innerHTML = getPoolNote(idx);
+  });
+}
+
+function adjustItemQty(idx, delta) {
+  state.items[idx].qty = Math.max(1, state.items[idx].qty + delta);
+  var input = document.getElementById('qty-'+idx);
+  if (input) input.value = state.items[idx].qty;
+  refreshPoolNotes();
   updateSidebar();
 }
 
-// ── DECORATION ───────────────────────────────────────────────────
-function selectDeco(type,el) {
-  state.deco=type;
-  document.querySelectorAll('.deco-card').forEach(function(d){d.classList.remove('selected');});
-  el.classList.add('selected');
-  document.querySelectorAll('.deco-detail').forEach(function(d){d.style.display='none';});
-  document.getElementById('deco-detail-'+type).style.display='block';
-  document.getElementById('btn-3-next').disabled=false;
-  updateSidebar();
-}
-function onColorChange() {
-  state.colors=parseInt(document.getElementById('color-slider').value);
-  document.getElementById('color-count-display').textContent=state.colors;
-  updateSidebar();
-}
-function selectStitch(val,el) {
-  state.stitches=val;
-  document.querySelectorAll('.stitch-option').forEach(function(s){s.classList.remove('selected');});
-  el.classList.add('selected');
-  updateSidebar();
-}
-function selectDTFSize(size,el) {
-  state.dtfSize=size;
-  document.querySelectorAll('.dtf-option').forEach(function(d){d.classList.remove('selected');});
-  el.classList.add('selected');
+function setItemQty(idx, val) {
+  state.items[idx].qty = Math.max(1, parseInt(val) || 1);
+  refreshPoolNotes();
   updateSidebar();
 }
 
-// ── LOCATIONS (MULTI-SELECT) ──────────────────────────────────────
-function toggleLocation(loc, el) {
-  var idx = state.locations.indexOf(loc);
+function setItemDeco(idx, deco, el) {
+  state.items[idx].deco = deco;
+  // Update pills for this card
+  var card = el.closest('.config-card');
+  card.querySelectorAll('.deco-pill').forEach(function(p){p.classList.remove('selected');});
+  el.classList.add('selected');
+  refreshPoolNotes();
+  updateSidebar();
+}
+
+function tryGoStep3() {
+  var allSet = state.items.every(function(i){return i.deco !== null;});
+  var warn = document.getElementById('config-warning');
+  if (!allSet) { warn.style.display='block'; return; }
+
+  // Check minimums
+  var pools = {};
+  state.items.forEach(function(i){if(!pools[i.deco])pools[i.deco]=0;pools[i.deco]+=i.qty;});
+  var underMin = Object.keys(pools).filter(function(d){return pools[d]<12;});
+  if (underMin.length > 0) {
+    var decoNames = {screenprint:'Screen Print', embroidery:'Embroidery', dtf:'DTF Transfer'};
+    warn.style.display='block';
+    warn.textContent = underMin.map(function(d){return decoNames[d]+' pool needs '+( 12-pools[d])+' more pieces to meet the 12-piece minimum.';}).join(' ');
+    return;
+  }
+
+  warn.style.display='none';
+
+  // Initialize location configs based on active deco types
+  state.locations.forEach(function(loc) {
+    if (!loc.spColors) loc.spColors = 1;
+    if (!loc.embStitches) loc.embStitches = 4000;
+    if (!loc.dtfSize) loc.dtfSize = 'small';
+  });
+
+  goStep(3);
+}
+
+// ── STEP 3: LOCATIONS + CONFIG ────────────────────────────────────
+function toggleLocation(name, el) {
+  var idx = state.locations.findIndex(function(l){return l.name===name;});
   if (idx > -1) {
     state.locations.splice(idx, 1);
     el.classList.remove('selected');
   } else {
-    state.locations.push(loc);
+    state.locations.push({name:name, spColors:1, embStitches:4000, dtfSize:'small'});
     el.classList.add('selected');
   }
+  renderLocConfigs();
+  updateSidebar();
+  document.getElementById('btn-3-next').disabled = state.locations.length === 0;
+}
 
-  var numLoc = state.locations.length;
-  var note = document.getElementById('location-note');
-  var btn = document.getElementById('btn-4-next');
+function getActiveDeco() {
+  var types = [];
+  state.items.forEach(function(i){if(i.deco&&types.indexOf(i.deco)===-1)types.push(i.deco);});
+  return types;
+}
 
-  if (numLoc === 0) {
-    note.innerHTML = 'Select at least one location to continue.';
-    btn.disabled = true;
-  } else {
-    var q = calcQuote();
-    var decoLabel = state.deco==='screenprint' ? 'screen print' : state.deco==='embroidery' ? 'embroidery' : 'DTF';
-    var noteText = '<strong>' + numLoc + ' location' + (numLoc>1?'s':'') + ' selected</strong> — ';
-    if (numLoc > 1) {
-      noteText += 'Each location adds a full ' + decoLabel + ' charge to the total.';
-      if (state.deco === 'screenprint' && q && state.qty < 144) {
-        noteText += ' Screen charges: ' + state.colors + ' colors × ' + numLoc + ' locations × $20 = $' + (state.colors * numLoc * 20) + '.';
+function renderLocConfigs() {
+  var container = document.getElementById('loc-config-container');
+  var activeDeco = getActiveDeco();
+  if (state.locations.length === 0 || activeDeco.length === 0) { container.innerHTML=''; return; }
+
+  var decoNames = {screenprint:'Screen Print', embroidery:'Embroidery', dtf:'DTF Transfer'};
+  var poolColors = {screenprint:'sp', embroidery:'emb', dtf:'dtf'};
+
+  var html = '';
+  state.locations.forEach(function(loc, li) {
+    html += '<div class="loc-config-block">';
+    html += '<div class="loc-config-header"><div class="loc-config-title">'+loc.name+'</div></div>';
+    html += '<div class="loc-config-body">';
+
+    activeDeco.forEach(function(deco) {
+      // items using this deco
+      var decoItems = state.items.filter(function(i){return i.deco===deco;});
+      var itemNames = decoItems.map(function(i){return i.product.id;}).join(', ');
+
+      html += '<div class="loc-deco-section">';
+      html += '<div class="loc-deco-label"><span class="pool-tag '+poolColors[deco]+'">'+decoNames[deco]+'</span><span style="font-size:11px;color:var(--gray-400);font-weight:300">'+itemNames+'</span></div>';
+
+      if (deco === 'screenprint') {
+        html += '<div style="font-size:11px;color:var(--gray-600);margin-bottom:10px;font-weight:300">Colors in design at this location:</div>';
+        html += '<div class="color-slider-wrap">';
+        html += '<div><div class="color-count-display" id="sp-count-'+li+'">'+loc.spColors+'</div><div class="color-label">colors</div></div>';
+        html += '<input type="range" class="color-slider" min="1" max="8" value="'+loc.spColors+'" step="1" oninput="setLocSP('+li+',this.value)">';
+        html += '</div>';
+        html += '<div style="font-size:11px;color:var(--gray-400);margin-top:8px">$'+( loc.spColors * 20)+' screen charge at this location'+( decoItems[0].qty>=144 ? ' (waived — 144+ pcs)':'')+'. </div>';
+      } else if (deco === 'embroidery') {
+        html += '<div style="font-size:11px;color:var(--gray-600);margin-bottom:10px;font-weight:300">Stitch count at this location:</div>';
+        html += '<div class="mini-options">';
+        [[4000,'≤4K','Simple'],[6000,'≤6K','Small'],[8000,'≤8K','Medium'],[10000,'≤10K','Detailed'],[15000,'≤15K','Complex'],[20000,'≤20K','Large']].forEach(function(s){
+          var sel = loc.embStitches===s[0];
+          html += '<div class="mini-option'+(sel?' selected':'')+'" onclick="setLocEmb('+li+','+s[0]+',this)"><div class="mini-option-val">'+s[1]+'</div><div class="mini-option-label">'+s[2]+'</div></div>';
+        });
+        html += '</div>';
+      } else if (deco === 'dtf') {
+        html += '<div style="font-size:11px;color:var(--gray-600);margin-bottom:10px;font-weight:300">Print size at this location:</div>';
+        html += '<div class="dtf-mini-options">';
+        [['small','Small','Up to 4"×4"'],['standard','Standard','Up to 10"×12"'],['oversized','Oversized','Up to 14"×16"']].forEach(function(s){
+          var sel = loc.dtfSize===s[0];
+          html += '<div class="dtf-mini'+(sel?' selected':'')+'" onclick="setLocDTF('+li+',''+s[0]+'',this)"><div class="dtf-mini-name">'+s[1]+'</div><div class="dtf-mini-dim">'+s[2]+'</div></div>';
+        });
+        html += '</div>';
       }
-    } else {
-      noteText += state.locations[0] + ' selected.';
-    }
-    note.innerHTML = noteText;
-    btn.disabled = false;
-  }
+      html += '</div>';
+    });
 
+    html += '</div></div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function setLocSP(li, val) {
+  state.locations[li].spColors = parseInt(val);
+  var el = document.getElementById('sp-count-'+li);
+  if(el) el.textContent = val;
+  renderLocConfigs();
+  updateSidebar();
+}
+function setLocEmb(li, val, el) {
+  state.locations[li].embStitches = val;
+  el.closest('.mini-options').querySelectorAll('.mini-option').forEach(function(e){e.classList.remove('selected');});
+  el.classList.add('selected');
+  updateSidebar();
+}
+function setLocDTF(li, val, el) {
+  state.locations[li].dtfSize = val;
+  el.closest('.dtf-mini-options').querySelectorAll('.dtf-mini').forEach(function(e){e.classList.remove('selected');});
+  el.classList.add('selected');
   updateSidebar();
 }
 
-// ── MODAL ────────────────────────────────────────────────────────
+// ── MODAL ─────────────────────────────────────────────────────────
 function openModal(){document.getElementById('modal').classList.add('open');}
 
-// ── SUBMIT ───────────────────────────────────────────────────────
+// ── SUBMIT ────────────────────────────────────────────────────────
 function submitQuote() {
   var name=document.getElementById('input-name').value.trim();
   var email=document.getElementById('input-email').value.trim();
   var company=document.getElementById('input-company').value.trim();
   if(!name||!email||!company){document.getElementById('modal-error').style.display='block';return;}
   document.getElementById('modal-error').style.display='none';
+
   var btn=document.getElementById('submit-btn');
   btn.textContent='Sending...'; btn.style.opacity='0.6'; btn.style.pointerEvents='none';
 
-  var q=calcQuote();
-  var decoLabel=state.deco==='screenprint'?'Screen Print — '+state.colors+' color(s)':
-                state.deco==='embroidery' ?'Embroidery — ≤'+state.stitches.toLocaleString()+' stitches':
-                'DTF Transfer — '+state.dtfSize+' size';
+  var pools = calcPools();
+  var grandTotal = Object.values(pools).reduce(function(s,p){return s+p.poolTotal;},0);
+  var decoNames = {screenprint:'Screen Print', embroidery:'Embroidery', dtf:'DTF Transfer'};
+
+  var productsStr = state.items.map(function(i){
+    return i.product.brand+' '+i.product.id+' ('+i.qty+' pcs, '+decoNames[i.deco]+')';
+  }).join(' | ');
+
+  var locsStr = state.locations.map(function(loc){
+    var parts = [loc.name];
+    var activeDeco = getActiveDeco();
+    if(activeDeco.indexOf('screenprint')>-1) parts.push('SP: '+loc.spColors+' colors');
+    if(activeDeco.indexOf('embroidery')>-1) parts.push('Emb: ≤'+loc.embStitches.toLocaleString()+' stitches');
+    if(activeDeco.indexOf('dtf')>-1) parts.push('DTF: '+loc.dtfSize);
+    return parts.join(' — ');
+  }).join(' | ');
 
   emailjs.send('service_r7l2veu','template_ldio5vd',{
     client_name:name, client_email:email, client_company:company,
-    product_name:state.product.name, product_sku:state.product.id,
-    quantity:state.qty, decoration:decoLabel,
-    location:state.locations.join(', '),
-    garment_cost:q?fmt(q.garmentRetail)+'/unit':'TBD',
-    deco_cost:q?fmt(q.decoRetailPerLoc)+'/unit/location × '+state.locations.length+' locations':'TBD',
-    screen_charge:q&&q.screenCharge>0?'$'+q.screenCharge+' ('+state.colors+' colors × '+state.locations.length+' locations × $20)':'N/A',
-    per_unit:q?fmt(q.perUnit):'TBD',
-    est_total:q?fmtBig(q.total):'TBD',
-  }).finally(function(){showConfirmation(name,company,q);});
+    product_name: productsStr,
+    product_sku: state.items.map(function(i){return i.product.id;}).join(', '),
+    quantity: state.items.map(function(i){return i.qty+' '+i.product.id;}).join(', '),
+    decoration: Object.keys(pools).map(function(d){return decoNames[d]+' ('+pools[d].qty+' pcs)';}).join(', '),
+    location: locsStr,
+    garment_cost:'see breakdown',
+    deco_cost:'see breakdown',
+    screen_charge:Object.keys(pools).filter(function(d){return pools[d].screenCharges>0;}).map(function(d){return '$'+pools[d].screenCharges;}).join(', ')||'N/A',
+    per_unit:'multiple products',
+    est_total:fmtBig(grandTotal),
+  }).finally(function(){showConfirmation(name,company,pools,grandTotal);});
 }
 
-function showConfirmation(name,company,q) {
+function showConfirmation(name,company,pools,grandTotal) {
   document.getElementById('modal').classList.remove('open');
   document.getElementById('main-content').style.display='none';
   document.getElementById('progress-bar').style.display='none';
 
-  var decoLabel=state.deco==='screenprint'?'Screen Print ('+state.colors+' color'+(state.colors>1?'s':'')+')':
-                state.deco==='embroidery' ?'Embroidery (≤'+state.stitches.toLocaleString()+' stitches)':
-                'DTF Transfer ('+state.dtfSize.charAt(0).toUpperCase()+state.dtfSize.slice(1)+')';
+  document.getElementById('confirm-est').textContent = fmtBig(grandTotal);
+  document.getElementById('confirm-est-label').textContent = state.items.length+' product'+(state.items.length>1?'s':'')+' · '+state.locations.length+' location'+(state.locations.length>1?'s':'')+' · estimate only';
 
-  if(q){
-    document.getElementById('confirm-est-total').textContent=fmtBig(q.total);
-    document.getElementById('confirm-est-label').textContent=fmt(q.perUnit)+' per unit · '+state.locations.length+' location'+(state.locations.length>1?'s':'')+' · estimate only';
-  }
+  var decoNames={screenprint:'Screen Print',embroidery:'Embroidery',dtf:'DTF Transfer'};
+  var html = '';
 
-  var rows=[
-    {l:'Name',v:name},{l:'Company',v:company},
-    {l:'Product',v:state.product.brand+' '+state.product.name},
-    {l:'Style #',v:state.product.id},
-    {l:'Quantity',v:state.qty+' pieces'},
-    {l:'Decoration',v:decoLabel},
-    {l:'Locations',v:state.locations.join(', ')},
-  ];
-  if(q&&q.screenCharge>0) rows.push({l:'Screen charges',v:'$'+q.screenCharge+' ('+state.colors+' colors × '+state.locations.length+' locations × $20)'});
+  // Products section
+  html += '<div class="confirm-section"><div class="confirm-section-header">Products &amp; Decoration</div>';
+  state.items.forEach(function(item){
+    html += '<div class="confirm-row"><span class="confirm-row-label">'+item.product.brand+' '+item.product.id+'</span><span class="confirm-row-val">'+item.qty+' pcs · '+decoNames[item.deco]+'</span></div>';
+  });
+  html += '</div>';
 
-  document.getElementById('confirm-rows').innerHTML=rows.map(function(r){
-    return '<div class="confirm-row"><span class="confirm-row-label">'+r.l+'</span><span class="confirm-row-val">'+r.v+'</span></div>';
-  }).join('');
+  // Locations section
+  html += '<div class="confirm-section"><div class="confirm-section-header">Locations</div>';
+  var activeDeco = getActiveDeco();
+  state.locations.forEach(function(loc){
+    var config = [];
+    if(activeDeco.indexOf('screenprint')>-1) config.push('SP: '+loc.spColors+' color'+(loc.spColors>1?'s':''));
+    if(activeDeco.indexOf('embroidery')>-1) config.push('Emb: ≤'+loc.embStitches.toLocaleString());
+    if(activeDeco.indexOf('dtf')>-1) config.push('DTF: '+loc.dtfSize);
+    html += '<div class="confirm-row"><span class="confirm-row-label">'+loc.name+'</span><span class="confirm-row-val">'+config.join(' · ')+'</span></div>';
+  });
+  html += '</div>';
 
+  // Pool totals
+  html += '<div class="confirm-section"><div class="confirm-section-header">Estimate Breakdown</div>';
+  Object.keys(pools).forEach(function(deco){
+    var p = pools[deco];
+    html += '<div class="confirm-row"><span class="confirm-row-label">'+decoNames[deco]+' pool ('+p.qty+' pcs)</span><span class="confirm-row-val">'+fmtBig(p.poolTotal)+'</span></div>';
+    if(p.screenCharges>0) html += '<div class="confirm-row"><span class="confirm-row-label" style="padding-left:12px">↳ Screen charges</span><span class="confirm-row-val">$'+p.screenCharges+'</span></div>';
+  });
+  html += '<div class="confirm-row" style="background:var(--gray-50)"><span class="confirm-row-label"><strong>Estimated Total</strong></span><span class="confirm-row-val"><strong>'+fmtBig(grandTotal)+'</strong></span></div>';
+  html += '</div>';
+
+  html += '<div class="confirm-next"><div class="confirm-next-title">What happens next</div><div class="confirm-next-step"><div class="confirm-next-num">1</div>Your rep reviews the request and pulls exact pricing from our vendors.</div><div class="confirm-next-step"><div class="confirm-next-num">2</div>You'll receive a formal quote with final per-unit and total pricing.</div><div class="confirm-next-step"><div class="confirm-next-num">3</div>Once approved, we handle decoration and fulfillment end to end.</div></div>';
+  html += '<div class="confirm-actions"><button class="btn btn-primary" onclick="window.location.reload()">Build Another Quote</button></div>';
+
+  document.getElementById('confirm-body').innerHTML = html;
   document.getElementById('confirmation').classList.add('visible');
   window.scrollTo(0,0);
 }
 
-// ── INIT ─────────────────────────────────────────────────────────
+// ── INIT ──────────────────────────────────────────────────────────
 renderProducts();
-onQtyChange();
 </script>
 </body>
 </html>
