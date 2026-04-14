@@ -33,7 +33,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 
 .main { max-width: 1100px; margin: 0 auto; padding: 40px 48px; display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: start; }
 
-/* PANEL */
 .panel { background: var(--white); border: 1px solid var(--gray-200); }
 .panel-header { padding: 24px 28px 20px; border-bottom: 1px solid var(--gray-100); }
 .panel-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -42,8 +41,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .step-panel { display: none; }
 .step-panel.active { display: block; }
 
-/* SUMMARY BAR */
-.summary-bar { background: var(--black); padding: 12px 28px; display: flex; gap: 24px; flex-wrap: wrap; min-height: 0; }
+.summary-bar { background: var(--black); padding: 12px 28px; display: flex; gap: 24px; flex-wrap: wrap; }
 .summary-bar:empty { display: none; }
 .summary-item { display: flex; flex-direction: column; gap: 2px; }
 .summary-label { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #555; }
@@ -97,7 +95,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .deco-best-val { font-size: 11px; color: var(--gray-800); margin-top: 2px; }
 .deco-card.selected .deco-best-val { color: #aaa; }
 
-/* DECO DETAIL */
 .deco-detail { display: none; background: var(--gray-50); border: 1px solid var(--gray-200); padding: 20px; }
 .color-slider-wrap { display: flex; align-items: center; gap: 16px; margin-top: 12px; }
 .color-slider { flex: 1; -webkit-appearance: none; height: 3px; background: var(--gray-200); outline: none; cursor: pointer; }
@@ -119,11 +116,18 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .dtf-size-dim { font-size: 9px; color: var(--gray-400); margin-top: 3px; }
 .dtf-option.selected .dtf-size-dim { color: #aaa; }
 
-/* LOCATION */
-.location-options { display: flex; flex-wrap: wrap; gap: 8px; }
-.location-chip { border: 1.5px solid var(--gray-200); padding: 7px 14px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.15s; }
-.location-chip:hover { border-color: var(--black); }
+/* LOCATION — MULTI SELECT */
+.location-section { margin-bottom: 20px; }
+.location-section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 10px; }
+.location-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.location-chip { border: 1.5px solid var(--gray-200); padding: 12px 10px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.15s; text-align: center; position: relative; user-select: none; }
+.location-chip:hover { border-color: var(--gray-400); background: var(--gray-50); }
 .location-chip.selected { border-color: var(--black); background: var(--black); color: var(--white); }
+.location-chip-name { font-size: 12px; font-weight: 500; line-height: 1.3; }
+.location-chip-check { position: absolute; top: 6px; right: 8px; font-size: 10px; opacity: 0; transition: opacity 0.15s; }
+.location-chip.selected .location-chip-check { opacity: 1; }
+.location-count-note { font-size: 11px; color: var(--gray-600); margin-top: 12px; padding: 10px 14px; background: var(--gray-50); border: 1px solid var(--gray-200); line-height: 1.5; }
+.location-count-note strong { color: var(--black); font-weight: 600; }
 
 /* SIDEBAR */
 .quote-sidebar { position: sticky; top: 24px; }
@@ -132,21 +136,22 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .quote-box-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); }
 .quote-box-sub { font-size: 11px; color: #555; margin-top: 2px; }
 .quote-empty { padding: 32px 20px; text-align: center; font-size: 13px; color: var(--gray-400); font-weight: 300; line-height: 1.6; }
-
-/* LIVE QUOTE DISPLAY */
-.quote-live { padding: 20px; }
-.quote-config-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 12px; }
+.quote-live { padding: 16px 20px; }
+.quote-config-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--gray-100); font-size: 12px; gap: 8px; }
 .quote-config-item:last-of-type { border-bottom: none; }
-.quote-config-label { color: var(--gray-600); font-weight: 300; }
+.quote-config-label { color: var(--gray-600); font-weight: 300; flex-shrink: 0; }
 .quote-config-val { font-weight: 500; color: var(--black); text-align: right; }
-.quote-total-block { background: var(--black); padding: 20px; margin-top: 0; }
+.quote-locations-list { font-size: 11px; color: var(--gray-600); margin-top: 3px; font-weight: 300; text-align: right; }
+
+.quote-total-block { background: var(--black); padding: 20px; }
 .quote-total-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #555; margin-bottom: 4px; }
 .quote-total-number { font-family: 'Barlow Condensed', sans-serif; font-size: 42px; font-weight: 700; color: var(--white); line-height: 1; }
 .quote-per-unit { font-size: 12px; color: #666; margin-top: 4px; }
-.quote-disclaimer { padding: 12px 20px; font-size: 10px; color: var(--gray-400); line-height: 1.5; font-style: italic; border-top: 1px solid var(--gray-100); }
 
-/* SCREEN CHARGE NOTE */
-.screen-charge-note { background: var(--gray-50); border-left: 3px solid var(--black); padding: 10px 14px; margin: 12px 20px 0; font-size: 11px; color: var(--gray-600); line-height: 1.5; }
+.quote-breakdown { padding: 12px 20px; border-top: 1px solid var(--gray-100); }
+.quote-breakdown-row { display: flex; justify-content: space-between; font-size: 11px; padding: 3px 0; color: var(--gray-600); }
+.quote-breakdown-row span:last-child { font-weight: 500; color: var(--gray-800); }
+.quote-disclaimer { padding: 10px 20px 14px; font-size: 10px; color: var(--gray-400); line-height: 1.5; font-style: italic; }
 
 /* BUTTONS */
 .nav-btns { display: flex; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--gray-100); }
@@ -185,10 +190,10 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
 .confirm-body { max-width: 580px; margin: 0 auto; padding: 48px; }
 .confirm-summary { background: var(--white); border: 1px solid var(--gray-200); }
 .confirm-summary-header { background: var(--gray-50); padding: 14px 20px; border-bottom: 1px solid var(--gray-200); font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); }
-.confirm-row { display: flex; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--gray-100); font-size: 13px; }
+.confirm-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 20px; border-bottom: 1px solid var(--gray-100); font-size: 13px; gap: 16px; }
 .confirm-row:last-child { border-bottom: none; }
-.confirm-row-label { color: var(--gray-600); font-weight: 300; }
-.confirm-row-val { font-weight: 500; }
+.confirm-row-label { color: var(--gray-600); font-weight: 300; flex-shrink: 0; }
+.confirm-row-val { font-weight: 500; text-align: right; }
 .confirm-next { margin-top: 24px; background: var(--gray-50); border: 1px solid var(--gray-200); padding: 24px; }
 .confirm-next-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); margin-bottom: 12px; }
 .confirm-next-step { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 13px; color: var(--gray-600); font-weight: 300; line-height: 1.5; }
@@ -211,13 +216,13 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
   <div class="step active" id="si1"><div class="step-num"><span>1</span></div><div class="step-label">Product</div></div>
   <div class="step" id="si2"><div class="step-num"><span>2</span></div><div class="step-label">Quantity</div></div>
   <div class="step" id="si3"><div class="step-num"><span>3</span></div><div class="step-label">Decoration</div></div>
-  <div class="step" id="si4"><div class="step-num"><span>4</span></div><div class="step-label">Location</div></div>
+  <div class="step" id="si4"><div class="step-num"><span>4</span></div><div class="step-label">Locations</div></div>
 </div>
 
 <div class="main" id="main-content">
   <div>
 
-    <!-- STEP 1 -->
+    <!-- STEP 1: PRODUCT -->
     <div class="step-panel active" id="panel-1">
       <div class="panel">
         <div class="panel-header">
@@ -239,7 +244,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
       </div>
     </div>
 
-    <!-- STEP 2 -->
+    <!-- STEP 2: QUANTITY -->
     <div class="step-panel" id="panel-2">
       <div class="panel">
         <div class="summary-bar" id="summary-2"></div>
@@ -266,7 +271,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
       </div>
     </div>
 
-    <!-- STEP 3 -->
+    <!-- STEP 3: DECORATION -->
     <div class="step-panel" id="panel-3">
       <div class="panel">
         <div class="summary-bar" id="summary-3"></div>
@@ -276,70 +281,45 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
         </div>
         <div class="panel-body">
           <div class="deco-compare">
-
             <div class="deco-card" id="deco-card-screenprint" onclick="selectDeco('screenprint',this)">
-              <div class="deco-card-header">
-                <span class="deco-icon">🖨</span>
-                <div class="deco-name">Screen Print</div>
-              </div>
+              <div class="deco-card-header"><span class="deco-icon">🖨</span><div class="deco-name">Screen Print</div></div>
               <div class="deco-card-body">
                 <div class="deco-feature"><div class="deco-dot"></div>Bold, vibrant flat finish</div>
                 <div class="deco-feature"><div class="deco-dot"></div>Priced per color in design</div>
                 <div class="deco-feature"><div class="deco-dot"></div>Most cost-effective for large runs</div>
-                <div class="deco-feature"><div class="deco-dot"></div>Screen charge waived at 144+</div>
+                <div class="deco-feature"><div class="deco-dot"></div>Screen charge per location × color</div>
               </div>
-              <div class="deco-card-footer">
-                <div class="deco-best-for">Best for</div>
-                <div class="deco-best-val">Uniforms, events, large orders</div>
-              </div>
+              <div class="deco-card-footer"><div class="deco-best-for">Best for</div><div class="deco-best-val">Uniforms, events, large orders</div></div>
             </div>
-
             <div class="deco-card" id="deco-card-embroidery" onclick="selectDeco('embroidery',this)">
-              <div class="deco-card-header">
-                <span class="deco-icon">🧵</span>
-                <div class="deco-name">Embroidery</div>
-              </div>
+              <div class="deco-card-header"><span class="deco-icon">🧵</span><div class="deco-name">Embroidery</div></div>
               <div class="deco-card-body">
                 <div class="deco-feature"><div class="deco-dot"></div>Premium stitched look and feel</div>
                 <div class="deco-feature"><div class="deco-dot"></div>Won't crack, peel, or fade</div>
                 <div class="deco-feature"><div class="deco-dot"></div>Priced by stitch count</div>
                 <div class="deco-feature"><div class="deco-dot"></div>Digitizing included free</div>
               </div>
-              <div class="deco-card-footer">
-                <div class="deco-best-for">Best for</div>
-                <div class="deco-best-val">Polos, quarter-zips, pro wear</div>
-              </div>
+              <div class="deco-card-footer"><div class="deco-best-for">Best for</div><div class="deco-best-val">Polos, quarter-zips, pro wear</div></div>
             </div>
-
             <div class="deco-card" id="deco-card-dtf" onclick="selectDeco('dtf',this)">
-              <div class="deco-card-header">
-                <span class="deco-icon">🎨</span>
-                <div class="deco-name">DTF Transfer</div>
-              </div>
+              <div class="deco-card-header"><span class="deco-icon">🎨</span><div class="deco-name">DTF Transfer</div></div>
               <div class="deco-card-body">
                 <div class="deco-feature"><div class="deco-dot"></div>Full-color, photo-quality prints</div>
                 <div class="deco-feature"><div class="deco-dot"></div>Unlimited colors, no extra cost</div>
                 <div class="deco-feature"><div class="deco-dot"></div>Great for complex artwork</div>
                 <div class="deco-feature"><div class="deco-dot"></div>Priced by print size</div>
               </div>
-              <div class="deco-card-footer">
-                <div class="deco-best-for">Best for</div>
-                <div class="deco-best-val">Complex logos, small runs</div>
-              </div>
+              <div class="deco-card-footer"><div class="deco-best-for">Best for</div><div class="deco-best-val">Complex logos, small runs</div></div>
             </div>
-
           </div>
 
           <div id="deco-detail-screenprint" class="deco-detail">
             <label class="form-label">Number of Colors in Design</label>
             <div class="color-slider-wrap">
-              <div>
-                <div class="color-count-display" id="color-count-display">2</div>
-                <div class="color-label">colors</div>
-              </div>
+              <div><div class="color-count-display" id="color-count-display">2</div><div class="color-label">colors</div></div>
               <input type="range" class="color-slider" id="color-slider" min="1" max="8" value="2" step="1" oninput="onColorChange()">
             </div>
-            <div class="form-note" style="margin-top:12px">$20 per screen charge added to total — waived at 144+ pieces.</div>
+            <div class="form-note" style="margin-top:12px">Screen charge = colors × locations × $20 (waived per location at 144+ pieces).</div>
           </div>
 
           <div id="deco-detail-embroidery" class="deco-detail">
@@ -363,41 +343,83 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
               <div class="dtf-option" onclick="selectDTFSize('oversized',this)"><div class="dtf-size-name">Oversized</div><div class="dtf-size-dim">Up to 14" × 16"</div></div>
             </div>
           </div>
-
         </div>
       </div>
       <div class="nav-btns">
         <button class="btn btn-secondary" onclick="goStep(2)">← Back</button>
-        <button class="btn btn-primary" id="btn-3-next" onclick="goStep(4)" disabled>Next: Location →</button>
+        <button class="btn btn-primary" id="btn-3-next" onclick="goStep(4)" disabled>Next: Locations →</button>
       </div>
     </div>
 
-    <!-- STEP 4 -->
+    <!-- STEP 4: LOCATIONS (MULTI-SELECT) -->
     <div class="step-panel" id="panel-4">
       <div class="panel">
         <div class="summary-bar" id="summary-4"></div>
         <div class="panel-header">
-          <div class="panel-title">Print Location</div>
-          <div class="panel-sub">Where on the garment should your logo be placed?</div>
+          <div class="panel-title">Print Locations</div>
+          <div class="panel-sub">Select one or more locations — each adds a decoration charge to the total</div>
         </div>
         <div class="panel-body">
-          <div class="form-row">
-            <label class="form-label">Select Location</label>
-            <div class="location-options">
-              <div class="location-chip selected" onclick="selectLocation('Left Chest',this)">Left Chest</div>
-              <div class="location-chip" onclick="selectLocation('Full Front',this)">Full Front</div>
-              <div class="location-chip" onclick="selectLocation('Full Back',this)">Full Back</div>
-              <div class="location-chip" onclick="selectLocation('Right Chest',this)">Right Chest</div>
-              <div class="location-chip" onclick="selectLocation('Left Sleeve',this)">Left Sleeve</div>
-              <div class="location-chip" onclick="selectLocation('Right Sleeve',this)">Right Sleeve</div>
-              <div class="location-chip" onclick="selectLocation('Nape of Neck',this)">Nape of Neck</div>
+
+          <div class="location-section">
+            <div class="location-section-title">Front</div>
+            <div class="location-grid">
+              <div class="location-chip" onclick="toggleLocation('Left Chest',this)">
+                <div class="location-chip-check">✓</div>
+                <div class="location-chip-name">Left Chest</div>
+              </div>
+              <div class="location-chip" onclick="toggleLocation('Right Chest',this)">
+                <div class="location-chip-check">✓</div>
+                <div class="location-chip-name">Right Chest</div>
+              </div>
+              <div class="location-chip" onclick="toggleLocation('Full Front',this)">
+                <div class="location-chip-check">✓</div>
+                <div class="location-chip-name">Full Front</div>
+              </div>
             </div>
           </div>
+
+          <div class="location-section">
+            <div class="location-section-title">Back</div>
+            <div class="location-grid">
+              <div class="location-chip" onclick="toggleLocation('Full Back',this)">
+                <div class="location-chip-check">✓</div>
+                <div class="location-chip-name">Full Back</div>
+              </div>
+              <div class="location-chip" onclick="toggleLocation('Upper Back',this)">
+                <div class="location-chip-check">✓</div>
+                <div class="location-chip-name">Upper Back</div>
+              </div>
+              <div class="location-chip" onclick="toggleLocation('Nape of Neck',this)">
+                <div class="location-chip-check">✓</div>
+                <div class="location-chip-name">Nape of Neck</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="location-section">
+            <div class="location-section-title">Sleeves</div>
+            <div class="location-grid">
+              <div class="location-chip" onclick="toggleLocation('Left Sleeve',this)">
+                <div class="location-chip-check">✓</div>
+                <div class="location-chip-name">Left Sleeve</div>
+              </div>
+              <div class="location-chip" onclick="toggleLocation('Right Sleeve',this)">
+                <div class="location-chip-check">✓</div>
+                <div class="location-chip-name">Right Sleeve</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="location-count-note" id="location-note">
+            Select at least one location to continue.
+          </div>
+
         </div>
       </div>
       <div class="nav-btns">
         <button class="btn btn-secondary" onclick="goStep(3)">← Back</button>
-        <button class="btn btn-primary" onclick="openModal()">Get My Quote →</button>
+        <button class="btn btn-primary" id="btn-4-next" onclick="openModal()" disabled>Get My Quote →</button>
       </div>
     </div>
 
@@ -418,7 +440,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--gray-50); color: var
           <div class="quote-total-number" id="sidebar-total">—</div>
           <div class="quote-per-unit" id="sidebar-per-unit"></div>
         </div>
-        <div id="sidebar-screen-note" style="display:none" class="screen-charge-note"></div>
+        <div class="quote-breakdown" id="sidebar-breakdown"></div>
         <div class="quote-disclaimer">Estimate only. Final pricing confirmed by your rep.</div>
       </div>
     </div>
@@ -487,7 +509,7 @@ emailjs.init('2yrbwvrm1U9JuDJss');
 var state = {
   product: null, qty: 24, deco: null,
   colors: 2, stitches: 4000, dtfSize: 'small',
-  location: 'Left Chest', currentCat: 'tee',
+  locations: [], currentCat: 'tee',
 };
 
 var PRODUCTS = [
@@ -509,7 +531,7 @@ var PRODUCTS = [
   {id:'SS4500',   name:'Independent Trading Midweight Hoodie',     brand:'Ind. Trading',   cat:'hoodie', wholesale:18.00},
 ];
 
-// ── PRICING ──────────────────────────────────────────────────────
+// ── PRICING TABLES ───────────────────────────────────────────────
 var SP_TIERS = [
   {min:1,   max:3,    p:[2.35,2.55,2.89,3.14,3.43,4.09,4.61,5.38]},
   {min:4,   max:11,   p:[2.18,2.26,2.44,2.61,2.78,2.96,3.13,3.30]},
@@ -523,43 +545,33 @@ var SP_TIERS = [
 ];
 var EMB_STITCHES = [4000,5000,6000,7000,8000,10000,15000,20000,25000];
 var EMB_PRICES = [
-  [9.49,5.49,3.53,3.09,2.80,2.52],
-  [10.53,6.51,4.15,3.63,3.25,2.93],
-  [11.58,7.51,4.77,4.17,3.71,3.35],
-  [12.63,8.52,5.38,4.73,4.17,3.78],
-  [13.66,9.52,6.03,5.28,4.61,4.19],
-  [15.77,11.53,7.26,6.43,5.53,5.02],
-  [21.51,17.00,10.60,9.09,7.82,7.11],
-  [26.87,22.16,13.78,11.82,10.09,9.21],
+  [9.49,5.49,3.53,3.09,2.80,2.52],[10.53,6.51,4.15,3.63,3.25,2.93],
+  [11.58,7.51,4.77,4.17,3.71,3.35],[12.63,8.52,5.38,4.73,4.17,3.78],
+  [13.66,9.52,6.03,5.28,4.61,4.19],[15.77,11.53,7.26,6.43,5.53,5.02],
+  [21.51,17.00,10.60,9.09,7.82,7.11],[26.87,22.16,13.78,11.82,10.09,9.21],
   [32.22,27.32,16.95,14.57,12.39,11.31],
 ];
 var DTF_TIERS = [
-  {min:1,  max:3,  p:[11.55,15.13,20.63]},
-  {min:4,  max:11, p:[6.33, 9.63, 15.13]},
-  {min:12, max:47, p:[5.23, 7.43, 11.83]},
-  {min:48, max:71, p:[4.68, 5.78, 9.08]},
-  {min:72, max:99999, p:[4.13, 5.23, 8.53]},
+  {min:1,  max:3,      p:[11.55,15.13,20.63]},
+  {min:4,  max:11,     p:[6.33, 9.63, 15.13]},
+  {min:12, max:47,     p:[5.23, 7.43, 11.83]},
+  {min:48, max:71,     p:[4.68, 5.78, 9.08]},
+  {min:72, max:99999,  p:[4.13, 5.23, 8.53]},
 ];
 
 function getMarginDiv(qty, deco) {
-  if (deco === 'dtf') {
-    if (qty <= 14) return 0.55; if (qty <= 99) return 0.60;
-    if (qty <= 249) return 0.65; return 0.70;
+  if (deco==='dtf') {
+    if(qty<=14)return 0.55; if(qty<=99)return 0.60; if(qty<=249)return 0.65; return 0.70;
   }
-  if (qty <= 23) return 0.55; if (qty <= 143) return 0.60;
-  if (qty <= 499) return 0.65; if (qty <= 999) return 0.70;
-  return 0.75;
+  if(qty<=23)return 0.55; if(qty<=143)return 0.60; if(qty<=499)return 0.65; if(qty<=999)return 0.70; return 0.75;
 }
-function getSPDeco(qty, colors) {
-  var t = SP_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||SP_TIERS[SP_TIERS.length-1];
+function getSPDeco(qty,colors) {
+  var t=SP_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||SP_TIERS[SP_TIERS.length-1];
   return t.p[Math.min(colors-1,7)];
 }
-function getEmbDeco(qty, stitches) {
-  var si = EMB_STITCHES.findIndex(function(s){return stitches<=s;});
-  if(si<0)si=EMB_STITCHES.length-1;
-  var qi=0;
-  if(qty>=4&&qty<=11)qi=1; if(qty>=12&&qty<=35)qi=2;
-  if(qty>=36&&qty<=71)qi=3; if(qty>=72&&qty<=143)qi=4; if(qty>=144)qi=5;
+function getEmbDeco(qty,stitches) {
+  var si=EMB_STITCHES.findIndex(function(s){return stitches<=s;}); if(si<0)si=EMB_STITCHES.length-1;
+  var qi=0; if(qty>=4&&qty<=11)qi=1; if(qty>=12&&qty<=35)qi=2; if(qty>=36&&qty<=71)qi=3; if(qty>=72&&qty<=143)qi=4; if(qty>=144)qi=5;
   return EMB_PRICES[si][qi];
 }
 function getDTFDeco(qty,size) {
@@ -570,33 +582,46 @@ function getDTFDeco(qty,size) {
 function calcQuote() {
   if (!state.product || !state.deco) return null;
   var qty = state.qty;
+  var numLoc = Math.max(state.locations.length, 1);
   var md = getMarginDiv(qty, state.deco);
+
   var garmentRetail = state.product.wholesale / md;
-  var decoRaw = state.deco==='screenprint' ? getSPDeco(qty,state.colors) :
-                state.deco==='embroidery'  ? getEmbDeco(qty,state.stitches) :
-                getDTFDeco(qty,state.dtfSize);
-  var decoRetail = decoRaw / md;
-  var screenCharge = (state.deco==='screenprint'&&qty<144) ? state.colors*20 : 0;
-  var perUnit = garmentRetail + decoRetail;
-  var total = (perUnit * qty) + screenCharge;
-  return { perUnit: perUnit, total: total, screenCharge: screenCharge, qty: qty };
+
+  var decoRawPerLoc = state.deco==='screenprint' ? getSPDeco(qty, state.colors) :
+                      state.deco==='embroidery'   ? getEmbDeco(qty, state.stitches) :
+                      getDTFDeco(qty, state.dtfSize);
+
+  var decoRetailPerLoc = decoRawPerLoc / md;
+  var totalDecoRetail = decoRetailPerLoc * numLoc;
+
+  // Screen charge: colors × locations × $20, waived at 144+ per location
+  var screenCharge = 0;
+  if (state.deco === 'screenprint' && qty < 144) {
+    screenCharge = state.colors * numLoc * 20;
+  }
+
+  var perUnit = garmentRetail + totalDecoRetail;
+  var subtotal = perUnit * qty;
+  var total = subtotal + screenCharge;
+
+  return {
+    garmentRetail, decoRetailPerLoc, totalDecoRetail,
+    perUnit, subtotal, screenCharge, total, qty, numLoc, md
+  };
 }
 
 function fmt(n) { return '$' + n.toFixed(2); }
-function fmtTotal(n) {
-  return '$' + Math.round(n).toLocaleString();
-}
+function fmtBig(n) { return '$' + Math.round(n).toLocaleString(); }
 
-// ── SIDEBAR UPDATE ───────────────────────────────────────────────
+// ── SIDEBAR ──────────────────────────────────────────────────────
 function updateSidebar() {
   var q = calcQuote();
   var empty = document.getElementById('sidebar-empty');
   var live = document.getElementById('sidebar-live');
 
   if (!state.product || !state.deco) {
-    // Show partial config if product selected
     if (state.product) {
-      empty.innerHTML = '<div style="padding:20px;font-size:13px;color:var(--gray-600);font-weight:300;line-height:1.6"><strong style="font-weight:500;color:var(--black)">' + state.product.brand + ' ' + state.product.name + '</strong><br><br>Select a decoration type on step 3 to see your estimate.</div>';
+      empty.innerHTML = '<div style="padding:20px;font-size:13px;color:var(--gray-600);font-weight:300;line-height:1.6"><strong style="font-weight:500;color:var(--black)">' + state.product.brand + ' ' + state.product.name + '</strong><br><br>Choose a decoration type to see your estimate.</div>';
     } else {
       empty.innerHTML = '<div class="quote-empty">Select a product and quantity to see your live estimate.</div>';
     }
@@ -608,58 +633,63 @@ function updateSidebar() {
   empty.style.display = 'none';
   live.style.display = 'block';
 
-  // Config items (no pricing details)
-  var decoLabel = state.deco==='screenprint' ? 'Screen Print (' + state.colors + ' color' + (state.colors>1?'s':'') + ')' :
-                  state.deco==='embroidery'  ? 'Embroidery (≤' + state.stitches.toLocaleString() + ' stitches)' :
-                  'DTF (' + state.dtfSize.charAt(0).toUpperCase() + state.dtfSize.slice(1) + ')';
+  var decoLabel = state.deco==='screenprint' ? 'Screen Print ('+state.colors+' color'+(state.colors>1?'s':'')+')' :
+                  state.deco==='embroidery'  ? 'Embroidery (≤'+state.stitches.toLocaleString()+' stitches)' :
+                  'DTF ('+state.dtfSize.charAt(0).toUpperCase()+state.dtfSize.slice(1)+')';
+
+  var locDisplay = state.locations.length > 0
+    ? state.locations.length + ' location' + (state.locations.length>1?'s':'')
+    : 'None selected';
 
   var config = [
     {l:'Product', v: state.product.brand + ' ' + state.product.name},
     {l:'Quantity', v: state.qty + ' pieces'},
     {l:'Decoration', v: decoLabel},
-    {l:'Location', v: state.location},
+    {l:'Locations', v: locDisplay, sub: state.locations.join(', ')},
   ];
 
   document.getElementById('sidebar-config').innerHTML = config.map(function(c) {
-    return '<div class="quote-config-item"><span class="quote-config-label">' + c.l + '</span><span class="quote-config-val">' + c.v + '</span></div>';
+    return '<div class="quote-config-item"><span class="quote-config-label">'+c.l+'</span><div style="text-align:right"><span class="quote-config-val">'+c.v+'</span>'+(c.sub?'<div class="quote-locations-list">'+c.sub+'</div>':'')+'</div></div>';
   }).join('');
 
   if (q) {
-    document.getElementById('sidebar-total').textContent = fmtTotal(q.total);
+    document.getElementById('sidebar-total').textContent = fmtBig(q.total);
     document.getElementById('sidebar-per-unit').textContent = fmt(q.perUnit) + ' per unit';
 
-    var screenNote = document.getElementById('sidebar-screen-note');
-    if (q.screenCharge > 0) {
-      screenNote.style.display = 'block';
-      screenNote.textContent = 'Includes $' + q.screenCharge + ' screen charge (' + state.colors + ' color' + (state.colors>1?'s':'') + ' × $20). Waived at 144+ pieces.';
-    } else {
-      screenNote.style.display = 'none';
+    // Breakdown — visible but clean, no wholesale/margin exposed
+    var breakdown = '';
+    if (q.numLoc > 1) {
+      breakdown += '<div class="quote-breakdown-row"><span>Decoration ('+q.numLoc+' locations)</span><span>'+fmt(q.totalDecoRetail)+'/unit</span></div>';
     }
+    if (q.screenCharge > 0) {
+      breakdown += '<div class="quote-breakdown-row"><span>Screen charges ('+state.colors+' colors × '+q.numLoc+' loc × $20)</span><span>'+fmt(q.screenCharge)+'</span></div>';
+    }
+    document.getElementById('sidebar-breakdown').innerHTML = breakdown;
+    document.getElementById('sidebar-breakdown').style.display = breakdown ? 'block' : 'none';
   }
 }
 
 // ── SUMMARY BAR ──────────────────────────────────────────────────
 function buildSummary(step) {
   var items = [];
-  if (state.product) items.push({l:'Product', v: state.product.brand + ' ' + state.product.id});
-  if (step >= 2) items.push({l:'Qty', v: state.qty + ' pcs'});
-  if (state.deco && step >= 3) {
-    var dl = state.deco==='screenprint' ? 'Screen Print' : state.deco==='embroidery' ? 'Embroidery' : 'DTF Transfer';
+  if (state.product) items.push({l:'Product', v: state.product.brand+' '+state.product.id});
+  if (step>=2) items.push({l:'Qty', v: state.qty+' pcs'});
+  if (state.deco&&step>=3) {
+    var dl=state.deco==='screenprint'?'Screen Print':state.deco==='embroidery'?'Embroidery':'DTF Transfer';
     items.push({l:'Decoration', v: dl});
   }
-  var el = document.getElementById('summary-' + step);
-  if (!el) return;
-  el.innerHTML = items.map(function(i) {
-    return '<div class="summary-item"><div class="summary-label">'+i.l+'</div><div class="summary-val">'+i.v+'</div></div>';
-  }).join('');
+  if (state.locations.length&&step>=4) items.push({l:'Locations', v: state.locations.length+' selected'});
+  var el=document.getElementById('summary-'+step);
+  if(!el)return;
+  el.innerHTML=items.map(function(i){return '<div class="summary-item"><div class="summary-label">'+i.l+'</div><div class="summary-val">'+i.v+'</div></div>';}).join('');
 }
 
 // ── NAVIGATION ───────────────────────────────────────────────────
 function goStep(n) {
-  if (n===3 && state.qty<12) { document.getElementById('qty-warning').style.display='block'; return; }
+  if(n===3&&state.qty<12){document.getElementById('qty-warning').style.display='block';return;}
   document.querySelectorAll('.step-panel').forEach(function(p){p.classList.remove('active');});
   document.getElementById('panel-'+n).classList.add('active');
-  for (var i=1;i<=4;i++) {
+  for(var i=1;i<=4;i++){
     var ind=document.getElementById('si'+i);
     ind.classList.remove('active','done');
     if(i<n){ind.classList.add('done');ind.querySelector('.step-num').textContent='✓';}
@@ -681,7 +711,7 @@ function filterCat(cat,btn) {
 function renderProducts() {
   var list=document.getElementById('product-list');
   list.innerHTML='';
-  PRODUCTS.filter(function(p){return p.cat===state.currentCat;}).forEach(function(p) {
+  PRODUCTS.filter(function(p){return p.cat===state.currentCat;}).forEach(function(p){
     var sel=state.product&&state.product.id===p.id;
     var div=document.createElement('div');
     div.className='product-option'+(sel?' selected':'');
@@ -740,10 +770,41 @@ function selectDTFSize(size,el) {
   el.classList.add('selected');
   updateSidebar();
 }
-function selectLocation(loc,el) {
-  state.location=loc;
-  document.querySelectorAll('.location-chip').forEach(function(c){c.classList.remove('selected');});
-  el.classList.add('selected');
+
+// ── LOCATIONS (MULTI-SELECT) ──────────────────────────────────────
+function toggleLocation(loc, el) {
+  var idx = state.locations.indexOf(loc);
+  if (idx > -1) {
+    state.locations.splice(idx, 1);
+    el.classList.remove('selected');
+  } else {
+    state.locations.push(loc);
+    el.classList.add('selected');
+  }
+
+  var numLoc = state.locations.length;
+  var note = document.getElementById('location-note');
+  var btn = document.getElementById('btn-4-next');
+
+  if (numLoc === 0) {
+    note.innerHTML = 'Select at least one location to continue.';
+    btn.disabled = true;
+  } else {
+    var q = calcQuote();
+    var decoLabel = state.deco==='screenprint' ? 'screen print' : state.deco==='embroidery' ? 'embroidery' : 'DTF';
+    var noteText = '<strong>' + numLoc + ' location' + (numLoc>1?'s':'') + ' selected</strong> — ';
+    if (numLoc > 1) {
+      noteText += 'Each location adds a full ' + decoLabel + ' charge to the total.';
+      if (state.deco === 'screenprint' && q && state.qty < 144) {
+        noteText += ' Screen charges: ' + state.colors + ' colors × ' + numLoc + ' locations × $20 = $' + (state.colors * numLoc * 20) + '.';
+      }
+    } else {
+      noteText += state.locations[0] + ' selected.';
+    }
+    note.innerHTML = noteText;
+    btn.disabled = false;
+  }
+
   updateSidebar();
 }
 
@@ -761,19 +822,20 @@ function submitQuote() {
   btn.textContent='Sending...'; btn.style.opacity='0.6'; btn.style.pointerEvents='none';
 
   var q=calcQuote();
-  var decoLabel = state.deco==='screenprint' ? 'Screen Print — '+state.colors+' color(s)' :
-                  state.deco==='embroidery'  ? 'Embroidery — ≤'+state.stitches.toLocaleString()+' stitches' :
-                  'DTF Transfer — '+state.dtfSize+' size';
+  var decoLabel=state.deco==='screenprint'?'Screen Print — '+state.colors+' color(s)':
+                state.deco==='embroidery' ?'Embroidery — ≤'+state.stitches.toLocaleString()+' stitches':
+                'DTF Transfer — '+state.dtfSize+' size';
 
   emailjs.send('service_r7l2veu','template_ldio5vd',{
-    client_name: name, client_email: email, client_company: company,
-    product_name: state.product.name, product_sku: state.product.id,
-    quantity: state.qty, decoration: decoLabel, location: state.location,
-    garment_cost: fmt(state.product.wholesale/getMarginDiv(state.qty,state.deco))+'/unit (est.)',
-    deco_cost: 'see decoration type',
-    screen_charge: q&&q.screenCharge>0 ? '$'+q.screenCharge+' ('+state.colors+' × $20)' : 'N/A',
-    per_unit: q ? fmt(q.perUnit) : 'TBD',
-    est_total: q ? fmtTotal(q.total) : 'TBD',
+    client_name:name, client_email:email, client_company:company,
+    product_name:state.product.name, product_sku:state.product.id,
+    quantity:state.qty, decoration:decoLabel,
+    location:state.locations.join(', '),
+    garment_cost:q?fmt(q.garmentRetail)+'/unit':'TBD',
+    deco_cost:q?fmt(q.decoRetailPerLoc)+'/unit/location × '+state.locations.length+' locations':'TBD',
+    screen_charge:q&&q.screenCharge>0?'$'+q.screenCharge+' ('+state.colors+' colors × '+state.locations.length+' locations × $20)':'N/A',
+    per_unit:q?fmt(q.perUnit):'TBD',
+    est_total:q?fmtBig(q.total):'TBD',
   }).finally(function(){showConfirmation(name,company,q);});
 }
 
@@ -782,13 +844,13 @@ function showConfirmation(name,company,q) {
   document.getElementById('main-content').style.display='none';
   document.getElementById('progress-bar').style.display='none';
 
-  var decoLabel = state.deco==='screenprint' ? 'Screen Print ('+state.colors+' color'+(state.colors>1?'s':'')+')' :
-                  state.deco==='embroidery'  ? 'Embroidery (≤'+state.stitches.toLocaleString()+' stitches)' :
-                  'DTF Transfer ('+state.dtfSize.charAt(0).toUpperCase()+state.dtfSize.slice(1)+')';
+  var decoLabel=state.deco==='screenprint'?'Screen Print ('+state.colors+' color'+(state.colors>1?'s':'')+')':
+                state.deco==='embroidery' ?'Embroidery (≤'+state.stitches.toLocaleString()+' stitches)':
+                'DTF Transfer ('+state.dtfSize.charAt(0).toUpperCase()+state.dtfSize.slice(1)+')';
 
-  if (q) {
-    document.getElementById('confirm-est-total').textContent=fmtTotal(q.total);
-    document.getElementById('confirm-est-label').textContent=fmt(q.perUnit)+' per unit · estimate only';
+  if(q){
+    document.getElementById('confirm-est-total').textContent=fmtBig(q.total);
+    document.getElementById('confirm-est-label').textContent=fmt(q.perUnit)+' per unit · '+state.locations.length+' location'+(state.locations.length>1?'s':'')+' · estimate only';
   }
 
   var rows=[
@@ -797,9 +859,9 @@ function showConfirmation(name,company,q) {
     {l:'Style #',v:state.product.id},
     {l:'Quantity',v:state.qty+' pieces'},
     {l:'Decoration',v:decoLabel},
-    {l:'Location',v:state.location},
+    {l:'Locations',v:state.locations.join(', ')},
   ];
-  if(q&&q.screenCharge>0) rows.push({l:'Screen charges',v:state.colors+' × $20 = $'+q.screenCharge});
+  if(q&&q.screenCharge>0) rows.push({l:'Screen charges',v:'$'+q.screenCharge+' ('+state.colors+' colors × '+state.locations.length+' locations × $20)'});
 
   document.getElementById('confirm-rows').innerHTML=rows.map(function(r){
     return '<div class="confirm-row"><span class="confirm-row-label">'+r.l+'</span><span class="confirm-row-val">'+r.v+'</span></div>';
