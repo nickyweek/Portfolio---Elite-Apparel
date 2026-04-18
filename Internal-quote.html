@@ -7,185 +7,181 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0D0D0D;--white:#fff;--gray-50:#F9F9F9;--gray-100:#F0F0F0;--gray-200:#E2E2E2;--gray-400:#9A9A9A;--gray-600:#5A5A5A;--gray-800:#2A2A2A;--green:#059669;--green-light:#D1FAE5;--red:#DC2626;--blue:#2563EB;--gold:#D97706}
+:root{--black:#0D0D0D;--white:#fff;--gray-50:#F9F9F9;--gray-100:#F0F0F0;--gray-200:#E2E2E2;--gray-400:#9A9A9A;--gray-600:#5A5A5A;--gray-800:#2A2A2A;--green:#059669;--green-light:#D1FAE5;--red:#DC2626;--blue:#2563EB;--gold:#D97706;--gold-light:#FEF3C7;--purple:#7C3AED;--purple-light:#EDE9FE}
 body{font-family:'Barlow',sans-serif;background:var(--gray-50);color:var(--black);min-height:100vh}
 
-/* HEADER */
 .header{background:var(--black);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px}
 .logo{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--white);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
 .logo-mark{width:26px;height:26px;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--black)}
-.header-right{display:flex;align-items:center;gap:16px}
 .internal-badge{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;background:var(--gold);color:var(--white)}
 .sheet-status-wrap{font-size:11px;color:var(--gray-400)}
 #sheet-status{color:var(--green)}
 
-/* LAYOUT */
-.layout{max-width:1300px;margin:0 auto;padding:32px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
+/* BULK ENTRY BAR */
+.bulk-bar{background:var(--gray-800);padding:12px 32px;display:flex;align-items:center;gap:12px}
+.bulk-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-400);white-space:nowrap}
+.bulk-input{flex:1;padding:9px 14px;border:1.5px solid #444;background:#1a1a1a;font-family:'Barlow',sans-serif;font-size:13px;color:var(--white)}
+.bulk-input:focus{outline:none;border-color:var(--green)}
+.bulk-input::placeholder{color:#555}
+.btn-bulk-add{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;background:var(--green);color:var(--white);border:none;cursor:pointer;white-space:nowrap}
+.btn-bulk-add:hover{background:#047857}
+.bulk-hint{font-size:11px;color:#555;white-space:nowrap}
 
-/* PANEL */
+.layout{max-width:1400px;margin:0 auto;padding:28px 32px;display:grid;grid-template-columns:1fr 460px;gap:28px;align-items:start}
+
 .panel{background:var(--white);border:1px solid var(--gray-200)}
-.panel-hdr{padding:20px 24px 16px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between}
-.panel-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
-.panel-body{padding:24px}
+.panel-hdr{padding:18px 22px 14px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between}
+.panel-title{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.panel-body{padding:22px}
 
 /* ITEM CARDS */
-.item-card{border:1px solid var(--gray-200);margin-bottom:16px}
-.item-card-hdr{background:var(--gray-50);padding:12px 18px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between}
-.item-name{font-size:14px;font-weight:600;color:var(--black)}
-.item-name-empty{font-size:14px;color:var(--gray-400);font-style:italic}
+.item-card{border:1px solid var(--gray-200);margin-bottom:14px}
+.item-card-hdr{background:var(--gray-50);padding:10px 16px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between}
+.item-name{font-size:13px;font-weight:600}
+.item-name-empty{font-size:13px;color:var(--gray-400);font-style:italic}
 .item-sku{font-size:11px;color:var(--gray-400);margin-left:8px}
-.item-card-body{padding:20px}
-.btn-remove{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;background:none;border:1px solid var(--gray-200);color:var(--gray-400);cursor:pointer}
+.item-card-body{padding:18px}
+.btn-remove{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;background:none;border:1px solid var(--gray-200);color:var(--gray-400);cursor:pointer}
 .btn-remove:hover{border-color:var(--red);color:var(--red)}
 
-/* FORM */
-.field-row{display:grid;gap:14px;margin-bottom:14px}
+.field-row{display:grid;gap:12px;margin-bottom:12px}
 .field-row.cols-2{grid-template-columns:1fr 1fr}
 .field-row.cols-3{grid-template-columns:1fr 1fr 1fr}
 .field-group{display:flex;flex-direction:column;gap:4px}
 .field-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-600)}
 .field-hint{font-size:10px;color:var(--gray-400);font-weight:300}
-.field-input{padding:9px 12px;border:1.5px solid var(--gray-200);font-family:'Barlow',sans-serif;font-size:13px;color:var(--black);background:var(--white);transition:border-color .15s;width:100%;appearance:none}
+.field-input{padding:8px 11px;border:1.5px solid var(--gray-200);font-family:'Barlow',sans-serif;font-size:13px;color:var(--black);background:var(--white);width:100%;appearance:none;transition:border-color .15s}
 .field-input:focus{outline:none;border-color:var(--black)}
-select.field-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+select.field-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
 .style-lookup-wrap{display:flex;gap:6px}
-.btn-lookup{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:0 14px;background:var(--black);color:var(--white);border:none;cursor:pointer;white-space:nowrap;flex-shrink:0}
-.btn-lookup:hover{background:var(--gray-800)}
-.lookup-msg{font-size:11px;margin-top:4px;padding:4px 8px}
+.btn-lookup{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:0 12px;background:var(--black);color:var(--white);border:none;cursor:pointer;flex-shrink:0}
+.lookup-msg{font-size:11px;margin-top:3px;padding:3px 8px}
 .lookup-msg.ok{color:var(--green);background:var(--green-light)}
 .lookup-msg.err{color:var(--red);background:#FEE2E2}
 .price-input-wrap{display:flex;align-items:center;border:1.5px solid var(--gray-200)}
-.price-prefix{padding:0 10px;font-size:13px;color:var(--gray-400);background:var(--gray-50);border-right:1.5px solid var(--gray-200);height:38px;display:flex;align-items:center;flex-shrink:0}
-.price-input{border:none!important;flex:1}
+.price-prefix{padding:0 9px;font-size:13px;color:var(--gray-400);background:var(--gray-50);border-right:1.5px solid var(--gray-200);height:36px;display:flex;align-items:center;flex-shrink:0}
+.price-input{border:none!important;flex:1;height:36px}
 .price-input:focus{outline:none}
 .disclaimer-inline{color:var(--gold)!important;font-weight:600!important}
-.calc-display{padding:9px 12px;background:var(--gray-50);border:1.5px solid var(--gray-100);font-size:13px;color:var(--gray-600)}
+.calc-display{padding:8px 11px;background:var(--gray-50);border:1.5px solid var(--gray-100);font-size:13px;color:var(--gray-600)}
 .calc-note{font-size:11px;color:var(--gray-400)}
 
-/* DECO PILLS */
 .deco-pill-group{display:flex;gap:8px}
-.deco-pill{border:1.5px solid var(--gray-200);padding:8px 14px;cursor:pointer;font-size:12px;font-weight:600;color:var(--gray-600);transition:all .15s}
+.deco-pill{border:1.5px solid var(--gray-200);padding:7px 12px;cursor:pointer;font-size:12px;font-weight:600;color:var(--gray-600);transition:all .15s}
 .deco-pill:hover{border-color:var(--black);color:var(--black)}
 .deco-pill.selected{border-color:var(--black);background:var(--black);color:var(--white)}
 
-/* LOCATIONS */
-.locations-section{margin-top:16px;padding-top:16px;border-top:1px solid var(--gray-100)}
-.section-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:10px}
-.location-row{background:var(--gray-50);padding:14px;margin-bottom:8px;border:1px solid var(--gray-100);position:relative}
-.btn-remove-loc{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;color:var(--gray-400);background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.06em}
+.btn-new-imprint{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;padding:0 10px;background:var(--purple);color:var(--white);border:none;cursor:pointer;flex-shrink:0;height:36px}
+.btn-new-imprint:hover{background:#6D28D9}
+
+.locations-section{margin-top:14px;padding-top:14px;border-top:1px solid var(--gray-100)}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:8px}
+.location-row{background:var(--gray-50);padding:12px;margin-bottom:6px;border:1px solid var(--gray-100);position:relative;padding-right:36px}
+.btn-remove-loc{position:absolute;top:10px;right:10px;font-size:14px;color:var(--gray-400);background:none;border:none;cursor:pointer;line-height:1}
 .btn-remove-loc:hover{color:var(--red)}
-.btn-add-loc{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;background:none;border:1.5px solid var(--gray-200);color:var(--gray-600);cursor:pointer;margin-top:4px}
+.btn-add-loc{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;background:none;border:1.5px solid var(--gray-200);color:var(--gray-600);cursor:pointer;margin-top:4px}
 .btn-add-loc:hover{border-color:var(--black);color:var(--black)}
 
-/* EMPTY */
 .empty-state{padding:32px;text-align:center;font-size:13px;color:var(--gray-400);font-style:italic}
-
-/* BUTTONS */
-.btn{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:10px 22px;border:none;cursor:pointer;transition:all .15s}
-.btn-primary{background:var(--black);color:var(--white)}
-.btn-primary:hover{background:var(--gray-800)}
+.btn{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;border:none;cursor:pointer}
 .btn-secondary{background:var(--gray-100);color:var(--gray-800);border:1px solid var(--gray-200)}
 .btn-secondary:hover{background:var(--gray-200)}
-.btn-green{background:var(--green);color:var(--white)}
-.btn-green:hover{background:#047857}
 
 /* OUTPUT */
-.output-section{position:sticky;top:20px}
+.output-section{position:sticky;top:20px;max-height:calc(100vh - 40px);overflow-y:auto}
 .output-empty{padding:28px 20px;text-align:center;font-size:13px;color:var(--gray-400);font-style:italic}
-.pool-summary{margin-bottom:12px;padding:10px 14px;background:var(--gray-50);border:1px solid var(--gray-200);border-left:3px solid var(--black)}
-.pool-summary-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-400);margin-bottom:6px}
-.pool-row{font-size:12px;color:var(--gray-600);padding:2px 0;font-weight:300}
-.pool-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-right:4px}
-.pool-tag.sp{background:#e8f4e8;color:#2d6a2d}
-.pool-tag.emb{background:#e8e8f4;color:#2d2d6a}
 
-/* PRICE TABLE */
-.output-block{margin-bottom:20px;border:1px solid var(--gray-200)}
-.output-block-hdr{background:var(--black);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
-.output-block-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;color:var(--white);text-transform:uppercase}
-.output-block-meta{display:flex;align-items:center;gap:8px}
-.loc-summary{font-size:11px;color:var(--gray-400)}
+/* POOL SUMMARY CARDS */
+.pool-summary-wrap{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.pool-card{border:1px solid var(--gray-200);background:var(--white)}
+.pool-card-hdr{background:var(--black);padding:8px 14px;display:flex;align-items:center;justify-content:space-between}
+.pool-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--white);text-transform:uppercase}
+.pool-deco-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px}
+.pool-deco-tag.sp{background:#e8f4e8;color:#2d6a2d}
+.pool-deco-tag.emb{background:#e8e8f4;color:#2d2d6a}
+.pool-card-body{padding:10px 14px;display:flex;gap:20px}
+.pool-stat{display:flex;flex-direction:column;gap:2px}
+.pool-stat-num{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--black);line-height:1}
+.pool-stat-lbl{font-size:10px;color:var(--gray-400);font-weight:300}
+.pool-items{padding:0 14px 10px;display:flex;flex-wrap:wrap;gap:4px}
+.pool-item-tag{font-size:11px;padding:2px 8px;background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200)}
+
+/* PRICE TABLES */
+.output-block{margin-bottom:16px;border:1px solid var(--gray-200)}
+.output-block-hdr{background:var(--black);padding:9px 14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.output-block-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--white);text-transform:uppercase}
+.output-block-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.deco-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px}
+.deco-tag.sp{background:#e8f4e8;color:#2d6a2d}
+.deco-tag.emb{background:#e8e8f4;color:#2d2d6a}
+.imprint-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;background:var(--purple-light);color:var(--purple)}
+.loc-summary{font-size:10px;color:var(--gray-400)}
 .price-table{width:100%;border-collapse:collapse;font-size:12px}
 .price-table thead{background:var(--gray-50)}
-.price-table th{padding:8px 12px;text-align:right;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400);border-bottom:1px solid var(--gray-200)}
+.price-table th{padding:7px 10px;text-align:right;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400);border-bottom:1px solid var(--gray-200)}
 .price-table th:first-child{text-align:left}
-.price-table td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--gray-100);color:var(--gray-600)}
+.price-table td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--gray-100);color:var(--gray-600);font-size:12px}
 .price-table td:first-child{text-align:left;font-weight:500;color:var(--black)}
 .price-table tr:last-child td{border-bottom:none}
-.price-table tr:hover td{background:var(--gray-50)}
-.highlight-row td{background:var(--green-light)!important;font-weight:600;color:var(--black)!important}
-.highlight-row .raw-price,.highlight-row .rec-price{font-weight:700}
+.highlight-row td{background:var(--green-light)!important;color:var(--black)!important}
+.highlight-row td:first-child{font-weight:700}
 .raw-price{color:var(--blue)!important;font-weight:600}
-.rec-price{color:var(--green)!important;font-weight:700;font-size:13px}
-.actual-badge{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 5px;background:var(--green);color:var(--white);margin-left:4px;border-radius:2px}
-.waived{color:var(--green);font-size:11px;font-style:italic}
-.emb-note{font-size:11px;color:var(--gold);padding:8px 12px;background:#FEF3C7;border-bottom:1px solid var(--gray-200)}
-
-/* DISCLAIMER */
-.disclaimer-box{margin-top:12px;padding:12px 16px;background:#FEF3C7;border:1px solid var(--gold);font-size:11px;color:var(--gold);font-weight:600}
-
-/* LEGEND */
-.legend{display:flex;gap:16px;margin-top:12px;padding:10px 14px;background:var(--gray-50);border:1px solid var(--gray-200);font-size:11px}
-.legend-item{display:flex;align-items:center;gap:6px}
-.legend-dot{width:10px;height:10px;border-radius:50%}
+.rec-price{color:var(--green)!important;font-weight:800;font-size:13px}
+.profit-price{color:var(--purple)!important;font-weight:600}
+.col-rec,.col-profit{background:rgba(0,0,0,.03)}
+.actual-badge{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 5px;background:var(--green);color:var(--white);border-radius:2px;margin-left:4px}
+.pool-size-note{font-size:10px;color:var(--green);font-weight:400;margin-left:4px}
+.emb-note{font-size:11px;color:var(--gold);padding:7px 12px;background:var(--gold-light);border-bottom:1px solid var(--gray-200)}
+.pool-note-row{font-size:11px;color:var(--gray-600);padding:8px 12px;background:var(--gray-50);border-top:1px solid var(--gray-100);font-weight:300}
+.disclaimer-box{margin-top:10px;padding:10px 14px;background:var(--gold-light);border:1px solid var(--gold);font-size:11px;color:var(--gold);font-weight:600}
 </style>
 </head>
 <body>
 
 <header class="header">
-  <div class="logo">
-    <div class="logo-mark">EA</div>
-    Elite Apparel
-  </div>
-  <div class="header-right">
+  <div class="logo"><div class="logo-mark">EA</div>Elite Apparel</div>
+  <div style="display:flex;align-items:center;gap:16px">
     <div class="internal-badge">Internal Tool</div>
     <div class="sheet-status-wrap">Price sheet: <span id="sheet-status">Not connected</span></div>
   </div>
 </header>
 
-<div class="layout">
+<div class="bulk-bar">
+  <div class="bulk-label">Add Styles</div>
+  <input class="bulk-input" id="bulk-input" type="text" placeholder="NL6210, ST350, NKDR1499 — separate by comma, press Enter">
+  <button class="btn-bulk-add" id="bulk-add-btn">Add Garments</button>
+  <div class="bulk-hint">or click Add Garment below</div>
+</div>
 
-  <!-- LEFT: ITEM BUILDER -->
+<div class="layout">
   <div>
     <div class="panel">
       <div class="panel-hdr">
-        <div class="panel-title">Build Quote</div>
-        <div style="display:flex;gap:8px">
-          <button class="btn btn-secondary" id="btn-add">+ Add Garment</button>
-          <button class="btn btn-green" id="btn-calc">Calculate Pricing</button>
-        </div>
+        <div class="panel-title">Garments</div>
+        <button class="btn btn-secondary" id="btn-add">+ Add Garment</button>
       </div>
-      <div class="panel-body">
-        <div id="items-container"></div>
-      </div>
+      <div class="panel-body"><div id="items-container"></div></div>
     </div>
   </div>
 
-  <!-- RIGHT: OUTPUT -->
   <div class="output-section">
     <div class="panel">
-      <div class="panel-hdr">
-        <div class="panel-title">Pricing Output</div>
-      </div>
+      <div class="panel-hdr"><div class="panel-title">Pricing Output</div></div>
       <div class="panel-body">
-        <div class="legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#2563EB"></div><span>Raw Price (exact math)</span></div>
-          <div class="legend-item"><div class="legend-dot" style="background:#059669"></div><span>Recommended (rounded up $1)</span></div>
-          <div class="legend-item" style="background:#D1FAE5;padding:2px 6px;font-weight:600;color:#059669">Highlighted = actual qty</div>
+        <div style="display:flex;gap:12px;margin-bottom:14px;font-size:11px;flex-wrap:wrap">
+          <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:50%;background:#2563EB;display:inline-block"></span>Raw Price</span>
+          <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:50%;background:#059669;display:inline-block"></span>Recommended</span>
+          <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:50%;background:#7C3AED;display:inline-block"></span>Profit/unit</span>
+          <span style="background:var(--green-light);padding:2px 8px;color:var(--green);font-weight:700;font-size:10px">Highlighted = pool tier</span>
         </div>
-        <div id="output-container" style="margin-top:16px">
-          <div class="output-empty">Add garments and click Calculate to see pricing.</div>
-        </div>
+        <div id="output-container"><div class="output-empty">Add garments to see pricing.</div></div>
       </div>
     </div>
   </div>
-
 </div>
 
 <script>
-// ── PRICING TABLES ────────────────────────────────────────────────────────────
-// Contract Customizing 2026
-
+// ── PRICING TABLES ─────────────────────────────────────────────────────────
 var SP=[
   {min:1,max:3,p:[2.35,2.55,2.89,3.14,3.43,4.09,4.61,5.38]},
   {min:4,max:11,p:[2.18,2.26,2.44,2.61,2.78,2.96,3.13,3.30]},
@@ -200,35 +196,24 @@ var SP=[
   {min:1000,max:2499,p:[0.65,0.75,0.82,0.92,1.01,1.12,1.23,1.33]},
   {min:2500,max:99999,p:[0.60,0.70,0.78,0.85,0.95,1.04,1.13,1.22]}
 ];
-
 var ES=[4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,
         16000,17000,18000,19000,20000,21000,22000,23000,24000,25000];
 var EP=[
-  [9.49,5.49,3.53,3.09,2.80,2.52],
-  [10.53,6.51,4.15,3.63,3.25,2.93],
-  [11.58,7.51,4.77,4.17,3.71,3.35],
-  [12.63,8.52,5.38,4.73,4.17,3.78],
-  [13.66,9.52,6.03,5.28,4.61,4.19],
-  [14.71,10.54,6.64,5.82,5.07,4.61],
-  [15.77,11.53,7.26,6.43,5.53,5.02],
-  [17.23,12.86,7.99,6.90,5.99,5.45],
-  [18.30,13.90,8.70,7.45,6.45,5.87],
-  [19.37,14.93,9.34,8.00,6.91,6.29],
-  [20.44,15.96,9.97,8.54,7.36,6.69],
-  [21.51,17.00,10.60,9.09,7.82,7.11],
-  [22.59,18.03,11.24,9.64,8.28,7.54],
-  [23.67,19.06,11.87,10.19,8.74,7.96],
-  [24.72,20.10,12.50,10.73,9.20,8.36],
-  [25.80,21.13,13.13,11.28,9.66,8.78],
-  [26.87,22.16,13.78,11.82,10.09,9.21],
-  [27.94,23.18,14.42,12.38,10.55,9.63],
-  [29.00,24.22,15.05,12.92,11.01,10.06],
-  [30.08,25.26,15.68,13.47,11.47,10.47],
-  [31.15,26.28,16.32,14.01,11.93,10.89],
-  [32.22,27.32,16.95,14.57,12.39,11.31]
+  [9.49,5.49,3.53,3.09,2.80,2.52],[10.53,6.51,4.15,3.63,3.25,2.93],
+  [11.58,7.51,4.77,4.17,3.71,3.35],[12.63,8.52,5.38,4.73,4.17,3.78],
+  [13.66,9.52,6.03,5.28,4.61,4.19],[14.71,10.54,6.64,5.82,5.07,4.61],
+  [15.77,11.53,7.26,6.43,5.53,5.02],[17.23,12.86,7.99,6.90,5.99,5.45],
+  [18.30,13.90,8.70,7.45,6.45,5.87],[19.37,14.93,9.34,8.00,6.91,6.29],
+  [20.44,15.96,9.97,8.54,7.36,6.69],[21.51,17.00,10.60,9.09,7.82,7.11],
+  [22.59,18.03,11.24,9.64,8.28,7.54],[23.67,19.06,11.87,10.19,8.74,7.96],
+  [24.72,20.10,12.50,10.73,9.20,8.36],[25.80,21.13,13.13,11.28,9.66,8.78],
+  [26.87,22.16,13.78,11.82,10.09,9.21],[27.94,23.18,14.42,12.38,10.55,9.63],
+  [29.00,24.22,15.05,12.92,11.01,10.06],[30.08,25.26,15.68,13.47,11.47,10.47],
+  [31.15,26.28,16.32,14.01,11.93,10.89],[32.22,27.32,16.95,14.57,12.39,11.31]
 ];
 
-// Margin structure
+var QTY_BREAKS=[24,48,96,144,288,500,1000];
+
 function getmd(qty){
   if(qty<=23)return 0.55;
   if(qty<=143)return 0.60;
@@ -236,12 +221,10 @@ function getmd(qty){
   if(qty<=999)return 0.70;
   return 0.75;
 }
-
 function spDeco(qty,colors){
   var t=SP.find(function(t){return qty>=t.min&&qty<=t.max;})||SP[SP.length-1];
   return t.p[Math.min(colors-1,7)];
 }
-
 function embDeco(qty,stitches){
   var si=ES.findIndex(function(s){return stitches<=s;});
   if(si<0)si=ES.length-1;
@@ -253,44 +236,29 @@ function embDeco(qty,stitches){
   if(qty>=144)qi=5;
   return EP[si][qi];
 }
-
-// Standard quantity breaks to show
-var QTY_BREAKS=[24,48,96,144,288,500,1000];
-
-// STATE
-// items: [{id, styleNum, name, wholesale, deco:'screenprint'|'embroidery', qty, locations:[{name,spColors,embStitches}]}]
-var state={
-  items:[],
-  sanmarData:null,
-  sanmarLoading:false,
-  sanmarError:null
-};
-
-// ── SANMAR DATA LOADING ───────────────────────────────────────────────────────
-// Placeholder — will be replaced with Google Sheets fetch URL
-var SHEET_CSV_URL = 'GOOGLE_SHEET_URL_PLACEHOLDER';
-
-function loadSanmarData(){
-  // For now use embedded fallback data for known styles
-  // When Google Sheet is connected, this fetches the full CSV
-  if(SHEET_CSV_URL !== 'GOOGLE_SHEET_URL_PLACEHOLDER'){
-    state.sanmarLoading=true;
-    updateLoadingState();
-    fetch(SHEET_CSV_URL)
-      .then(function(r){return r.text();})
-      .then(function(csv){
-        state.sanmarData=parseCSV(csv);
-        state.sanmarLoading=false;
-        updateLoadingState();
-      })
-      .catch(function(){
-        state.sanmarLoading=false;
-        state.sanmarError='Could not load price sheet. Using manual entry.';
-        updateLoadingState();
-      });
+// Which QTY_BREAKS row does a given pool qty fall into?
+function getBreakTier(poolQty){
+  for(var i=0;i<QTY_BREAKS.length;i++){
+    if(poolQty<=QTY_BREAKS[i])return QTY_BREAKS[i];
   }
+  return QTY_BREAKS[QTY_BREAKS.length-1];
 }
 
+// ── STATE ──────────────────────────────────────────────────────────────────
+// items: [{id, styleNum, name, wholesale, deco, qty, imprintId, locations:[{name,spColors,embStitches}], lookupMsg, lookupOk}]
+// imprints: [{id, label}]  e.g. [{id:1,label:'Imprint #1'}]
+var state={items:[],nextImprintId:1,sanmarData:null,sanmarLoading:false,sanmarError:null};
+var SHEET_CSV_URL='GOOGLE_SHEET_URL_PLACEHOLDER';
+
+// ── SANMAR LOADING ──────────────────────────────────────────────────────────
+function loadSanmarData(){
+  if(SHEET_CSV_URL==='GOOGLE_SHEET_URL_PLACEHOLDER'){updateLoadingState();return;}
+  state.sanmarLoading=true;updateLoadingState();
+  fetch(SHEET_CSV_URL)
+    .then(function(r){return r.text();})
+    .then(function(csv){state.sanmarData=parseCSV(csv);state.sanmarLoading=false;updateLoadingState();})
+    .catch(function(){state.sanmarLoading=false;state.sanmarError='Could not load sheet — enter price manually.';updateLoadingState();});
+}
 function parseCSV(csv){
   var lines=csv.split('\n');
   var headers=lines[0].split(',').map(function(h){return h.trim().replace(/"/g,'');});
@@ -298,350 +266,219 @@ function parseCSV(csv){
   for(var i=1;i<lines.length;i++){
     if(!lines[i].trim())continue;
     var vals=lines[i].split(',').map(function(v){return v.trim().replace(/"/g,'');});
-    var row={};
-    headers.forEach(function(h,j){row[h]=vals[j]||'';});
-    rows.push(row);
+    var row={};headers.forEach(function(h,j){row[h]=vals[j]||'';});rows.push(row);
   }
   return rows;
 }
-
 function lookupStyle(styleNum){
   if(!state.sanmarData)return null;
-  // Find XS-XL row for this style
-  var matches=state.sanmarData.filter(function(r){
-    return r['STYLE NUMBER']&&r['STYLE NUMBER'].toUpperCase()===styleNum.toUpperCase();
-  });
-  if(matches.length===0)return null;
-  // Prefer XS-XL row
+  var matches=state.sanmarData.filter(function(r){return r['STYLE NUMBER']&&r['STYLE NUMBER'].toUpperCase()===styleNum.toUpperCase();});
+  if(!matches.length)return null;
   var base=matches.find(function(r){return r['SIZE']&&r['SIZE'].indexOf('(X)S')>-1;})||matches[0];
   var price=parseFloat(base['PIECE PRICE']);
   if(isNaN(price))return null;
-  return{
-    styleNum:base['STYLE NUMBER'],
-    name:base['STYLE DESCRIPTION'],
-    brand:base['BRAND'],
-    category:base['CATEGORY'],
-    wholesale:price
-  };
+  return{styleNum:base['STYLE NUMBER'],name:base['STYLE DESCRIPTION'],brand:base['BRAND'],wholesale:price};
 }
-
 function updateLoadingState(){
-  var el=document.getElementById('sheet-status');
-  if(!el)return;
+  var el=document.getElementById('sheet-status');if(!el)return;
   if(state.sanmarLoading)el.textContent='Loading price sheet...';
   else if(state.sanmarError)el.textContent=state.sanmarError;
-  else if(state.sanmarData)el.textContent='Price sheet loaded — '+state.sanmarData.length+' styles available';
-  else el.textContent='Google Sheet not connected yet — enter wholesale price manually';
+  else if(state.sanmarData)el.textContent='Price sheet loaded — '+state.sanmarData.length+' styles';
+  else el.textContent='Google Sheet not connected — enter prices manually';
 }
 
-// ── CALC ──────────────────────────────────────────────────────────────────────
-// Returns array of {qty, garmentTotal, decoTotal, screenCharges, totalCost, rawPrice, roundedPrice}
-function calcItem(item, qty){
-  var m=getmd(qty);
-  var garmentRetail=(item.wholesale/m)*item.qty; // total garment cost for actual qty
-  // We recalculate per unit at the given qty break
-  var garmentPerUnit=item.wholesale/m;
-
-  if(item.deco==='screenprint'){
-    // SP — pools handled outside, but for per-item table we use item.qty
-    // Actually for the price break table, qty IS the break quantity
-    // For screen print, garment margin uses the qty break
-    var spM=getmd(qty);
-    var gpUnit=item.wholesale/spM;
-    var decoPerUnit=0;
-    item.locations.forEach(function(loc){
-      decoPerUnit+=spDeco(qty,loc.spColors)/spM;
-    });
-    var screenChargePerUnit=0;
-    if(qty<144){
-      // screen charges are one-time per order, shown as per-unit
-      item.locations.forEach(function(loc){
-        screenChargePerUnit+=(loc.spColors*20)/qty;
-      });
-    }
-    var totalPerUnit=gpUnit+decoPerUnit+screenChargePerUnit;
-    return{
-      qty:qty,
-      garment:gpUnit,
-      deco:decoPerUnit,
-      screenCharge:screenChargePerUnit,
-      totalCost:totalPerUnit,
-      rawPrice:totalPerUnit,
-      roundedPrice:Math.ceil(totalPerUnit)
-    };
-  } else {
-    // EMB — each item prices on its own qty (Option A)
-    var embM=getmd(item.qty); // uses ITEM qty not break qty
-    var egUnit=item.wholesale/embM;
-    var edUnit=0;
-    item.locations.forEach(function(loc){
-      edUnit+=embDeco(item.qty,loc.embStitches)/embM;
-    });
-    var etUnit=egUnit+edUnit;
-    return{
-      qty:item.qty,
-      garment:egUnit,
-      deco:edUnit,
-      screenCharge:0,
-      totalCost:etUnit,
-      rawPrice:etUnit,
-      roundedPrice:Math.ceil(etUnit),
-      embNote:true // flag that qty breaks don't apply
-    };
-  }
-}
-
-// For screen print, pool items by location+colors to get pooled qty for deco pricing
-function getSpPools(){
+// ── IMPRINT POOLS ───────────────────────────────────────────────────────────
+function getImprintPools(){
+  // Returns map: imprintId -> {id, label, items[], totalQty, deco}
   var pools={};
   state.items.forEach(function(item){
-    if(item.deco!=='screenprint')return;
-    item.locations.forEach(function(loc){
-      var key=loc.name+'|'+loc.spColors;
-      if(!pools[key])pools[key]={name:loc.name,colors:loc.spColors,qty:0,items:[]};
-      pools[key].qty+=item.qty;
-      if(pools[key].items.indexOf(item.id)===-1)pools[key].items.push(item.id);
-    });
+    if(!item.deco||!item.imprintId)return;
+    var key=item.imprintId;
+    if(!pools[key])pools[key]={id:key,label:'Imprint #'+key,items:[],totalQty:0,deco:item.deco};
+    pools[key].items.push(item);
+    pools[key].totalQty+=item.qty;
   });
   return pools;
 }
 
-function calcSpItemAtBreak(item, breakQty){
-  // For SP: garment priced at breakQty margin, deco priced at pooled qty
-  var pools=getSpPools();
+function getPoolForItem(item){
+  if(!item.imprintId)return null;
+  var pools=getImprintPools();
+  return pools[item.imprintId]||null;
+}
+
+// ── CALC ────────────────────────────────────────────────────────────────────
+// For SP: price break determined by imprint pool total qty
+// For EMB: each item prices on its own qty (Option A)
+function calcItemAtBreak(item, breakQty){
   var m=getmd(breakQty);
-  var gpUnit=item.wholesale/m;
-  var decoPerUnit=0;
-  var screenChargePerUnit=0;
+  var garment=item.wholesale; // raw wholesale, no margin applied separately
+  var deco=0;
   item.locations.forEach(function(loc){
-    var key=loc.name+'|'+loc.spColors;
-    var pool=pools[key];
-    var poolQty=pool?pool.qty:item.qty;
-    decoPerUnit+=spDeco(poolQty,loc.spColors)/m;
-    if(poolQty<144){
-      screenChargePerUnit+=(loc.spColors*20)/breakQty;
-    }
+    if(item.deco==='screenprint') deco+=spDeco(breakQty,loc.spColors);
+    else deco+=embDeco(item.qty,loc.embStitches); // emb uses own qty always
   });
-  var total=gpUnit+decoPerUnit+screenChargePerUnit;
+  // Screen charges — one-time per order, amortized per unit
+  var screenChargesTotal=0;
+  if(item.deco==='screenprint'&&breakQty<144){
+    item.locations.forEach(function(loc){screenChargesTotal+=loc.spColors*20;});
+    // amortize over breakQty
+  }
+  var screenPerUnit=screenChargesTotal/breakQty;
+  var totalCost=garment+deco+screenPerUnit;
+  var md=getmd(breakQty);
+  var rawPrice=totalCost/md;
+  var recommended=Math.ceil(rawPrice);
+  var profit=recommended-rawPrice;
   return{
-    qty:breakQty,
-    garment:gpUnit,
-    deco:decoPerUnit,
-    screenCharge:screenChargePerUnit,
-    totalCost:total,
-    rawPrice:total,
-    roundedPrice:Math.ceil(total)
+    breakQty:breakQty,
+    garment:garment,
+    deco:deco,
+    screenCharges:screenChargesTotal,
+    screenPerUnit:screenPerUnit,
+    totalCost:totalCost,
+    rawPrice:rawPrice,
+    recommended:recommended,
+    profit:profit
   };
 }
 
-// ── UI RENDERING ──────────────────────────────────────────────────────────────
-function fmt(n){return'$'+n.toFixed(2);}
-function fmtR(n){return'$'+Math.ceil(n).toFixed(2);}
+// ── RENDERING ───────────────────────────────────────────────────────────────
+function fmt(n){return'$'+(+n).toFixed(2);}
+function fmtR(n){return'$'+Math.ceil(+n).toFixed(2);}
 
-function addItem(){
-  var id=Date.now();
-  state.items.push({
-    id:id,
-    styleNum:'',
-    name:'',
-    wholesale:0,
-    deco:null,
-    qty:24,
-    locations:[]
+// Build imprint dropdown options
+function imprintOptions(selectedId){
+  var pools=getImprintPools();
+  var usedIds=Object.keys(pools).map(Number);
+  // Always include current selection + option to create new
+  var opts='';
+  // Collect all unique imprint IDs in use
+  var allIds=[];
+  state.items.forEach(function(i){if(i.imprintId&&allIds.indexOf(i.imprintId)===-1)allIds.push(i.imprintId);});
+  // Add next available
+  if(allIds.indexOf(state.nextImprintId)===-1)allIds.push(state.nextImprintId);
+  allIds.sort(function(a,b){return a-b;});
+  allIds.forEach(function(id){
+    opts+='<option value="'+id+'"'+(selectedId===id?' selected':'')+'>Imprint #'+id+'</option>';
   });
-  renderItems();
-}
-
-function removeItem(id){
-  state.items=state.items.filter(function(i){return i.id!==id;});
-  renderItems();
-  renderOutput();
+  return opts;
 }
 
 function renderItems(){
   var container=document.getElementById('items-container');
+  if(state.items.length===0){
+    container.innerHTML='<div class="empty-state">No garments yet. Enter style numbers above or click Add Garment.</div>';
+    return;
+  }
   container.innerHTML='';
   state.items.forEach(function(item){
-    container.appendChild(buildItemCard(item));
+    container.appendChild(buildCard(item));
   });
-  if(state.items.length===0){
-    container.innerHTML='<div class="empty-state">No items yet. Click "Add Garment" to start.</div>';
-  }
 }
 
-function buildItemCard(item){
+function buildCard(item){
   var card=document.createElement('div');
   card.className='item-card';
   card.id='card-'+item.id;
-
-  var isEmb=item.deco==='embroidery';
   var isSp=item.deco==='screenprint';
+  var isEmb=item.deco==='embroidery';
 
-  var html='';
-
-  // Header
-  html+='<div class="item-card-hdr">';
+  var html='<div class="item-card-hdr">';
   html+='<div class="item-card-title">';
-  if(item.name){
-    html+='<span class="item-name">'+item.name+'</span>';
-    html+='<span class="item-sku">'+item.styleNum+'</span>';
-  } else {
-    html+='<span class="item-name-empty">New Garment</span>';
-  }
+  if(item.name)html+='<span class="item-name">'+item.name+'</span><span class="item-sku">'+item.styleNum+'</span>';
+  else html+='<span class="item-name-empty">New Garment '+(item.styleNum?'— '+item.styleNum:'')+'</span>';
   html+='</div>';
-  html+='<button class="btn-remove" onclick="removeItem('+item.id+')">Remove</button>';
+  html+='<button class="btn-remove" onclick="removeItem('+item.id+')">&#215; Remove</button>';
   html+='</div>';
-
   html+='<div class="item-card-body">';
 
-  // Style lookup row
+  // Row 1: style, name, wholesale
   html+='<div class="field-row cols-3">';
-  html+='<div class="field-group">';
-  html+='<label class="field-label">Style Number</label>';
-  html+='<div class="style-lookup-wrap">';
-  html+='<input class="field-input" type="text" placeholder="e.g. NL6210" value="'+item.styleNum+'" onchange="onStyleChange('+item.id+',this.value)">';
-  html+='<button class="btn-lookup" onclick="lookupStyleForItem('+item.id+')">Look Up</button>';
+  html+='<div class="field-group"><label class="field-label">Style Number</label>';
+  html+='<div class="style-lookup-wrap"><input class="field-input" type="text" placeholder="e.g. NL6210" value="'+item.styleNum+'" onchange="onStyleChange('+item.id+',this.value)"><button class="btn-lookup" onclick="lookupForItem('+item.id+')">Look Up</button></div>';
+  if(item.lookupMsg)html+='<div class="lookup-msg '+(item.lookupOk?'ok':'err')+'">'+item.lookupMsg+'</div>';
   html+='</div>';
-  if(item.lookupMsg){
-    html+='<div class="lookup-msg '+(item.lookupOk?'ok':'err')+'">'+item.lookupMsg+'</div>';
-  }
+  html+='<div class="field-group"><label class="field-label">Garment Name</label><input class="field-input" type="text" placeholder="Auto-fills on lookup" value="'+item.name+'" onchange="onNameChange('+item.id+',this.value)"></div>';
+  html+='<div class="field-group"><label class="field-label">Wholesale (XS-XL)</label><div class="price-input-wrap"><span class="price-prefix">$</span><input class="field-input price-input" type="number" step="0.01" min="0" placeholder="0.00" value="'+(item.wholesale||'')+'" onchange="onWholesaleChange('+item.id+',this.value)"></div><div class="field-hint disclaimer-inline">+$2/unit for 2XL</div></div>';
   html+='</div>';
 
-  html+='<div class="field-group">';
-  html+='<label class="field-label">Garment Name</label>';
-  html+='<input class="field-input" type="text" placeholder="Auto-fills on lookup" value="'+item.name+'" onchange="onNameChange('+item.id+',this.value)">';
-  html+='</div>';
-
-  html+='<div class="field-group">';
-  html+='<label class="field-label">Wholesale (XS-XL)</label>';
-  html+='<div class="price-input-wrap"><span class="price-prefix">$</span>';
-  html+='<input class="field-input price-input" type="number" step="0.01" min="0" placeholder="0.00" value="'+(item.wholesale||'')+'" onchange="onWholesaleChange('+item.id+',this.value)">';
-  html+='</div>';
-  html+='<div class="field-hint disclaimer-inline">+$2/unit for 2XL orders</div>';
-  html+='</div>';
-  html+='</div>'; // field-row
-
-  // Qty + Deco
-  html+='<div class="field-row cols-2" style="margin-top:16px">';
-  html+='<div class="field-group">';
-  html+='<label class="field-label">Actual Quantity</label>';
-  html+='<input class="field-input" type="number" min="1" value="'+item.qty+'" onchange="onQtyChange('+item.id+',this.value)">';
-  html+='<div class="field-hint">Used for embroidery pricing & pool totals</div>';
-  html+='</div>';
-
-  html+='<div class="field-group">';
-  html+='<label class="field-label">Decoration Type</label>';
-  html+='<div class="deco-pill-group">';
-  html+='<div class="deco-pill'+(isSp?' selected':'')+'" onclick="setDeco('+item.id+',\'screenprint\',this)">Screen Print</div>';
-  html+='<div class="deco-pill'+(isEmb?' selected':'')+'" onclick="setDeco('+item.id+',\'embroidery\',this)">Embroidery</div>';
-  html+='</div>';
-  html+='</div>';
+  // Row 2: qty, deco, imprint
+  html+='<div class="field-row cols-3" style="margin-top:12px">';
+  html+='<div class="field-group"><label class="field-label">Quantity</label><input class="field-input" type="number" min="1" value="'+item.qty+'" onchange="onQtyChange('+item.id+',this.value)"></div>';
+  html+='<div class="field-group"><label class="field-label">Decoration Type</label><div class="deco-pill-group"><div class="deco-pill'+(isSp?' selected':'')+'" onclick="setDeco('+item.id+',\'screenprint\',this)">Screen Print</div><div class="deco-pill'+(isEmb?' selected':'')+'" onclick="setDeco('+item.id+',\'embroidery\',this)">Embroidery</div></div></div>';
+  html+='<div class="field-group"><label class="field-label">Imprint #</label><div style="display:flex;gap:6px"><select class="field-input" onchange="setImprint('+item.id+',this.value)">'+imprintOptions(item.imprintId)+'</select><button class="btn-new-imprint" onclick="newImprint('+item.id+')" title="New imprint">+</button></div><div class="field-hint">Items sharing same imprint pool for pricing</div></div>';
   html+='</div>';
 
   // Locations
   if(item.deco){
-    html+='<div class="locations-section">';
-    html+='<div class="section-label">Locations</div>';
+    html+='<div class="locations-section"><div class="section-label">Locations</div>';
     item.locations.forEach(function(loc,li){
-      html+='<div class="location-row">';
-      html+='<div class="field-row cols-3">';
-
-      html+='<div class="field-group">';
-      html+='<label class="field-label">Location</label>';
-      html+='<select class="field-input" onchange="setLocName('+item.id+','+li+',this.value)">';
+      html+='<div class="location-row"><div class="field-row '+(isSp?'cols-3':'cols-2')+'">';
+      html+='<div class="field-group"><label class="field-label">Location</label><select class="field-input" onchange="setLocName('+item.id+','+li+',this.value)">';
       ['Left Chest','Right Chest','Full Front','Full Back','Upper Back','Nape of Neck','Left Sleeve','Right Sleeve'].forEach(function(l){
         html+='<option'+(loc.name===l?' selected':'')+'>'+l+'</option>';
       });
-      html+='</select>';
-      html+='</div>';
-
+      html+='</select></div>';
       if(isSp){
-        html+='<div class="field-group">';
-        html+='<label class="field-label">Colors at this location</label>';
-        html+='<input class="field-input" type="number" min="1" max="8" value="'+(loc.spColors||1)+'" onchange="setLocColors('+item.id+','+li+',this.value)">';
-        html+='</div>';
-        html+='<div class="field-group">';
-        html+='<label class="field-label">Screen Charge</label>';
-        html+='<div class="calc-display">$'+((loc.spColors||1)*20)+' <span class="calc-note">('+( loc.spColors||1)+' × $20)</span></div>';
-        html+='</div>';
+        html+='<div class="field-group"><label class="field-label">Colors</label><input class="field-input" type="number" min="1" max="8" value="'+(loc.spColors||1)+'" onchange="setLocColors('+item.id+','+li+',this.value)"></div>';
+        html+='<div class="field-group"><label class="field-label">Screen Charge</label><div class="calc-display">$'+((loc.spColors||1)*20)+' <span class="calc-note">('+( loc.spColors||1)+' × $20)</span></div></div>';
       }
-
       if(isEmb){
-        html+='<div class="field-group">';
-        html+='<label class="field-label">Stitch Count</label>';
-        html+='<select class="field-input" onchange="setLocStitches('+item.id+','+li+',this.value)">';
-        ES.forEach(function(s){
-          html+='<option value="'+s+'"'+(loc.embStitches===s?' selected':'')+'>'+s.toLocaleString()+' stitches</option>';
-        });
-        html+='</select>';
-        html+='</div>';
-        html+='<div class="field-group">';
-        html+='<label class="field-label">Note</label>';
-        html+='<div class="calc-display calc-note">Priced on item qty only</div>';
-        html+='</div>';
+        html+='<div class="field-group"><label class="field-label">Stitch Count</label><select class="field-input" onchange="setLocStitches('+item.id+','+li+',this.value)">';
+        ES.forEach(function(s){html+='<option value="'+s+'"'+(loc.embStitches===s?' selected':'')+'>'+s.toLocaleString()+'</option>';});
+        html+='</select></div>';
       }
-
-      html+='</div>';
-      html+='<button class="btn-remove-loc" onclick="removeLoc('+item.id+','+li+')">Remove</button>';
-      html+='</div>';
+      html+='</div><button class="btn-remove-loc" onclick="removeLoc('+item.id+','+li+')">&#215;</button></div>';
     });
-
     html+='<button class="btn-add-loc" onclick="addLoc('+item.id+')">+ Add Location</button>';
     html+='</div>';
   }
-
-  html+='</div>'; // item-card-body
+  html+='</div>';
   card.innerHTML=html;
   return card;
 }
 
-// ── ITEM MUTATIONS ────────────────────────────────────────────────────────────
+// ── ITEM MUTATIONS ──────────────────────────────────────────────────────────
 function getItem(id){return state.items.find(function(i){return i.id===id;});}
 
-function onStyleChange(id,val){
-  var item=getItem(id);if(!item)return;
-  item.styleNum=val.trim().toUpperCase();
+function addItem(styleNum,name,wholesale){
+  var id=Date.now()+Math.random();
+  var imprintId=state.nextImprintId; // default to current imprint
+  state.items.push({id:id,styleNum:styleNum||'',name:name||'',wholesale:wholesale||0,deco:null,qty:24,imprintId:imprintId,locations:[],lookupMsg:'',lookupOk:false});
+  return id;
 }
 
-function lookupStyleForItem(id){
-  var item=getItem(id);if(!item)return;
-  if(!item.styleNum){item.lookupMsg='Enter a style number first.';item.lookupOk=false;renderItems();return;}
-  if(!state.sanmarData){
-    item.lookupMsg='Price sheet not connected — enter price manually.';
-    item.lookupOk=false;renderItems();return;
-  }
-  var result=lookupStyle(item.styleNum);
-  if(result){
-    item.name=result.name;
-    item.wholesale=result.wholesale;
-    item.lookupMsg='Found: '+result.brand+' — $'+result.wholesale+' (XS-XL)';
-    item.lookupOk=true;
-  } else {
-    item.lookupMsg='Style not found in price sheet. Enter price manually.';
-    item.lookupOk=false;
-  }
-  renderItems();
-  renderOutput();
+function removeItem(id){
+  state.items=state.items.filter(function(i){return i.id!==id;});
+  renderItems();renderOutput();
 }
 
-function onNameChange(id,val){var item=getItem(id);if(item)item.name=val;}
-function onWholesaleChange(id,val){
-  var item=getItem(id);if(!item)return;
-  item.wholesale=parseFloat(val)||0;
-  renderOutput();
-}
-function onQtyChange(id,val){
-  var item=getItem(id);if(!item)return;
-  item.qty=Math.max(1,parseInt(val)||1);
-  renderOutput();
-}
+function onStyleChange(id,val){var item=getItem(id);if(item)item.styleNum=val.trim().toUpperCase();}
+function onNameChange(id,val){var item=getItem(id);if(item){item.name=val;}}
+function onWholesaleChange(id,val){var item=getItem(id);if(item){item.wholesale=parseFloat(val)||0;renderOutput();}}
+function onQtyChange(id,val){var item=getItem(id);if(item){item.qty=Math.max(1,parseInt(val)||1);renderOutput();}}
 
 function setDeco(id,deco,el){
   var item=getItem(id);if(!item)return;
   item.deco=deco;
   if(item.locations.length===0)addLoc(id,true);
-  renderItems();
+  renderItems();renderOutput();
+}
+
+function setImprint(id,val){
+  var item=getItem(id);if(!item)return;
+  item.imprintId=parseInt(val);
   renderOutput();
+}
+
+function newImprint(id){
+  // Find max imprint id in use, increment
+  var maxId=0;
+  state.items.forEach(function(i){if(i.imprintId>maxId)maxId=i.imprintId;});
+  state.nextImprintId=maxId+1;
+  var item=getItem(id);if(item)item.imprintId=state.nextImprintId;
+  renderItems();renderOutput();
 }
 
 function addLoc(id,silent){
@@ -652,141 +489,133 @@ function addLoc(id,silent){
   item.locations.push(loc);
   if(!silent){renderItems();renderOutput();}
 }
+function removeLoc(id,li){var item=getItem(id);if(!item)return;item.locations.splice(li,1);renderItems();renderOutput();}
+function setLocName(id,li,val){var item=getItem(id);if(!item||!item.locations[li])return;item.locations[li].name=val;renderOutput();}
+function setLocColors(id,li,val){var item=getItem(id);if(!item||!item.locations[li])return;item.locations[li].spColors=Math.max(1,Math.min(8,parseInt(val)||1));renderItems();renderOutput();}
+function setLocStitches(id,li,val){var item=getItem(id);if(!item||!item.locations[li])return;item.locations[li].embStitches=parseInt(val)||8000;renderOutput();}
 
-function removeLoc(id,li){
+function lookupForItem(id){
   var item=getItem(id);if(!item)return;
-  item.locations.splice(li,1);
+  if(!item.styleNum){item.lookupMsg='Enter a style number first.';item.lookupOk=false;renderItems();return;}
+  if(!state.sanmarData){item.lookupMsg='Sheet not connected — enter price manually.';item.lookupOk=false;renderItems();return;}
+  var result=lookupStyle(item.styleNum);
+  if(result){item.name=result.name;item.wholesale=result.wholesale;item.lookupMsg='Found: '+result.brand+' $'+result.wholesale;item.lookupOk=true;}
+  else{item.lookupMsg='Not found — enter price manually.';item.lookupOk=false;}
   renderItems();renderOutput();
 }
 
-function setLocName(id,li,val){
-  var item=getItem(id);if(!item||!item.locations[li])return;
-  item.locations[li].name=val;
-  renderOutput();
-}
+// ── BULK ENTRY ──────────────────────────────────────────────────────────────
+document.getElementById('bulk-input').addEventListener('keydown',function(e){
+  if(e.key==='Enter')processBulkInput();
+});
+document.getElementById('bulk-add-btn').addEventListener('click',processBulkInput);
 
-function setLocColors(id,li,val){
-  var item=getItem(id);if(!item||!item.locations[li])return;
-  item.locations[li].spColors=Math.max(1,Math.min(8,parseInt(val)||1));
+function processBulkInput(){
+  var val=document.getElementById('bulk-input').value.trim();
+  if(!val)return;
+  var styles=val.split(',').map(function(s){return s.trim().toUpperCase();}).filter(Boolean);
+  styles.forEach(function(s){
+    var id=addItem(s);
+    // Auto-lookup if sheet available
+    if(state.sanmarData){
+      var result=lookupStyle(s);
+      var item=getItem(id);
+      if(item&&result){item.name=result.name;item.wholesale=result.wholesale;item.lookupMsg='Found: '+result.brand+' $'+result.wholesale;item.lookupOk=true;}
+      else if(item){item.lookupMsg='Not found — enter price manually.';item.lookupOk=false;}
+    }
+  });
+  document.getElementById('bulk-input').value='';
   renderItems();renderOutput();
 }
 
-function setLocStitches(id,li,val){
-  var item=getItem(id);if(!item||!item.locations[li])return;
-  item.locations[li].embStitches=parseInt(val)||8000;
-  renderOutput();
-}
+document.getElementById('btn-add').addEventListener('click',function(){addItem();renderItems();renderOutput();});
 
-// ── OUTPUT TABLE ──────────────────────────────────────────────────────────────
+// ── OUTPUT ──────────────────────────────────────────────────────────────────
 function renderOutput(){
   var container=document.getElementById('output-container');
-  if(state.items.length===0||!state.items.some(function(i){return i.deco&&i.wholesale>0&&i.locations.length>0;})){
-    container.innerHTML='<div class="output-empty">Configure items above to see pricing.</div>';
-    return;
-  }
+  var ready=state.items.filter(function(i){return i.deco&&i.wholesale>0&&i.locations.length>0;});
+  if(ready.length===0){container.innerHTML='<div class="output-empty">Configure items above to see pricing.</div>';return;}
 
+  var pools=getImprintPools();
   var html='';
 
-  // SP pool summary
-  var spItems=state.items.filter(function(i){return i.deco==='screenprint'&&i.wholesale>0&&i.locations.length>0;});
-  var embItems=state.items.filter(function(i){return i.deco==='embroidery'&&i.wholesale>0&&i.locations.length>0;});
-
-  if(spItems.length>0){
-    var pools=getSpPools();
-    html+='<div class="pool-summary">';
-    html+='<div class="pool-summary-title">Screen Print Pools</div>';
-    Object.keys(pools).forEach(function(k){
-      var p=pools[k];
-      html+='<div class="pool-row"><span class="pool-tag sp">'+p.qty+' pcs</span> '+p.name+' — '+p.colors+' color'+(p.colors>1?'s':'')+' — prices at '+p.qty+'-piece tier</div>';
-    });
+  // Pool summary cards
+  html+='<div class="pool-summary-wrap">';
+  Object.keys(pools).forEach(function(key){
+    var pool=pools[key];
+    var tierQty=getBreakTier(pool.totalQty);
+    html+='<div class="pool-card">';
+    html+='<div class="pool-card-hdr"><span class="pool-label">'+pool.label+'</span><span class="pool-deco-tag '+(pool.deco==='screenprint'?'sp':'emb')+'">'+( pool.deco==='screenprint'?'Screen Print':'Embroidery')+'</span></div>';
+    html+='<div class="pool-card-body">';
+    html+='<div class="pool-stat"><span class="pool-stat-num">'+pool.totalQty+'</span><span class="pool-stat-lbl">total pcs</span></div>';
+    html+='<div class="pool-stat"><span class="pool-stat-num">'+tierQty+'</span><span class="pool-stat-lbl">price break tier</span></div>';
     html+='</div>';
-  }
-
-  if(embItems.length>0){
-    html+='<div class="pool-summary">';
-    html+='<div class="pool-summary-title">Embroidery (Independent Pricing)</div>';
-    embItems.forEach(function(item){
-      html+='<div class="pool-row"><span class="pool-tag emb">'+item.qty+' pcs</span> '+(item.name||item.styleNum||'Item')+' — priced at own '+item.qty+'-piece tier</div>';
-    });
+    html+='<div class="pool-items">'+pool.items.map(function(i){return'<span class="pool-item-tag">'+(i.name||i.styleNum||'Item')+'</span>';}).join('')+'</div>';
     html+='</div>';
-  }
+  });
+  html+='</div>';
 
-  // Per item tables
-  state.items.forEach(function(item){
-    if(!item.deco||!item.wholesale||item.locations.length===0)return;
-
-    var isEmb=item.deco==='embroidery';
+  // Per-item price tables
+  ready.forEach(function(item){
+    var pool=getPoolForItem(item);
     var isSp=item.deco==='screenprint';
+    var isEmb=item.deco==='embroidery';
+    var poolTierQty=pool?getBreakTier(pool.totalQty):getBreakTier(item.qty);
 
     html+='<div class="output-block">';
     html+='<div class="output-block-hdr">';
     html+='<div class="output-block-title">'+(item.name||item.styleNum||'Garment')+'</div>';
     html+='<div class="output-block-meta">';
-    if(isSp)html+='<span class="pool-tag sp">Screen Print</span>';
-    if(isEmb)html+='<span class="pool-tag emb">Embroidery</span>';
-    var locSummary=item.locations.map(function(l){
-      if(isSp)return l.name+' ('+l.spColors+'c)';
-      return l.name+' ('+( l.embStitches/1000)+'k)';
-    }).join(' + ');
+    html+='<span class="deco-tag '+(isSp?'sp':'emb')+'">'+(isSp?'Screen Print':'Embroidery')+'</span>';
+    if(pool)html+='<span class="imprint-tag">'+pool.label+'</span>';
+    var locSummary=item.locations.map(function(l){return isSp?l.name+' ('+l.spColors+'c)':l.name+' ('+(l.embStitches/1000).toFixed(0)+'k)';}).join(' + ');
     html+='<span class="loc-summary">'+locSummary+'</span>';
-    html+='</div>';
-    html+='</div>';
+    html+='</div></div>';
 
     if(isEmb){
-      // Embroidery — single row, own qty
-      var r=calcSpItemAtBreak; // unused
-      var embM=getmd(item.qty);
-      var gpUnit=item.wholesale/embM;
-      var edUnit=0;
-      item.locations.forEach(function(loc){edUnit+=embDeco(item.qty,loc.embStitches)/embM;});
-      var total=gpUnit+edUnit;
-
-      html+='<div class="emb-note">Embroidery prices on actual quantity only ('+item.qty+' pcs). Quantity breaks do not apply.</div>';
+      // Embroidery — single row
+      var r=calcItemAtBreak(item,item.qty);
+      html+='<div class="emb-note">&#9432; Embroidery prices on this item\'s actual quantity ('+item.qty+' pcs). Does not pool with other items.</div>';
       html+='<table class="price-table">';
-      html+='<thead><tr><th>Qty</th><th>Garment/unit</th><th>Deco/unit</th><th>Total Cost/unit</th><th>Raw Price</th><th>Recommended</th></tr></thead>';
-      html+='<tbody>';
-      html+='<tr class="highlight-row">';
-      html+='<td>'+item.qty+'</td>';
-      html+='<td>'+fmt(gpUnit)+'</td>';
-      html+='<td>'+fmt(edUnit)+'</td>';
-      html+='<td>'+fmt(total)+'</td>';
-      html+='<td class="raw-price">'+fmt(total)+'</td>';
-      html+='<td class="rec-price">'+fmtR(total)+'</td>';
-      html+='</tr>';
-      html+='</tbody></table>';
-
+      html+='<thead><tr><th>Qty</th><th>Garment/unit</th><th>Deco/unit</th><th>Total Cost</th><th>Raw Price</th><th class="col-rec">Recommended</th><th class="col-profit">Profit/unit</th></tr></thead>';
+      html+='<tbody><tr class="highlight-row">';
+      html+='<td><strong>'+item.qty+'</strong> <span class="actual-badge">actual</span></td>';
+      html+='<td>'+fmt(r.garment)+'</td><td>'+fmt(r.deco)+'</td><td>'+fmt(r.totalCost)+'</td>';
+      html+='<td class="raw-price">'+fmt(r.rawPrice)+'</td>';
+      html+='<td class="rec-price">'+fmtR(r.recommended)+'</td>';
+      html+='<td class="profit-price">'+fmt(r.recommended-r.rawPrice)+'</td>';
+      html+='</tr></tbody></table>';
     } else {
-      // Screen print — quantity break table
+      // Screen print — all qty breaks, highlight the one matching pool tier
       html+='<table class="price-table">';
-      html+='<thead><tr><th>Qty Break</th><th>Garment/unit</th><th>Deco/unit</th><th>Screen Charges</th><th>Total Cost/unit</th><th>Raw Price</th><th>Recommended</th></tr></thead>';
+      html+='<thead><tr><th>Qty Break</th><th>Garment/unit</th><th>Deco/unit</th><th>Total Cost</th><th>Raw Price</th><th class="col-rec">Recommended</th><th class="col-profit">Profit/unit</th></tr></thead>';
       html+='<tbody>';
       QTY_BREAKS.forEach(function(brk){
-        var r=calcSpItemAtBreak(item,brk);
-        var isActual=brk===item.qty;
-        html+='<tr'+(isActual?' class="highlight-row"':'')+'>';
-        html+='<td>'+brk+(isActual?' <span class="actual-badge">actual</span>':'')+'</td>';
-        html+='<td>'+fmt(r.garment)+'</td>';
-        html+='<td>'+fmt(r.deco)+'</td>';
-        html+='<td>'+(r.screenCharge>0?fmt(r.screenCharge):'<span class="waived">waived</span>')+'</td>';
-        html+='<td>'+fmt(r.totalCost)+'</td>';
+        var r=calcItemAtBreak(item,brk);
+        var isHighlight=brk===poolTierQty;
+        html+='<tr'+(isHighlight?' class="highlight-row"':'')+'>';
+        html+='<td>'+brk+(isHighlight?' <span class="actual-badge">pool tier</span>':'');
+        if(isHighlight&&pool)html+=' <span class="pool-size-note">('+pool.totalQty+' pcs pooled)</span>';
+        html+='</td>';
+        html+='<td>'+fmt(r.garment)+'</td><td>'+fmt(r.deco)+'</td><td>'+fmt(r.totalCost)+'</td>';
         html+='<td class="raw-price">'+fmt(r.rawPrice)+'</td>';
-        html+='<td class="rec-price">'+fmtR(r.roundedPrice)+'</td>';
+        html+='<td class="rec-price">'+fmtR(r.recommended)+'</td>';
+        html+='<td class="profit-price">'+fmt(r.recommended-r.rawPrice)+'</td>';
         html+='</tr>';
       });
       html+='</tbody></table>';
+      if(pool&&pool.totalQty>0){
+        html+='<div class="pool-note-row">Pool total: '+pool.totalQty+' pcs across '+pool.items.length+' garment'+(pool.items.length>1?'s':'')+' &rarr; prices at <strong>'+poolTierQty+'</strong>-piece tier'+(pool.totalQty<144?' &nbsp;|&nbsp; Screen charges apply (add separately per order)':' &nbsp;|&nbsp; <span style="color:var(--green)">Screen charges waived</span>')+'</div>';
+      }
     }
-
     html+='</div>';
   });
 
-  html+='<div class="disclaimer-box">&#9888; Add ~$2/unit for 2XL orders &nbsp;&nbsp;|&nbsp;&nbsp; Screen charges waived at 144+ pieces with same artwork &nbsp;&nbsp;|&nbsp;&nbsp; Prices from Contract Customizing 2026</div>';
-
+  html+='<div class="disclaimer-box">&#9888;&nbsp; Add ~$2/unit for 2XL orders &nbsp;|&nbsp; Screen charges: colors &times; $20 per location &nbsp;|&nbsp; Waived at 144+ pcs same artwork &nbsp;|&nbsp; Decoration pricing: Contract Customizing 2026</div>';
   container.innerHTML=html;
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-document.getElementById('btn-add').addEventListener('click',addItem);
-document.getElementById('btn-calc').addEventListener('click',renderOutput);
+// ── INIT ────────────────────────────────────────────────────────────────────
 loadSanmarData();
 renderItems();
 
