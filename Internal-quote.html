@@ -10,9 +10,9 @@
 :root{--black:#0D0D0D;--white:#fff;--gray-50:#F9F9F9;--gray-100:#F0F0F0;--gray-200:#E2E2E2;--gray-400:#9A9A9A;--gray-600:#5A5A5A;--gray-800:#2A2A2A;--green:#059669;--green-light:#D1FAE5;--red:#DC2626;--blue:#2563EB;--gold:#D97706;--gold-light:#FEF3C7;--purple:#7C3AED;--purple-light:#EDE9FE}
 body{font-family:'Barlow',sans-serif;background:var(--gray-50);color:var(--black);min-height:100vh}
 
-.header{background:var(--black);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;flex-shrink:0}
+.header{background:var(--black);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
 .logo{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;color:var(--white);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:9px}
-.logo-mark{width:24px;height:24px;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--black);flex-shrink:0}
+.logo-mark{width:24px;height:24px;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--black)}
 .internal-badge{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;background:var(--gold);color:var(--white)}
 
 .bulk-bar{background:var(--gray-800);padding:10px 24px;display:flex;align-items:center;gap:10px}
@@ -23,122 +23,122 @@ body{font-family:'Barlow',sans-serif;background:var(--gray-50);color:var(--black
 .btn-bulk-add{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;background:var(--green);color:var(--white);border:none;cursor:pointer;white-space:nowrap;flex-shrink:0}
 .btn-bulk-add:hover{background:#047857}
 
-/* MAIN LAYOUT — fixed height, no scroll on wrapper */
-.app-body{display:grid;grid-template-columns:520px 1fr;height:calc(100vh - 82px);overflow:hidden}
+.app-body{display:grid;grid-template-columns:500px 1fr;height:calc(100vh - 82px);overflow:hidden}
 
-/* LEFT COLUMN */
-.left-col{display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--gray-200)}
-
-/* BULK EDITOR */
-#bulk-editor{flex-shrink:0;background:var(--white);border-bottom:2px solid var(--gray-200)}
-.bulk-editor-wrap{padding:14px 18px}
-.bulk-editor-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-800);margin-bottom:10px}
+.left-col{display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--gray-200);background:var(--white)}
+#bulk-editor{flex-shrink:0;background:var(--white);border-bottom:2px solid var(--gray-200);max-height:50%;overflow-y:auto}
+.bulk-editor-wrap{padding:12px 16px}
+.bulk-editor-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-800);margin-bottom:8px}
 .bulk-editor-sub{font-size:10px;color:var(--gray-400);font-weight:300;letter-spacing:0;text-transform:none}
-.bulk-group{border:1px solid var(--gray-200);margin-bottom:8px}
-.bulk-group-hdr{background:var(--gray-50);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--gray-200)}
+.bulk-group{border:1px solid var(--gray-200);margin-bottom:7px}
+.bulk-group-hdr{background:var(--gray-50);padding:7px 10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--gray-200)}
 .bulk-group-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.sp-label{color:#2d6a2d}
-.emb-label{color:#2d2d6a}
+.sp-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;background:#e8f4e8;color:#2d6a2d}
+.emb-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;background:#e8e8f4;color:#2d2d6a}
 .unassigned-label{color:var(--gray-400)}
-.bulk-pool-qty{font-size:11px;color:var(--gray-400);font-weight:300}
-.bulk-group-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.bulk-select{padding:5px 8px;border:1.5px solid var(--gray-200);font-family:'Barlow',sans-serif;font-size:12px;color:var(--black);background:var(--white)}
-.btn-bulk-apply{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;background:var(--black);color:var(--white);border:none;cursor:pointer}
+.bulk-pool-qty{font-size:10px;color:var(--gray-400);font-weight:300}
+.bulk-group-actions{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.bulk-select{padding:4px 7px;border:1.5px solid var(--gray-200);font-family:'Barlow',sans-serif;font-size:12px;color:var(--black);background:var(--white)}
+.btn-bulk-apply{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;background:var(--black);color:var(--white);border:none;cursor:pointer;white-space:nowrap}
 .btn-bulk-apply:hover{background:var(--gray-800)}
-.bulk-items{padding:8px 12px}
-.bulk-item-row{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:12px;color:var(--gray-600)}
-.bulk-item-row.static{justify-content:space-between}
-.bulk-item-name{font-weight:500;color:var(--black)}
-.bulk-item-qty{font-size:11px;color:var(--gray-400)}
+.btn-bulk-clear{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;background:none;border:1px solid var(--gray-200);color:var(--gray-600);cursor:pointer;white-space:nowrap}
+.btn-bulk-clear:hover{border-color:var(--red);color:var(--red)}
+.bulk-items{padding:6px 10px}
+.bulk-item-check{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:12px;color:var(--gray-600);cursor:pointer}
+.bulk-item-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:3px 0;font-size:11px;color:var(--gray-600)}
+.bulk-item-name{font-weight:500;color:var(--black);font-size:11px}
+.bulk-item-locs{color:var(--gray-400);font-size:10px;flex:1;text-align:center}
+.bulk-item-qty{font-size:10px;color:var(--gray-400);flex-shrink:0}
 .bulk-cb{cursor:pointer;flex-shrink:0}
+.bulk-imprint-name{padding:3px 7px;border:1.5px solid var(--gray-200);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:var(--black);background:var(--white);width:120px}
+.bulk-imprint-name:focus{outline:none;border-color:var(--black)}
+.bulk-loc-editor{padding:7px 10px;background:var(--gray-50);border-top:1px solid var(--gray-100)}
+.bulk-loc-title{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:5px}
+.bulk-loc-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 
-/* ITEMS SCROLLABLE */
-.items-scroll{flex:1;overflow-y:auto;padding:16px}
+.items-scroll{flex:1;overflow-y:auto;padding:12px}
+.items-panel-hdr{padding:10px 16px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.items-panel-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
 
-/* ITEM CARDS */
-.item-card{border:1px solid var(--gray-200);margin-bottom:12px;background:var(--white)}
-.item-card-hdr{background:var(--gray-50);padding:9px 14px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between}
-.item-name{font-size:12px;font-weight:600}
-.item-name-empty{font-size:12px;color:var(--gray-400);font-style:italic}
-.item-sku{font-size:10px;color:var(--gray-400);margin-left:7px}
-.item-card-body{padding:14px}
-.btn-remove{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;background:none;border:1px solid var(--gray-200);color:var(--gray-400);cursor:pointer;font-family:'Barlow Condensed',sans-serif}
+.item-card{border:1px solid var(--gray-200);margin-bottom:10px;background:var(--white)}
+.item-card-hdr{background:var(--gray-50);padding:8px 12px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between}
+.item-title-text{font-size:12px;font-weight:600;color:var(--black)}
+.item-card-body{padding:12px}
+.btn-remove{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;background:none;border:1px solid var(--gray-200);color:var(--gray-400);cursor:pointer;font-family:'Barlow Condensed',sans-serif;flex-shrink:0}
 .btn-remove:hover{border-color:var(--red);color:var(--red)}
 
-.field-row{display:grid;gap:10px;margin-bottom:10px}
+.field-row{display:grid;gap:8px;margin-bottom:8px}
 .field-row.cols-2{grid-template-columns:1fr 1fr}
 .field-row.cols-3{grid-template-columns:1fr 1fr 1fr}
 .field-group{display:flex;flex-direction:column;gap:3px}
 .field-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-600)}
-.field-hint{font-size:9px;color:var(--gray-400);font-weight:300}
-.field-input{padding:7px 10px;border:1.5px solid var(--gray-200);font-family:'Barlow',sans-serif;font-size:12px;color:var(--black);background:var(--white);width:100%;appearance:none;transition:border-color .15s}
+.field-hint{font-size:9px;color:var(--gray-400)}
+.field-input{padding:6px 9px;border:1.5px solid var(--gray-200);font-family:'Barlow',sans-serif;font-size:12px;color:var(--black);background:var(--white);width:100%;appearance:none;transition:border-color .15s}
 .field-input:focus{outline:none;border-color:var(--black)}
-select.field-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:24px}
-.style-lookup-wrap{display:flex;gap:5px}
-.btn-lookup{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:0 10px;background:var(--black);color:var(--white);border:none;cursor:pointer;flex-shrink:0;white-space:nowrap}
-.lookup-msg{font-size:10px;margin-top:3px;padding:2px 7px}
+select.field-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 7px center;padding-right:22px}
+.style-lookup-wrap{display:flex;gap:4px}
+.btn-lookup{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:0 9px;background:var(--black);color:var(--white);border:none;cursor:pointer;flex-shrink:0}
+.lookup-msg{font-size:10px;margin-top:2px;padding:2px 6px}
 .lookup-msg.ok{color:var(--green);background:var(--green-light)}
 .lookup-msg.err{color:var(--red);background:#FEE2E2}
 .price-input-wrap{display:flex;align-items:center;border:1.5px solid var(--gray-200)}
-.price-prefix{padding:0 8px;font-size:12px;color:var(--gray-400);background:var(--gray-50);border-right:1.5px solid var(--gray-200);height:33px;display:flex;align-items:center;flex-shrink:0}
-.price-input{border:none!important;flex:1;height:33px}
+.price-prefix{padding:0 7px;font-size:12px;color:var(--gray-400);background:var(--gray-50);border-right:1.5px solid var(--gray-200);height:30px;display:flex;align-items:center;flex-shrink:0}
+.price-input{border:none!important;flex:1;height:30px}
 .price-input:focus{outline:none}
-.disclaimer-inline{color:var(--gold)!important;font-weight:600!important}
-.calc-display{padding:7px 10px;background:var(--gray-50);border:1.5px solid var(--gray-100);font-size:12px;color:var(--gray-600)}
+.disclaimer-inline{color:var(--gold)!important;font-weight:600!important;font-size:9px}
+.calc-display{padding:6px 9px;background:var(--gray-50);border:1.5px solid var(--gray-100);font-size:12px;color:var(--gray-600)}
 .calc-note{font-size:10px;color:var(--gray-400)}
-.deco-pill-group{display:flex;gap:6px}
-.deco-pill{border:1.5px solid var(--gray-200);padding:6px 10px;cursor:pointer;font-size:11px;font-weight:600;color:var(--gray-600);transition:all .15s}
+.deco-pill-group{display:flex;gap:5px}
+.deco-pill{border:1.5px solid var(--gray-200);padding:5px 9px;cursor:pointer;font-size:11px;font-weight:600;color:var(--gray-600);transition:all .15s}
 .deco-pill:hover{border-color:var(--black);color:var(--black)}
 .deco-pill.selected{border-color:var(--black);background:var(--black);color:var(--white)}
-.btn-new-imprint{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;padding:0 9px;background:var(--purple);color:var(--white);border:none;cursor:pointer;flex-shrink:0;height:33px}
+.btn-new-imprint{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;padding:0 8px;background:var(--purple);color:var(--white);border:none;cursor:pointer;flex-shrink:0;height:30px}
 .btn-new-imprint:hover{background:#6D28D9}
-.locations-section{margin-top:12px;padding-top:12px;border-top:1px solid var(--gray-100)}
-.section-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:7px}
-.location-row{background:var(--gray-50);padding:10px;margin-bottom:6px;border:1px solid var(--gray-100);position:relative;padding-right:30px}
-.btn-remove-loc{position:absolute;top:8px;right:8px;font-size:13px;color:var(--gray-400);background:none;border:none;cursor:pointer;line-height:1}
+.locations-section{margin-top:10px;padding-top:10px;border-top:1px solid var(--gray-100)}
+.section-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:6px}
+.location-row{background:var(--gray-50);padding:8px;margin-bottom:5px;border:1px solid var(--gray-100);position:relative;padding-right:28px}
+.btn-remove-loc{position:absolute;top:7px;right:7px;font-size:13px;color:var(--gray-400);background:none;border:none;cursor:pointer;line-height:1}
 .btn-remove-loc:hover{color:var(--red)}
-.btn-add-loc{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;background:none;border:1.5px solid var(--gray-200);color:var(--gray-600);cursor:pointer;margin-top:4px}
+.btn-add-loc{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;background:none;border:1.5px solid var(--gray-200);color:var(--gray-600);cursor:pointer;margin-top:4px}
 .btn-add-loc:hover{border-color:var(--black);color:var(--black)}
 .empty-state{padding:28px;text-align:center;font-size:13px;color:var(--gray-400);font-style:italic}
-.btn-secondary{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;background:var(--gray-100);color:var(--gray-800);border:1px solid var(--gray-200);cursor:pointer}
+.btn-secondary{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;background:var(--gray-100);color:var(--gray-800);border:1px solid var(--gray-200);cursor:pointer}
 .btn-secondary:hover{background:var(--gray-200)}
 
-/* RIGHT COLUMN — OUTPUT */
-.right-col{overflow-y:auto;padding:20px 20px 40px}
-.output-panel-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.output-panel-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
-.output-legend{display:flex;gap:12px;font-size:11px;flex-wrap:wrap}
-.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:4px}
-.output-empty{padding:40px 20px;text-align:center;font-size:13px;color:var(--gray-400);font-style:italic}
+/* RIGHT */
+.right-col{overflow-y:auto;padding:16px 20px 40px;display:flex;flex-direction:column;gap:0}
+.output-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;flex-shrink:0}
+.output-panel-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.filter-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.filter-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400)}
+.filter-select{padding:5px 10px;border:1.5px solid var(--gray-200);font-family:'Barlow',sans-serif;font-size:12px;color:var(--black);background:var(--white);cursor:pointer}
+.output-empty{padding:40px;text-align:center;font-size:13px;color:var(--gray-400);font-style:italic}
 
-/* POOL CARDS */
-.pool-summary-wrap{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.pool-summary-wrap{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
 .pool-card{border:1px solid var(--gray-200);background:var(--white)}
-.pool-card-hdr{background:var(--black);padding:7px 12px}
-.pool-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--white);text-transform:uppercase}
-.pool-card-body{padding:8px 12px;display:flex;gap:16px}
+.pool-card-hdr{background:var(--black);padding:6px 12px}
+.pool-card-name{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--white);text-transform:uppercase}
+.pool-card-body{padding:7px 12px;display:flex;gap:14px}
 .pool-stat{display:flex;flex-direction:column;gap:1px}
-.pool-stat-num{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--black);line-height:1}
+.pool-stat-num{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--black);line-height:1}
 .pool-stat-lbl{font-size:9px;color:var(--gray-400);font-weight:300}
-.pool-items{padding:0 12px 8px;display:flex;flex-wrap:wrap;gap:4px}
-.pool-item-tag{font-size:10px;padding:2px 7px;background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200)}
+.pool-items{padding:0 12px 7px;display:flex;flex-wrap:wrap;gap:3px}
+.pool-item-tag{font-size:10px;padding:2px 6px;background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200)}
 
-/* PRICE TABLES */
-.output-block{margin-bottom:14px;border:1px solid var(--gray-200);background:var(--white)}
-.output-block-hdr{background:var(--black);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px}
+.output-block{margin-bottom:12px;border:1px solid var(--gray-200);background:var(--white)}
+.output-block-hdr{background:var(--black);padding:7px 12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px}
 .output-block-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--white);text-transform:uppercase}
 .output-block-meta{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.imprint-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;background:var(--purple-light);color:var(--purple)}
+.imprint-tag{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;background:var(--purple-light);color:var(--purple)}
 .loc-summary{font-size:9px;color:var(--gray-400)}
 
-/* SCROLLABLE TABLE WRAPPER */
 .table-scroll{overflow-x:auto;width:100%}
-.price-table{width:100%;border-collapse:collapse;font-size:11px;min-width:420px}
+.price-table{width:100%;border-collapse:collapse;font-size:11px;min-width:380px}
 .price-table thead{background:var(--gray-50)}
 .price-table th{padding:6px 8px;text-align:right;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-400);border-bottom:1px solid var(--gray-200);white-space:nowrap}
 .price-table th:first-child{text-align:left}
 .price-table td{padding:6px 8px;text-align:right;border-bottom:1px solid var(--gray-100);color:var(--gray-600);white-space:nowrap}
-.price-table td:first-child{text-align:left;font-weight:500;color:var(--black)}
+.price-table td:first-child{text-align:left;color:var(--black)}
 .price-table tr:last-child td{border-bottom:none}
 .price-table tr:hover td{background:rgba(0,0,0,.02)}
 .highlight-row td{background:var(--green-light)!important;color:var(--black)!important;font-weight:600}
@@ -147,17 +147,12 @@ select.field-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http:/
 .profit-price{color:var(--purple)!important;font-weight:600}
 .tier-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600}
 .actual-badge{font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 4px;background:var(--green);color:var(--white);border-radius:2px;margin-left:4px}
-.pool-size-note{font-size:9px;color:var(--green);font-weight:400}
-.pool-note-row{font-size:11px;color:var(--gray-600);padding:7px 12px;background:var(--gray-50);border-top:1px solid var(--gray-100);font-weight:300}
-.disclaimer-box{margin-top:10px;padding:9px 12px;background:var(--gold-light);border:1px solid var(--gold);font-size:10px;color:var(--gold);font-weight:600}
-
-/* ITEMS PANEL HEADER */
-.items-panel-hdr{padding:12px 16px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;background:var(--white);flex-shrink:0}
-.items-panel-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.pool-size-note{font-size:9px;color:var(--green)}
+.pool-note-row{font-size:10px;color:var(--gray-600);padding:6px 10px;background:var(--gray-50);border-top:1px solid var(--gray-100)}
+.disclaimer-box{margin-top:8px;padding:8px 12px;background:var(--gold-light);border:1px solid var(--gold);font-size:10px;color:var(--gold);font-weight:600}
 </style>
 </head>
 <body>
-
 <header class="header">
   <div class="logo"><div class="logo-mark">EA</div>Elite Apparel</div>
   <div style="display:flex;align-items:center;gap:12px">
@@ -165,16 +160,12 @@ select.field-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http:/
     <div style="font-size:11px;color:var(--gray-400)">Price sheet: <span id="sheet-status">Loading...</span></div>
   </div>
 </header>
-
 <div class="bulk-bar">
   <div class="bulk-label">Add Styles</div>
-  <input class="bulk-input" id="bulk-input" type="text" placeholder="NL6210, ST350, NKDR1499 — separate by comma, press Enter">
+  <input class="bulk-input" id="bulk-input" type="text" placeholder="NL6210, ST350, NKDR1499 — comma separated, press Enter">
   <button class="btn-bulk-add" id="bulk-add-btn">Add Garments</button>
 </div>
-
 <div class="app-body">
-
-  <!-- LEFT: ITEMS -->
   <div class="left-col">
     <div id="bulk-editor"></div>
     <div class="items-panel-hdr">
@@ -183,47 +174,58 @@ select.field-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http:/
     </div>
     <div class="items-scroll" id="items-container"></div>
   </div>
-
-  <!-- RIGHT: OUTPUT -->
   <div class="right-col">
-    <div class="output-panel-hdr">
+    <div class="output-top">
       <div class="output-panel-title">Pricing Output</div>
-      <div class="output-legend">
-        <span><span class="legend-dot" style="background:#2563EB"></span>Raw</span>
-        <span><span class="legend-dot" style="background:#059669"></span>Recommended</span>
-        <span><span class="legend-dot" style="background:#7C3AED"></span>Profit</span>
-        <span style="background:var(--green-light);padding:2px 7px;color:var(--green);font-weight:700;font-size:10px">= active tier</span>
+      <div class="filter-bar">
+        <div class="filter-label">Tier</div>
+        <select class="filter-select" id="filter-tier">
+          <option value="all">All tiers</option>
+          <optgroup label="Screen Print">
+            <option>1-3</option><option>4-11</option><option>12-23</option><option>24-47</option>
+            <option>48-95</option><option>96-143</option><option>144-299</option><option>300-499</option>
+            <option>500-749</option><option>750-999</option><option>1000-2499</option><option>2500+</option>
+          </optgroup>
+          <optgroup label="Embroidery">
+            <option>1-3</option><option>4-11</option><option>12-35</option>
+            <option>36-71</option><option>72-143</option><option>144-575</option>
+          </optgroup>
+        </select>
+        <div class="filter-label">Price</div>
+        <select class="filter-select" id="filter-price">
+          <option value="both">Raw + Recommended</option>
+          <option value="raw">Raw only</option>
+          <option value="recommended">Recommended only</option>
+        </select>
       </div>
     </div>
     <div id="output-container"><div class="output-empty">Add garments to see pricing.</div></div>
   </div>
-
 </div>
-
 <script>
-// ── PRICING TABLES ─────────────────────────────────────────────────────────
+// ── PRICING TABLES — Contract Customizing 2026 ─────────────────────────────
 var SP_TIERS=[
-  {min:1,max:3,p:[2.35,2.55,2.89,3.14,3.43,4.09,4.61,5.38],label:'1-3'},
-  {min:4,max:11,p:[2.18,2.26,2.44,2.61,2.78,2.96,3.13,3.30],label:'4-11'},
-  {min:12,max:23,p:[2.01,2.08,2.18,2.26,2.35,2.53,2.70,2.88],label:'12-23'},
-  {min:24,max:47,p:[1.91,1.97,2.03,2.07,2.13,2.18,2.25,2.32],label:'24-47'},
-  {min:48,max:96,p:[1.35,1.44,1.53,1.62,1.67,1.71,1.74,1.78],label:'48-96'},
-  {min:97,max:143,p:[1.64,2.36,3.26,4.08,4.96,5.77,6.57,7.38],label:'97-143'},
-  {min:144,max:299,p:[1.23,1.78,2.38,2.89,3.49,3.95,4.55,5.14],label:'144-299'},
-  {min:300,max:499,p:[1.04,1.37,1.65,1.95,2.25,2.64,3.03,3.41],label:'300-499'},
-  {min:500,max:749,p:[0.83,0.97,1.13,1.31,1.49,1.63,1.81,1.99],label:'500-749'},
-  {min:750,max:999,p:[0.75,0.88,0.99,1.08,1.19,1.32,1.45,1.58],label:'750-999'},
-  {min:1000,max:2499,p:[0.65,0.75,0.82,0.92,1.01,1.12,1.23,1.33],label:'1000-2499'},
-  {min:2500,max:99999,p:[0.60,0.70,0.78,0.85,0.95,1.04,1.13,1.22],label:'2500+'}
+  {min:1,  max:3,    p:[18.89,33.17,49.76,66.33,82.92,99.50,116.08,132.65], label:'1-3'},
+  {min:4,  max:11,   p:[9.32, 15.36,20.31,25.27,30.21,35.17,40.12, 45.08],  label:'4-11'},
+  {min:12, max:23,   p:[4.62, 7.47, 10.30,13.15,15.98,18.81,21.64, 24.48],  label:'12-23'},
+  {min:24, max:47,   p:[2.96, 4.37, 5.83, 7.34, 8.95, 10.45,12.03, 13.61],  label:'24-47'},
+  {min:48, max:95,   p:[1.95, 2.99, 4.10, 5.02, 6.07, 7.11, 8.14,  9.18],   label:'48-95'},
+  {min:96, max:143,  p:[1.64, 2.36, 3.26, 4.08, 4.96, 5.77, 6.57,  7.38],   label:'96-143'},
+  {min:144,max:299,  p:[1.23, 1.78, 2.38, 2.89, 3.49, 3.95, 4.55,  5.14],   label:'144-299'},
+  {min:300,max:499,  p:[1.04, 1.37, 1.65, 1.95, 2.25, 2.64, 3.03,  3.41],   label:'300-499'},
+  {min:500,max:749,  p:[0.83, 0.97, 1.13, 1.31, 1.49, 1.63, 1.81,  1.99],   label:'500-749'},
+  {min:750,max:999,  p:[0.75, 0.88, 0.99, 1.08, 1.19, 1.32, 1.45,  1.58],   label:'750-999'},
+  {min:1000,max:2499,p:[0.65, 0.75, 0.82, 0.92, 1.01, 1.12, 1.23,  1.33],   label:'1000-2499'},
+  {min:2500,max:99999,p:[0.60,0.70, 0.78, 0.85, 0.95, 1.04, 1.13,  1.22],   label:'2500+'}
 ];
 
 var EMB_TIERS=[
-  {min:1,max:3,qi:0,label:'1-3'},
-  {min:4,max:11,qi:1,label:'4-11'},
-  {min:12,max:35,qi:2,label:'12-35'},
-  {min:36,max:71,qi:3,label:'36-71'},
-  {min:72,max:143,qi:4,label:'72-143'},
-  {min:144,max:99999,qi:5,label:'144+'}
+  {min:1,  max:3,     qi:0, label:'1-3'},
+  {min:4,  max:11,    qi:1, label:'4-11'},
+  {min:12, max:35,    qi:2, label:'12-35'},
+  {min:36, max:71,    qi:3, label:'36-71'},
+  {min:72, max:143,   qi:4, label:'72-143'},
+  {min:144,max:99999, qi:5, label:'144-575'}
 ];
 
 var ES=[4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,
@@ -244,10 +246,7 @@ var EP=[
 
 function getmd(qty,deco){
   if(deco==='embroidery'){
-    if(qty<=3)return 0.55;
-    if(qty<=11)return 0.55;
     if(qty<=35)return 0.55;
-    if(qty<=71)return 0.60;
     if(qty<=143)return 0.60;
     return 0.65;
   }
@@ -270,23 +269,26 @@ function embDeco(qty,stitches){
   return EP[si][tier.qi];
 }
 
-function getSpTierLabel(qty){
-  var t=SP_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||SP_TIERS[SP_TIERS.length-1];
-  return t.label;
-}
-
-function getEmbTierLabel(qty){
-  var t=EMB_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||EMB_TIERS[EMB_TIERS.length-1];
-  return t.label;
+function getActiveTierForQty(qty,deco){
+  var tiers=deco==='screenprint'?SP_TIERS:EMB_TIERS;
+  return tiers.find(function(t){return qty>=t.min&&qty<=t.max;})||tiers[tiers.length-1];
 }
 
 // ── STATE ──────────────────────────────────────────────────────────────────
-var state={items:[],nextImprintId:1,sanmarData:null,sanmarLoading:false,sanmarError:null};
+var state={
+  items:[],
+  nextImprintId:1,
+  sanmarData:null,
+  sanmarLoading:false,
+  sanmarError:null,
+  filterTier:'all',
+  filterPrice:'both'
+};
 var SHEET_CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vStUhyLcLdjQ4rtxpRSCfkL7DYQRb32YsXBhhmTC4dahKusFL6xdYpMpBIsAWTfJQ/pub?gid=148251894&single=true&output=csv';
 
 // ── SANMAR ─────────────────────────────────────────────────────────────────
 function loadSanmarData(){
-  if(!SHEET_CSV_URL||SHEET_CSV_URL==='GOOGLE_SHEET_URL_PLACEHOLDER'){updateLoadingState();return;}
+  if(!SHEET_CSV_URL||SHEET_CSV_URL==='PLACEHOLDER'){updateLoadingState();return;}
   state.sanmarLoading=true;updateLoadingState();
   fetch(SHEET_CSV_URL)
     .then(function(r){return r.text();})
@@ -296,12 +298,12 @@ function loadSanmarData(){
 
 function parseCSV(csv){
   function splitLine(line){
-    var result=[];var cur='';var inQ=false;
+    var result=[],cur='',inQ=false;
     for(var i=0;i<line.length;i++){
       var c=line[i];
       if(c==='"'){inQ=!inQ;}
       else if(c===','&&!inQ){result.push(cur.trim().replace(/^"|"$/g,''));cur='';}
-      else{cur+=c;}
+      else cur+=c;
     }
     result.push(cur.trim().replace(/^"|"$/g,''));
     return result;
@@ -312,8 +314,7 @@ function parseCSV(csv){
   for(var i=1;i<lines.length;i++){
     if(!lines[i].trim())continue;
     var vals=splitLine(lines[i]);
-    var row={};headers.forEach(function(h,j){row[h]=vals[j]||'';});
-    rows.push(row);
+    var row={};headers.forEach(function(h,j){row[h]=vals[j]||'';});rows.push(row);
   }
   return rows;
 }
@@ -325,29 +326,26 @@ function lookupStyle(styleNum){
   });
   if(!matches.length)return null;
   var base=matches.find(function(r){return r['SIZE']&&r['SIZE'].indexOf('(X)S')>-1;})||matches[0];
-  var rawPrice=(base['PIECE PRICE']||'').replace(/[^0-9.]/g,'');
-  var price=parseFloat(rawPrice);
+  var price=parseFloat((base['PIECE PRICE']||'').replace(/[^0-9.]/g,''));
   if(isNaN(price)||price===0)return null;
-  return{styleNum:base['STYLE NUMBER'],name:base['STYLE DESCRIPTION']||base['STYLE DESCRIPTION'],brand:base['BRAND'],wholesale:price};
+  return{styleNum:base['STYLE NUMBER'],name:base['STYLE DESCRIPTION'],brand:base['BRAND'],wholesale:price};
 }
 
 function updateLoadingState(){
   var el=document.getElementById('sheet-status');if(!el)return;
   if(state.sanmarLoading)el.innerHTML='<span style="color:#D97706">Loading...</span>';
   else if(state.sanmarError)el.innerHTML='<span style="color:#DC2626">'+state.sanmarError+'</span>';
-  else if(state.sanmarData)el.innerHTML='<span style="color:#059669">Price sheet loaded — '+state.sanmarData.length+' styles</span>';
+  else if(state.sanmarData)el.innerHTML='<span style="color:#059669">Price sheet loaded \u2014 '+state.sanmarData.length+' styles</span>';
   else el.innerHTML='<span style="color:#9A9A9A">Not connected</span>';
 }
 
-// ── IMPRINT POOLS ───────────────────────────────────────────────────────────
-function getImprintKey(item){
-  return item.imprintId+'|'+item.deco;
-}
-
+// ── POOLS ───────────────────────────────────────────────────────────────────
+function getImprintKey(item){return item.imprintId+'|'+(item.deco||'none');}
 function getImprintLabel(imprintId,deco){
-  if(!deco)return'Imprint #'+imprintId;
-  var decoLabel=deco==='screenprint'?'Screen Print':'Embroidery';
-  return'Imprint '+imprintId+' \u2014 '+decoLabel;
+  var base=document.getElementById&&document.getElementById('imprint-name-'+imprintId);
+  var name=base?base.value:'Imprint '+imprintId;
+  if(!deco)return name;
+  return name+' \u2014 '+(deco==='screenprint'?'Screen Print':'Embroidery');
 }
 
 function getImprintPools(){
@@ -355,7 +353,7 @@ function getImprintPools(){
   state.items.forEach(function(item){
     if(!item.deco||!item.imprintId)return;
     var key=getImprintKey(item);
-    if(!pools[key])pools[key]={key:key,id:item.imprintId,deco:item.deco,label:getImprintLabel(item.imprintId,item.deco),items:[],totalQty:0};
+    if(!pools[key])pools[key]={key:key,id:item.imprintId,deco:item.deco,items:[],totalQty:0};
     pools[key].items.push(item);
     pools[key].totalQty+=item.qty;
   });
@@ -364,47 +362,33 @@ function getImprintPools(){
 
 function getPoolForItem(item){
   if(!item.imprintId||!item.deco)return null;
-  var pools=getImprintPools();
-  return pools[getImprintKey(item)]||null;
-}
-
-function getActiveTier(pool){
-  if(!pool)return null;
-  var qty=pool.totalQty;
-  if(pool.deco==='screenprint'){
-    return SP_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||SP_TIERS[SP_TIERS.length-1];
-  } else {
-    return EMB_TIERS.find(function(t){return qty>=t.min&&qty<=t.max;})||EMB_TIERS[EMB_TIERS.length-1];
-  }
+  return getImprintPools()[getImprintKey(item)]||null;
 }
 
 // ── CALC ────────────────────────────────────────────────────────────────────
-function calcRow(item, tier, poolQty){
+function calcRow(item,poolQty){
   var qty=poolQty||item.qty;
   var m=getmd(qty,item.deco);
   var garment=item.wholesale;
   var deco=0;
   item.locations.forEach(function(loc){
-    if(item.deco==='screenprint') deco+=spDeco(qty,loc.spColors);
+    if(item.deco==='screenprint')deco+=spDeco(qty,loc.spColors);
     else deco+=embDeco(item.qty,loc.embStitches);
   });
-  var screenChargesTotal=0;
-  var screenPerUnit=0;
+  var screenCharges=0,screenPerUnit=0;
   if(item.deco==='screenprint'&&qty<144){
-    item.locations.forEach(function(loc){screenChargesTotal+=loc.spColors*20;});
-    screenPerUnit=screenChargesTotal/qty;
+    item.locations.forEach(function(loc){screenCharges+=loc.spColors*20;});
+    screenPerUnit=screenCharges/qty;
   }
   var totalCost=garment+deco+screenPerUnit;
   var rawPrice=totalCost/m;
   var recommended=Math.ceil(rawPrice);
-  var profit=recommended-rawPrice;
-  return{garment:garment,deco:deco,screenCharges:screenChargesTotal,screenPerUnit:screenPerUnit,totalCost:totalCost,rawPrice:rawPrice,recommended:recommended,profit:profit};
+  return{garment:garment,deco:deco,screenCharges:screenCharges,screenPerUnit:screenPerUnit,totalCost:totalCost,rawPrice:rawPrice,recommended:recommended,profit:recommended-rawPrice};
 }
 
-// ── RENDERING ───────────────────────────────────────────────────────────────
+// ── HELPERS ─────────────────────────────────────────────────────────────────
 function fmt(n){return'$'+(+n).toFixed(2);}
-
-function getItem(id){return state.items.find(function(i){return i.id===id;});}
+function getItem(id){return state.items.find(function(i){return i.id===id;}); }
 
 function getAllImprintIds(){
   var ids=[];
@@ -414,15 +398,11 @@ function getAllImprintIds(){
   return ids;
 }
 
-function imprintOptions(selectedId,deco){
-  var ids=getAllImprintIds();
-  return ids.map(function(id){
-    var label=getImprintLabel(id,deco);
-    return'<option value="'+id+'"'+(selectedId===id?' selected':'')+'>'+label+'</option>';
+function imprintOptions(selectedId){
+  return getAllImprintIds().map(function(id){
+    return'<option value="'+id+'"'+(selectedId===id?' selected':'')+'>Imprint '+id+'</option>';
   }).join('');
 }
-
-function renderAll(){renderBulkEditor();renderItems();renderOutput();}
 
 // ── BULK EDITOR ─────────────────────────────────────────────────────────────
 function renderBulkEditor(){
@@ -430,39 +410,65 @@ function renderBulkEditor(){
   if(state.items.length===0){container.innerHTML='';return;}
 
   var pools=getImprintPools();
-  var allIds=getAllImprintIds().filter(function(id){return id<=state.nextImprintId;});
-
   var html='<div class="bulk-editor-wrap">';
-  html+='<div class="bulk-editor-title">Bulk Editor <span class="bulk-editor-sub">— Select items and assign imprint + decoration in one click</span></div>';
+  html+='<div class="bulk-editor-title">Bulk Editor <span class="bulk-editor-sub">Group items into imprints and configure decoration in bulk</span></div>';
 
-  // Unassigned items
+  // Unassigned
   var unassigned=state.items.filter(function(i){return!i.deco;});
   if(unassigned.length>0){
     html+='<div class="bulk-group">';
-    html+='<div class="bulk-group-hdr"><span class="bulk-group-label unassigned-label">Unassigned</span>';
+    html+='<div class="bulk-group-hdr"><span class="bulk-group-label unassigned-label">Unassigned ('+unassigned.length+')</span>';
     html+='<div class="bulk-group-actions">';
-    html+='<select class="bulk-select" id="bulk-unassigned-imprint">'+getAllImprintIds().map(function(id){return'<option value="'+id+'">Imprint '+id+'</option>';}).join('')+'</select>';
-    html+='<select class="bulk-select" id="bulk-unassigned-deco"><option value="screenprint">Screen Print</option><option value="embroidery">Embroidery</option></select>';
-    html+='<button class="btn-bulk-apply" onclick="bulkApplyUnassigned()">Apply to Selected</button>';
+    html+='<select class="bulk-select" id="bulk-ua-imprint">'+getAllImprintIds().map(function(id){return'<option value="'+id+'">Imprint '+id+'</option>';}).join('')+'</select>';
+    html+='<select class="bulk-select" id="bulk-ua-deco"><option value="screenprint">Screen Print</option><option value="embroidery">Embroidery</option></select>';
+    html+='<button class="btn-bulk-apply" onclick="bulkApplyUnassigned()">Apply to Checked</button>';
     html+='</div></div>';
     html+='<div class="bulk-items">';
     unassigned.forEach(function(item){
-      html+='<label class="bulk-item-row"><input type="checkbox" class="bulk-cb" data-id="'+item.id+'"> <span class="bulk-item-name">'+(item.name||item.styleNum||'Item')+'</span></label>';
+      html+='<label class="bulk-item-check"><input type="checkbox" class="bulk-cb" data-id="'+item.id+'"> <span class="bulk-item-name">'+(item.name?item.name+' ('+item.styleNum+')':item.styleNum||'Item')+'</span></label>';
     });
     html+='</div></div>';
   }
 
-  // Per pool
+  // Per pool — bulk edit decoration config
   Object.keys(pools).forEach(function(key){
     var pool=pools[key];
+    var activeTier=getActiveTierForQty(pool.totalQty,pool.deco);
+    var isSp=pool.deco==='screenprint';
+    var isEmb=pool.deco==='embroidery';
+    var poolLabel=(pool.deco==='screenprint'?'Screen Print':'Embroidery');
     html+='<div class="bulk-group">';
     html+='<div class="bulk-group-hdr">';
-    html+='<span class="bulk-group-label '+(pool.deco==='screenprint'?'sp-label':'emb-label')+'">'+pool.label+'</span>';
-    html+='<span class="bulk-pool-qty">'+pool.totalQty+' pcs total</span>';
-    html+='</div>';
+    html+='<div style="display:flex;align-items:center;gap:8px">';
+    html+='<input class="bulk-imprint-name" id="imprint-name-'+pool.id+'" type="text" value="Imprint '+pool.id+'" onchange="renderOutput()" placeholder="Imprint '+pool.id+'">';
+    html+='<span class="bulk-deco-badge '+(isSp?'sp-badge':'emb-badge')+'">'+poolLabel+'</span>';
+    html+='<span class="bulk-pool-qty">'+pool.totalQty+' pcs &rarr; '+activeTier.label+' tier</span>';
+    html+='</div></div>';
+
+    // Bulk location editor for this pool
+    html+='<div class="bulk-loc-editor">';
+    html+='<div class="bulk-loc-title">Apply to all items in this pool:</div>';
+    html+='<div class="bulk-loc-row">';
+    html+='<select class="bulk-select" id="bloc-name-'+key+'"><option value="">-- location --</option>';
+    ['Left Chest','Right Chest','Full Front','Full Back','Upper Back','Nape of Neck','Left Sleeve','Right Sleeve'].forEach(function(l){html+='<option>'+l+'</option>';});
+    html+='</select>';
+    if(isSp){
+      html+='<input class="bulk-select" type="number" min="1" max="8" value="1" id="bloc-colors-'+key+'" placeholder="colors" style="width:70px">';
+    }
+    if(isEmb){
+      html+='<select class="bulk-select" id="bloc-stitches-'+key+'">';
+      ES.forEach(function(s){html+='<option value="'+s+'">'+s.toLocaleString()+'</option>';});
+      html+='</select>';
+    }
+    html+='<button class="btn-bulk-apply" onclick="bulkAddLocation(\''+key+'\',\''+pool.deco+'\')">Add Location to All</button>';
+    html+='<button class="btn-bulk-clear" onclick="bulkClearLocations(\''+key+'\')">Clear All Locations</button>';
+    html+='</div></div>';
+
+    // Items in pool
     html+='<div class="bulk-items">';
     pool.items.forEach(function(item){
-      html+='<div class="bulk-item-row static"><span class="bulk-item-name">'+(item.name||item.styleNum||'Item')+'</span><span class="bulk-item-qty">'+item.qty+' pcs</span></div>';
+      var locSummary=item.locations.map(function(l){return isSp?l.name+' ('+l.spColors+'c)':l.name+' ('+(l.embStitches/1000).toFixed(0)+'k)';}).join(', ')||'<span style="color:var(--gray-400);font-style:italic">no locations</span>';
+      html+='<div class="bulk-item-row static"><span class="bulk-item-name">'+(item.name?item.name+' \u2014 '+item.styleNum:item.styleNum||'Item')+'</span><span class="bulk-item-locs">'+locSummary+'</span><span class="bulk-item-qty">'+item.qty+' pcs</span></div>';
     });
     html+='</div></div>';
   });
@@ -472,10 +478,9 @@ function renderBulkEditor(){
 }
 
 function bulkApplyUnassigned(){
-  var imprintId=parseInt(document.getElementById('bulk-unassigned-imprint').value);
-  var deco=document.getElementById('bulk-unassigned-deco').value;
-  var cbs=document.querySelectorAll('.bulk-cb:checked');
-  cbs.forEach(function(cb){
+  var imprintId=parseInt(document.getElementById('bulk-ua-imprint').value);
+  var deco=document.getElementById('bulk-ua-deco').value;
+  document.querySelectorAll('.bulk-cb:checked').forEach(function(cb){
     var item=getItem(parseFloat(cb.dataset.id));
     if(!item)return;
     item.imprintId=imprintId;
@@ -487,8 +492,31 @@ function bulkApplyUnassigned(){
       item.locations.push(loc);
     }
   });
-  // Ensure nextImprintId stays ahead
   if(imprintId>=state.nextImprintId)state.nextImprintId=imprintId+1;
+  renderAll();
+}
+
+function bulkAddLocation(key,deco){
+  var pools=getImprintPools();
+  var pool=pools[key];if(!pool)return;
+  var locName=document.getElementById('bloc-name-'+key).value;
+  if(!locName)return;
+  pool.items.forEach(function(item){
+    var loc={name:locName};
+    if(deco==='screenprint')loc.spColors=parseInt(document.getElementById('bloc-colors-'+key).value)||1;
+    else loc.embStitches=parseInt(document.getElementById('bloc-stitches-'+key).value)||8000;
+    // Replace existing location with same name or add
+    var existing=item.locations.findIndex(function(l){return l.name===locName;});
+    if(existing>-1)item.locations[existing]=loc;
+    else item.locations.push(loc);
+  });
+  renderAll();
+}
+
+function bulkClearLocations(key){
+  var pools=getImprintPools();
+  var pool=pools[key];if(!pool)return;
+  pool.items.forEach(function(item){item.locations=[];});
   renderAll();
 }
 
@@ -509,14 +537,15 @@ function buildCard(item){
   card.id='card-'+item.id;
   var isSp=item.deco==='screenprint';
   var isEmb=item.deco==='embroidery';
+  var titleParts=[];
+  if(item.name)titleParts.push(item.name);
+  if(item.styleNum)titleParts.push(item.styleNum);
+  var cardTitle=titleParts.length?titleParts.join(' \u2014 '):'New Garment';
 
-  var html='<div class="item-card-hdr"><div class="item-card-title">';
-  if(item.name)html+='<span class="item-name">'+item.name+'</span><span class="item-sku">'+item.styleNum+'</span>';
-  else html+='<span class="item-name-empty">'+(item.styleNum?item.styleNum:'New Garment')+'</span>';
-  html+='</div><button class="btn-remove" onclick="removeItem('+item.id+')">&#215; Remove</button></div>';
+  var html='<div class="item-card-hdr"><div class="item-card-title"><span class="item-title-text">'+cardTitle+'</span></div><button class="btn-remove" onclick="removeItem('+item.id+')">&#215; Remove</button></div>';
   html+='<div class="item-card-body">';
 
-  // Row 1: style, name, wholesale
+  // Row 1
   html+='<div class="field-row cols-3">';
   html+='<div class="field-group"><label class="field-label">Style Number</label><div class="style-lookup-wrap"><input class="field-input" type="text" placeholder="e.g. NL6210" value="'+item.styleNum+'" onchange="onStyleChange('+item.id+',this.value)"><button class="btn-lookup" onclick="lookupForItem('+item.id+')">Look Up</button></div>';
   if(item.lookupMsg)html+='<div class="lookup-msg '+(item.lookupOk?'ok':'err')+'">'+item.lookupMsg+'</div>';
@@ -525,11 +554,11 @@ function buildCard(item){
   html+='<div class="field-group"><label class="field-label">Wholesale (XS-XL)</label><div class="price-input-wrap"><span class="price-prefix">$</span><input class="field-input price-input" type="number" step="0.01" min="0" placeholder="0.00" value="'+(item.wholesale||'')+'" onchange="onWholesaleChange('+item.id+',this.value)"></div><div class="field-hint disclaimer-inline">+$2/unit for 2XL</div></div>';
   html+='</div>';
 
-  // Row 2: qty, deco, imprint
-  html+='<div class="field-row cols-3" style="margin-top:12px">';
+  // Row 2
+  html+='<div class="field-row cols-3" style="margin-top:10px">';
   html+='<div class="field-group"><label class="field-label">Quantity</label><input class="field-input" type="number" min="1" value="'+item.qty+'" onchange="onQtyChange('+item.id+',this.value)"></div>';
   html+='<div class="field-group"><label class="field-label">Decoration</label><div class="deco-pill-group"><div class="deco-pill'+(isSp?' selected':'')+'" onclick="setDeco('+item.id+',\'screenprint\',this)">Screen Print</div><div class="deco-pill'+(isEmb?' selected':'')+'" onclick="setDeco('+item.id+',\'embroidery\',this)">Embroidery</div></div></div>';
-  html+='<div class="field-group"><label class="field-label">Imprint</label><div style="display:flex;gap:6px"><select class="field-input" onchange="setImprint('+item.id+',this.value)">'+imprintOptions(item.imprintId,item.deco)+'</select><button class="btn-new-imprint" onclick="newImprint('+item.id+')" title="New imprint">+</button></div></div>';
+  html+='<div class="field-group"><label class="field-label">Imprint Pool</label><div style="display:flex;gap:5px"><select class="field-input" onchange="setImprint('+item.id+',this.value)">'+imprintOptions(item.imprintId)+'</select><button class="btn-new-imprint" onclick="newImprint('+item.id+')" title="New imprint">+</button></div></div>';
   html+='</div>';
 
   // Locations
@@ -538,13 +567,11 @@ function buildCard(item){
     item.locations.forEach(function(loc,li){
       html+='<div class="location-row"><div class="field-row '+(isSp?'cols-3':'cols-2')+'">';
       html+='<div class="field-group"><label class="field-label">Location</label><select class="field-input" onchange="setLocName('+item.id+','+li+',this.value)">';
-      ['Left Chest','Right Chest','Full Front','Full Back','Upper Back','Nape of Neck','Left Sleeve','Right Sleeve'].forEach(function(l){
-        html+='<option'+(loc.name===l?' selected':'')+'>'+l+'</option>';
-      });
+      ['Left Chest','Right Chest','Full Front','Full Back','Upper Back','Nape of Neck','Left Sleeve','Right Sleeve'].forEach(function(l){html+='<option'+(loc.name===l?' selected':'')+'>'+l+'</option>';});
       html+='</select></div>';
       if(isSp){
         html+='<div class="field-group"><label class="field-label">Colors</label><input class="field-input" type="number" min="1" max="8" value="'+(loc.spColors||1)+'" onchange="setLocColors('+item.id+','+li+',this.value)"></div>';
-        html+='<div class="field-group"><label class="field-label">Screen Charge</label><div class="calc-display">$'+((loc.spColors||1)*20)+' <span class="calc-note">('+( loc.spColors||1)+' \xd7 $20)</span></div></div>';
+        html+='<div class="field-group"><label class="field-label">Screen Charge</label><div class="calc-display">$'+((loc.spColors||1)*20)+' <span class="calc-note">('+( loc.spColors||1)+'\xd7$20)</span></div></div>';
       }
       if(isEmb){
         html+='<div class="field-group"><label class="field-label">Stitch Count</label><select class="field-input" onchange="setLocStitches('+item.id+','+li+',this.value)">';
@@ -569,15 +596,16 @@ function addItem(styleNum,name,wholesale){
 }
 
 function removeItem(id){state.items=state.items.filter(function(i){return i.id!==id;});renderAll();}
-function onStyleChange(id,val){var item=getItem(id);if(item)item.styleNum=val.trim().toUpperCase();}
-function onNameChange(id,val){var item=getItem(id);if(item)item.name=val;}
+function onStyleChange(id,val){var item=getItem(id);if(item){item.styleNum=val.trim().toUpperCase();}}
+function onNameChange(id,val){var item=getItem(id);if(item){item.name=val;renderBulkEditor();}}
 function onWholesaleChange(id,val){var item=getItem(id);if(item){item.wholesale=parseFloat(val)||0;renderOutput();}}
-function onQtyChange(id,val){var item=getItem(id);if(item){item.qty=Math.max(1,parseInt(val)||1);renderOutput();}}
+function onQtyChange(id,val){var item=getItem(id);if(item){item.qty=Math.max(1,parseInt(val)||1);renderOutput();renderBulkEditor();}}
 
-function setDeco(id,deco,el){
+function setDeco(id,deco){
   var item=getItem(id);if(!item)return;
-  item.deco=deco;
-  if(item.locations.length===0)addLoc(id,true);
+  item.deco=deco;item.locations=[];
+  if(deco==='screenprint')item.locations.push({name:'Left Chest',spColors:1});
+  else item.locations.push({name:'Left Chest',embStitches:8000});
   renderAll();
 }
 
@@ -585,12 +613,11 @@ function setImprint(id,val){
   var item=getItem(id);if(!item)return;
   item.imprintId=parseInt(val);
   if(item.imprintId>=state.nextImprintId)state.nextImprintId=item.imprintId+1;
-  renderOutput();
+  renderAll();
 }
 
 function newImprint(id){
-  var maxId=0;
-  state.items.forEach(function(i){if(i.imprintId>maxId)maxId=i.imprintId;});
+  var maxId=0;state.items.forEach(function(i){if(i.imprintId>maxId)maxId=i.imprintId;});
   state.nextImprintId=maxId+1;
   var item=getItem(id);if(item)item.imprintId=state.nextImprintId;
   renderAll();
@@ -602,7 +629,7 @@ function addLoc(id,silent){
   if(item.deco==='screenprint')loc.spColors=1;
   if(item.deco==='embroidery')loc.embStitches=8000;
   item.locations.push(loc);
-  if(!silent){renderAll();}
+  if(!silent)renderAll();
 }
 
 function removeLoc(id,li){var item=getItem(id);if(!item)return;item.locations.splice(li,1);renderAll();}
@@ -615,22 +642,20 @@ function lookupForItem(id){
   if(!item.styleNum){item.lookupMsg='Enter a style number first.';item.lookupOk=false;renderItems();return;}
   if(!state.sanmarData){item.lookupMsg='Sheet not connected.';item.lookupOk=false;renderItems();return;}
   var result=lookupStyle(item.styleNum);
-  if(result){item.name=result.name;item.wholesale=result.wholesale;item.lookupMsg='Found: '+result.brand+' \u2014 $'+result.wholesale;item.lookupOk=true;}
+  if(result){item.name=result.name;item.wholesale=result.wholesale;item.lookupMsg='Found \u2014 $'+result.wholesale;item.lookupOk=true;}
   else{item.lookupMsg='Not found \u2014 enter price manually.';item.lookupOk=false;}
-  renderItems();renderOutput();
+  renderItems();renderOutput();renderBulkEditor();
 }
 
 // ── BULK ENTRY ──────────────────────────────────────────────────────────────
 function processBulkInput(){
   var val=document.getElementById('bulk-input').value.trim();
   if(!val)return;
-  var styles=val.split(',').map(function(s){return s.trim().toUpperCase();}).filter(Boolean);
-  styles.forEach(function(s){
+  val.split(',').map(function(s){return s.trim().toUpperCase();}).filter(Boolean).forEach(function(s){
     var id=addItem(s);
     if(state.sanmarData){
-      var result=lookupStyle(s);
-      var item=getItem(id);
-      if(item&&result){item.name=result.name;item.wholesale=result.wholesale;item.lookupMsg='Found: $'+result.wholesale;item.lookupOk=true;}
+      var result=lookupStyle(s);var item=getItem(id);
+      if(item&&result){item.name=result.name;item.wholesale=result.wholesale;item.lookupMsg='Found \u2014 $'+result.wholesale;item.lookupOk=true;}
       else if(item){item.lookupMsg='Not found';item.lookupOk=false;}
     }
   });
@@ -642,6 +667,10 @@ document.getElementById('bulk-input').addEventListener('keydown',function(e){if(
 document.getElementById('bulk-add-btn').addEventListener('click',processBulkInput);
 document.getElementById('btn-add').addEventListener('click',function(){addItem();renderAll();});
 
+// ── FILTERS ─────────────────────────────────────────────────────────────────
+document.getElementById('filter-price').addEventListener('change',function(){state.filterPrice=this.value;renderOutput();});
+document.getElementById('filter-tier').addEventListener('change',function(){state.filterTier=this.value;renderOutput();});
+
 // ── OUTPUT ──────────────────────────────────────────────────────────────────
 function renderOutput(){
   var container=document.getElementById('output-container');
@@ -651,19 +680,19 @@ function renderOutput(){
   var pools=getImprintPools();
   var html='';
 
-  // Pool summary
+  // Pool summary cards
   if(Object.keys(pools).length>0){
     html+='<div class="pool-summary-wrap">';
     Object.keys(pools).forEach(function(key){
       var pool=pools[key];
-      var activeTier=getActiveTier(pool);
-      html+='<div class="pool-card">';
-      html+='<div class="pool-card-hdr"><span class="pool-label">'+pool.label+'</span></div>';
-      html+='<div class="pool-card-body">';
-      html+='<div class="pool-stat"><span class="pool-stat-num">'+pool.totalQty+'</span><span class="pool-stat-lbl">total pcs</span></div>';
-      html+='<div class="pool-stat"><span class="pool-stat-num">'+activeTier.label+'</span><span class="pool-stat-lbl">tier</span></div>';
-      html+='</div>';
-      html+='<div class="pool-items">'+pool.items.map(function(i){return'<span class="pool-item-tag">'+(i.name||i.styleNum||'Item')+'</span>';}).join('')+'</div>';
+      var activeTier=getActiveTierForQty(pool.totalQty,pool.deco);
+      var nameInput=document.getElementById('imprint-name-'+pool.id);
+      var poolName=nameInput?nameInput.value:'Imprint '+pool.id;
+      var decoLabel=pool.deco==='screenprint'?'Screen Print':'Embroidery';
+      html+='<div class="pool-card"><div class="pool-card-hdr"><span class="pool-card-name">'+poolName+' \u2014 '+decoLabel+'</span></div>';
+      html+='<div class="pool-card-body"><div class="pool-stat"><span class="pool-stat-num">'+pool.totalQty+'</span><span class="pool-stat-lbl">total pcs</span></div>';
+      html+='<div class="pool-stat"><span class="pool-stat-num">'+activeTier.label+'</span><span class="pool-stat-lbl">active tier</span></div></div>';
+      html+='<div class="pool-items">'+pool.items.map(function(i){return'<span class="pool-item-tag">'+(i.name||i.styleNum||'Item')+(i.styleNum&&i.name?' ('+i.styleNum+')':'')+'</span>';}).join('')+'</div>';
       html+='</div>';
     });
     html+='</div>';
@@ -674,54 +703,67 @@ function renderOutput(){
     var pool=getPoolForItem(item);
     var isSp=item.deco==='screenprint';
     var isEmb=item.deco==='embroidery';
-    var activeTier=getActiveTier(pool)||{label:isSp?getSpTierLabel(item.qty):getEmbTierLabel(item.qty)};
     var tiers=isSp?SP_TIERS:EMB_TIERS;
+    var poolQty=pool?pool.totalQty:item.qty;
+    var activeTier=getActiveTierForQty(poolQty,item.deco);
+    var nameInput=pool?document.getElementById('imprint-name-'+pool.id):null;
+    var poolName=nameInput?nameInput.value:'Imprint '+(pool?pool.id:'');
+    var decoLabel=isSp?'Screen Print':'Embroidery';
+
+    // Title: name — style number
+    var titleStr=item.name&&item.styleNum?item.name+' \u2014 '+item.styleNum:item.name||item.styleNum||'Garment';
 
     html+='<div class="output-block">';
     html+='<div class="output-block-hdr">';
-    html+='<div class="output-block-title">'+(item.name||item.styleNum||'Garment')+'</div>';
+    html+='<div class="output-block-title">'+titleStr+'</div>';
     html+='<div class="output-block-meta">';
-    if(pool)html+='<span class="imprint-tag">'+pool.label+'</span>';
+    if(pool)html+='<span class="imprint-tag">'+poolName+' \u2014 '+decoLabel+'</span>';
     var locSummary=item.locations.map(function(l){return isSp?l.name+' ('+l.spColors+'c)':l.name+' ('+(l.embStitches/1000).toFixed(0)+'k)';}).join(' + ');
     html+='<span class="loc-summary">'+locSummary+'</span>';
     html+='</div></div>';
 
-    html+='<div class="table-scroll">';
-    html+='<table class="price-table">';
-    html+='<thead><tr>';
-    html+='<th>Tier</th><th>Garment</th><th>Deco/unit</th><th>Total Cost</th><th>Raw</th><th class="col-rec">Rec.</th><th class="col-profit">Profit</th>';
+    html+='<div class="table-scroll"><table class="price-table"><thead><tr>';
+    html+='<th>Tier</th>';
+    if(state.filterPrice!=='recommended')html+='<th>Garment</th><th>Deco/unit</th><th>Total Cost</th><th class="col-raw">Raw Price</th>';
+    if(state.filterPrice!=='raw')html+='<th class="col-rec">Recommended</th>';
+    html+='<th class="col-profit">Profit/unit</th>';
     html+='</tr></thead><tbody>';
 
     tiers.forEach(function(tier){
-      var poolQty=pool?pool.totalQty:item.qty;
-      var r=calcRow(item,tier,poolQty);
-      var isActive=activeTier&&tier.label===activeTier.label;
+      // Filter by tier
+      if(state.filterTier!=='all'&&tier.label!==state.filterTier)return;
+      var r=calcRow(item,poolQty);
+      // For SP recalc deco at this tier's representative qty
+      if(isSp){
+        var tierQty=tier.min;
+        var m2=getmd(tierQty,'screenprint');
+        var d2=0;item.locations.forEach(function(loc){d2+=spDeco(tierQty,loc.spColors);});
+        var sc2=tierQty<144?item.locations.reduce(function(s,l){return s+l.spColors*20;},0)/tierQty:0;
+        var tc2=item.wholesale+d2+sc2;
+        var rp2=tc2/m2;
+        r={garment:item.wholesale,deco:d2,totalCost:tc2,rawPrice:rp2,recommended:Math.ceil(rp2),profit:Math.ceil(rp2)-rp2};
+      }
+      var isActive=tier.label===activeTier.label;
       html+='<tr'+(isActive?' class="highlight-row"':'')+'>';
-      html+='<td><span class="tier-label">'+tier.label+'</span>'+(isActive?'<span class="actual-badge">active</span>'+(pool?' <span class="pool-size-note">('+pool.totalQty+'pc pool)</span>':''):'')+'</td>';
-      html+='<td>'+fmt(r.garment)+'</td>';
-      html+='<td>'+fmt(r.deco)+'</td>';
-      html+='<td>'+fmt(r.totalCost)+'</td>';
-      html+='<td class="raw-price">'+fmt(r.rawPrice)+'</td>';
-      html+='<td class="rec-price">$'+Math.ceil(r.rawPrice)+'</td>';
+      html+='<td><span class="tier-label">'+tier.label+'</span>'+(isActive?'<span class="actual-badge">active</span>'+(pool?' <span class="pool-size-note">('+poolQty+' pc pool)</span>':''):'')+'</td>';
+      if(state.filterPrice!=='recommended'){
+        html+='<td>'+fmt(r.garment)+'</td><td>'+fmt(r.deco)+'</td><td>'+fmt(r.totalCost)+'</td>';
+        html+='<td class="raw-price">'+fmt(r.rawPrice)+'</td>';
+      }
+      if(state.filterPrice!=='raw')html+='<td class="rec-price">$'+Math.ceil(r.rawPrice)+'</td>';
       html+='<td class="profit-price">'+fmt(Math.ceil(r.rawPrice)-r.rawPrice)+'</td>';
       html+='</tr>';
     });
-
     html+='</tbody></table></div>';
-
-    if(pool){
-      html+='<div class="pool-note-row">';
-      html+=pool.label+': '+pool.totalQty+' pcs pooled across '+pool.items.length+' garment'+(pool.items.length>1?'s':'')+' \u2192 <strong>'+activeTier.label+'</strong> tier';
-      if(isSp&&pool.totalQty<144)html+=' \u00a0|\u00a0 Screen charges apply';
-      else if(isSp)html+=' \u00a0|\u00a0 <span style="color:var(--green)">Screen charges waived</span>';
-      html+='</div>';
-    }
+    if(pool)html+='<div class="pool-note-row">'+poolName+': '+pool.totalQty+' pcs pooled \u2192 <strong>'+activeTier.label+'</strong> tier'+(isSp&&pool.totalQty>=144?' \u00a0|\u00a0 <span style="color:var(--green)">Screen charges waived</span>':isSp?' \u00a0|\u00a0 Screen charges apply':'')+'</div>';
     html+='</div>';
   });
 
-  html+='<div class="disclaimer-box">&#9888; +$2/unit for 2XL \u00a0|\u00a0 Screen charges: colors \xd7 $20/location \u00a0|\u00a0 Waived at 144+ pcs same artwork \u00a0|\u00a0 Contract Customizing 2026</div>';
+  html+='<div class="disclaimer-box">&#9888; +$2/unit for 2XL \u00a0|\u00a0 Screen charges: colors\xd7$20/location, waived at 144+ \u00a0|\u00a0 Pricing: Contract Customizing 2026</div>';
   container.innerHTML=html;
 }
+
+function renderAll(){renderBulkEditor();renderItems();renderOutput();}
 
 // ── INIT ────────────────────────────────────────────────────────────────────
 loadSanmarData();
