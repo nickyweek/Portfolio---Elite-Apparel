@@ -301,10 +301,11 @@ function lookupStyle(styleNum){
   console.log('Matches found:', matches.length);
   if(!matches.length)return null;
   var base=matches.find(function(r){return r['SIZE']&&r['SIZE'].indexOf('(X)S')>-1;})||matches[0];
-  var price=parseFloat(base['PIECE PRICE']);
+  var rawPrice=(base['PIECE PRICE']||'').replace(/[^0-9.]/g,'');
+  var price=parseFloat(rawPrice);
   console.log('Base row:', JSON.stringify(base));
   console.log('Parsed price:', price);
-  if(isNaN(price))return null;
+  if(isNaN(price)||price===0)return null;
   return{styleNum:base['STYLE NUMBER'],name:base['STYLE DESCRIPTION'],brand:base['BRAND'],wholesale:price};
 }
 function updateLoadingState(){
